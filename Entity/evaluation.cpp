@@ -1,12 +1,17 @@
+#include <string>
+#include <sstream>
 #include "evaluation.h"
+
 
 Evaluation::Evaluation()
 {
 }
-String Evaluation::toString(){
-    String strEval;
-    strEval =  "Evaluation Rating: "         + rating +
-             "\nEvaluation comment: "        + comment ;
+std::string Evaluation::tostring(){
+    std::string strEval;
+    std::stringstream ss;
+    ss << "Evaluation Rating: "        << rating <<
+            "Evaluation comment: "        << comment <<"\n";
+    strEval = ss.str();
     return strEval;
 
 

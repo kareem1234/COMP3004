@@ -5,10 +5,10 @@ class Evaluation
 {
 public:
     Evaluation();
-    String toString();
+    std::string tostring();
 private:
     int rating;
-    String comment;
+    std::string comment;
 };
 
 #endif // EVALUATION_H

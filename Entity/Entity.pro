@@ -4,7 +4,8 @@ SOURCES += \
     instructor.cpp \
     course.cpp \
     task.cpp \
-    evaluation.cpp
+    evaluation.cpp \
+    main.cpp
 
 HEADERS += \
     user.h \

@@ -1,35 +1,41 @@
 #ifndef TA_H
 #define TA_H
-
-#include "user.h";
+ #include <QString>
+#include "user.h"
+#include "course.h"
+#include "task.h"
 
 class TA : public User
 {
 public:
     TA();
-    void   setGPA(String);
-    void   setNewTaskBoolean();
-    void   setFieldOfStudy();
-    void   setYearStanding();
-    void   setStudentNumber();
-    void   setOfficeRoom(String);
+    //TA(const TA&);
+    void   setGPA(int);
+    void   setNewTaskBoolean(bool);
+    void   setFieldOfStudy(std::string);
+    void   setYearStanding(int);
+    void   setStudentNumber(int);
+    void   setOfficeRoom(std::string);
 
-    int    getGPA(String);
-    bool   getNewTaskBoolean();
-    String getFieldOfStudy();
-    int    getYearStanding();
-    int    getStudentNumber();
-    void   getOfficeRoom(String);
 
-    String toString();
+    bool        getNewTaskBoolean();
+    int         getGPA();
+    int         getYearStanding();
+    int         getStudentNumber();
+    std::string getFieldOfStudy();
+    std::string getOfficeRoom();
+
+    std::string tostring();
 
 private:
-    int GPA;
-    boolean newTask;
-    String fieldOfStudy;
-    int yearStanding;
-    int studentNumber;
-    String officeRoom;
+    int         GPA;
+    bool        newTask;
+    std::string fieldOfStudy;
+    int         yearStanding;
+    int         studentNumber;
+    std::string officeRoom;
+    Task        aTask;
+    Course      aCourse;
 };
 
 #endif // TA_H

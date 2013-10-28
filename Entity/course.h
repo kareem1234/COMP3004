@@ -5,12 +5,12 @@ class Course
 {
 public:
     Course();
-    String toString();
+    std::string tostring();
 private:
-    String courseName;
-    String courseCode;
-    String courseDescription;
-    String term;
+    std::string courseName;
+    std::string courseCode;
+    std::string courseDescription;
+    std::string term;
     //This isnt the right synta
     //Date meetingTime
 };

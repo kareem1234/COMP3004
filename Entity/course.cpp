@@ -1,14 +1,16 @@
+#include <string>
 #include "course.h"
+
 
 Course::Course()
 {
 }
 
-String Course::toString(){
-    String strCourse;
+std::string Course::tostring(){
+    std::string strCourse;
     strCourse =  "Course name: "          + courseName +
-                 "\nCourse Code: "        + courseCode +
-                 "\nCourse Description: " + courseDescription +
-                 "\nTerm: "               + term;
+                 " Course Code: "        + courseCode +
+                 " Course Description: " + courseDescription +
+            " Term: "               + term +"\n";
     return strCourse;
 }

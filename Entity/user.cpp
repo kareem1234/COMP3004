@@ -1,28 +1,29 @@
 #include "user.h"
+#include <string>
 
 User::User()
 {
 }
-void User::setName(String tempString){
-    name = tempString;
+void User::setName(std::string tempstring){
+    name = tempstring;
 }
 
-void User::setEmail(String tempString){
-    email = tempString;
+void User::setEmail(std::string tempstring){
+    email = tempstring;
 }
 
 void User::setID(int tempInt){
     ID = tempInt;
 }
 
-String User::getName( ){
+std::string User::getName(){
     return name;
 }
 
-String User::getEmail( ){
+std::string User::getEmail(){
     return email;
 }
 
-String User::getID( ){
+int User::getID(){
     return ID;
 }

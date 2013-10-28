@@ -5,12 +5,12 @@ class Task
 {
 public:
     Task();
-    String toString ();
+    std::string tostring ();
 private:
-    String type;
-    String dueDate;
-    String instructions;
-    String progress;
+    std::string type;
+    std::string dueDate;
+    std::string instructions;
+    std::string progress;
 
 };
 
