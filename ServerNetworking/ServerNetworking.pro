@@ -16,7 +16,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     Server.cpp \
-    Message.cpp
+    Message.cpp \
+    requesthandler.cpp
 
 HEADERS += \
-    Server.h
+    Server.h \
+    requesthandler.h

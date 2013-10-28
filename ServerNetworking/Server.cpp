@@ -24,8 +24,7 @@ void Server::acceptConnection(){
     connect(newClient,SIGNAL(disconnected()),
             this,SLOT(closeConnection()));
 
-    cout<<"accepted new connection"<<endl;
-    cout<<"Total  of " <<clients.size()<<" connection(s)"<<endl;
+    cout<<"accepted new connection "<<"Total  of " <<clients.size()<<" connection(s)"<<endl;
 }
 
 void Server::closeConnection(){
@@ -36,8 +35,7 @@ void Server::closeConnection(){
             client->close();
         }
     }
-    cout<<"client disconnected"<<endl;
-    cout<<"Total  of " <<clients.size()<<" connection(s)"<<endl;
+    cout<<"client disconnected"<<" Total  of " <<clients.size()<<" connection(s)"<<endl;
 	
 }
 
@@ -47,6 +45,9 @@ void Server::readRequest(){
     char* buffer = new char[client->bytesAvailable()];
   	client->read(buffer, client->bytesAvailable());
     cout <<"request was: "<<buffer<< endl;
+    rh = new RequestHandler(buffer);
+    rh->respond(client);
+    delete rh;
     delete buffer;
 }
 

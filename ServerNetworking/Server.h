@@ -6,6 +6,9 @@
 #include <QTcpSocket>
 #include <iostream>
 #include <vector>
+#include "requesthandler.h"
+
+
 using namespace std;
 
 
@@ -23,6 +26,7 @@ class Server: public QObject {
   		QTcpServer server;
   		QTcpSocket* client;
         vector<QTcpSocket*> clients;
+        RequestHandler *rh;
 
 };
 #endif
