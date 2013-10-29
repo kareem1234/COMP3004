@@ -2,14 +2,13 @@
 #define TA_H
  #include <QString>
 #include "user.h"
-#include "course.h"
-#include "task.h"
+
 
 class TA : public User
 {
 public:
     TA();
-    //TA(const TA&);
+    TA(std::string);
     void   setGPA(int);
     void   setNewTaskBoolean(bool);
     void   setFieldOfStudy(std::string);
@@ -28,14 +27,12 @@ public:
     std::string toString();
 
 private:
-    int         GPA;
-    bool        newTask;
-    std::string fieldOfStudy;
+    int         gpa;
     int         yearStanding;
     int         studentNumber;
+    //bool        newTask;
+    std::string fieldOfStudy;
     std::string officeRoom;
-    Task        aTask;
-    Course      aCourse;
 
 };
 

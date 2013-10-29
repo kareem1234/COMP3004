@@ -5,7 +5,7 @@ class Course
 {
 public:
     Course();
-    std::string tostring();
+    std::string toString();
 private:
     std::string courseName;
     std::string courseCode;

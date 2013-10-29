@@ -5,14 +5,15 @@ class User
 {
 public:
     User();
+    User(std::string);
     void   setName(std::string);
     void   setEmail(std::string);
     void   setID(int);
     std::string getName();
     std::string getEmail();
-    int    getID();
+    int         getID();
 protected:
-    int ID;
+    int id;
     std::string name;
     std::string email;
 };

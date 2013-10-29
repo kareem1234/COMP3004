@@ -8,12 +8,13 @@ class Instructor : public User
 {
 public:
     Instructor();
+    Instructor(std::string);
     Instructor(std::string, std::string);
     void setDepartment(std::string);
     void setOfficeRoom(std::string);
     std::string getDepartment();
     std::string getOfficeRoom();
-    std::string tostring();
+    std::string toString();
 private:
     std::string officeRoom;
     std::string department;

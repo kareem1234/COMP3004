@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     task.cpp \
     user.cpp \
     course.cpp \
-    evaluation.cpp
+    evaluation.cpp \
+    instructor.cpp
 
 HEADERS += \
     Client.h \
