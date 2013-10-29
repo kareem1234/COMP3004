@@ -7,6 +7,7 @@
 #include <QString>
 #include <QTcpSocket>
 #include <iostream>
+#include <vector>
 
 #include <course.h>
 #include <ta.h>
@@ -22,13 +23,15 @@ class Client : public  QObject{
           Client(QObject* parent = 0);
           ~Client();
           void start(QString address, quint16 port);
+
           void saveTask(TA t, Task ts);
           void deleteTask(Task ts);
-
           void saveEval(TA t, Evaluation e);
           void deleteEval(Evaluation e);
           Evaluation getEval(Task t);
-
+          vector<Task> getTaskListForCourse(TA t, Course c);
+          vector<TA> getTAList(Course c);
+          vector<Course> getCourseList(Instructor i);
 
     public slots:
           void connection();

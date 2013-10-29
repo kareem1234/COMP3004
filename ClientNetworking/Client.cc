@@ -42,6 +42,7 @@ void Client:: deleteEval( Evaluation e){
     Message<Evaluation,TA> m(Message<string,int>::deleteEval,e);
     sendData(m.toString());
 }
+
 Evaluation Client::getEval(Task t){
     Message<Task,string> m(Message<string,int>::viewEval,t);
     sendData(m.toString());
@@ -52,6 +53,51 @@ Evaluation Client::getEval(Task t){
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
     Message<Evaluation,string> rm(s);
-
+    // eval e(rm.obj1)
+    // return e
 
 }
+
+vector<Task> Client::getTaskListForCourse(TA t, Course c){
+    Message<TA,Course> m(Message<string,int>::viewTaskListForCourse,t,c);
+    sendData(m.toString());
+    while( client.bytesAvailable() == 0){
+        // do nothing
+    }
+    char *buffer = new char[client.bytesAvailable()];
+    client.read(buffer,client.bytesAvailable());
+    string s(buffer);
+    Message<Task,string> rm(s);
+    // return rm.obj1vec
+
+}
+
+vector<TA> Client:: getTAList(Course c){
+    Message<Course,string> m(Message<string,int>::viewTaList,c);
+    sendData(m.toString());
+    while( client.bytesAvailable() == 0){
+        // do nothing
+    }
+    char *buffer = new char[client.bytesAvailable()];
+    client.read(buffer,client.bytesAvailable());
+    string s(buffer);
+    Message<TA,string> rm(s);
+     // return rm.obj1vec
+
+}
+vector<Course> Client::getCourseList(Instructor i){
+    Message<Instructor,string> m(Message<string,int>::viewCourseList,i);
+    sendData(m.toString());
+    while( client.bytesAvailable() == 0){
+        // do nothing
+    }
+    char *buffer = new char[client.bytesAvailable()];
+    client.read(buffer,client.bytesAvailable());
+    string s(buffer);
+    Message<TA,string> rm(s);
+     // return rm.obj1vec
+
+}
+
+
+

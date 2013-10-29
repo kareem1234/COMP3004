@@ -8,7 +8,7 @@ Course::Course()
 
 std::string Course::tostring(){
     std::string strCourse;
-    strCourse = id+" "+courseName +" "+ courseCode +" "
+    strCourse = id +" "+courseName +" "+ courseCode +" "
             +courseDescription +" "+ term +" ";
     return strCourse;
 }
