@@ -8,7 +8,7 @@ class Instructor : public User
 {
 public:
     Instructor();
-    Instructor(std::string, std::string);
+    Instructor(std::string);
     void setDepartment(std::string);
     void setOfficeRoom(std::string);
     std::string getDepartment();
@@ -17,6 +17,7 @@ public:
 private:
     std::string officeRoom;
     std::string department;
+    Course aCourse;
 
 };
 

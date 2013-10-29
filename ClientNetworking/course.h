@@ -5,15 +5,15 @@ class Course
 {
 public:
     Course();
-    std::string tostring();
+    Course(std::string);
+    std::string toString();
 private:
+    int id;
     std::string courseName;
     std::string courseCode;
     std::string courseDescription;
     std::string term;
-    int id;
-    //This isnt the right synta
-    //Date meetingTime
+    std::string meetingTime;
 };
 
 #endif // COURSE_H

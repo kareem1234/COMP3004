@@ -1,38 +1,42 @@
-//#include <vector>;
-#include <string>;
-#include "Instructor.h"
-#include "User.h"
-#include "TA.h"
+//#include <vector>
+#include <string>
+#include <sstream>
+#include <stdlib.h>
+#include "instructor.h"
+#include "user.h"
+#include "ta.h"
 
 
 Instructor::Instructor(){
 
 }
+Instructor::Instructor(std::string line){
+    std::stringstream ss;
+    std::string tempstring;
+    ss << line;
+    std::getline(ss, tempstring, ' ');
+    id = atoi(tempstring.c_str());
+    std::getline(ss, name,' ');
+    std::getline(ss, email, ' ');
+    std::getline(ss, officeRoom, ' ');
+    std::getline(ss, department, ' ');
 
-Instructor::Instructor(std::string dep, std::string office){
-    department = dep;
-    officeRoom = office;
-}
-
-void Instructor::setDepartment(std::string tempstring){
-    department = tempstring;
-}
-void Instructor::setOfficeRoom(std::string tempstring){
-    officeRoom = tempstring;
-}
-std::string Instructor::getOfficeRoom(){
-    return officeRoom;
-}
-std::string Instructor::getDepartment(){
-    return department;
 }
 
-//overloads. use it by cout << InstructorVariable << endl;
+
+//set methods
+void Instructor::setDepartment(std::string tempstring){    department = tempstring;}
+void Instructor::setOfficeRoom(std::string tempstring){    officeRoom = tempstring;}
+//get methods
+std::string Instructor::getOfficeRoom() { return officeRoom;    }
+std::string Instructor::getDepartment() { return department;    }
+
+//toString method
 
 std::string Instructor::tostring(){
-    std::string strIns;
-    strIns =  "Instructor's name: "         + name +
-             " Instructor's department: "   + department +
-             " Instructor's officeRoom: "   + officeRoom +"\n";
-    return strIns;
+    std::string strInstructor;
+    std::stringstream ss;
+    ss<< id<<" "<<name <<" "<< email<<" "<< officeRoom <<" " << department ;
+    strInstructor =  ss.str();
+    return strInstructor;
 }
