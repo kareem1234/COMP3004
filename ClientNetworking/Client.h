@@ -10,6 +10,10 @@
 
 #include <course.h>
 #include <ta.h>
+#include <instructor.h>
+#include <course.h>
+#include <task.h>
+#include <evaluation.h>
 using namespace std;
 
 class Client : public  QObject{
@@ -18,13 +22,22 @@ class Client : public  QObject{
           Client(QObject* parent = 0);
           ~Client();
           void start(QString address, quint16 port);
+          void saveTask(TA t, Task ts);
+          void deleteTask(Task ts);
+
+          void saveEval(TA t, Evaluation e);
+          void deleteEval(Evaluation e);
+          Evaluation getEval(Task t);
+
+
     public slots:
           void connection();
-          void sendData(string s);
+
 
 
     private:
             QTcpSocket client;
+            void sendData(string s);
 };
 
 

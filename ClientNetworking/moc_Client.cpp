@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Client.h'
 **
-** Created: Mon Oct 28 15:01:35 2013
+** Created: Tue Oct 29 14:35:55 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Client[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       1,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,13 +32,12 @@ static const uint qt_meta_data_Client[] = {
 
  // slots: signature, parameters, type, tag, flags
        8,    7,    7,    7, 0x0a,
-      23,   21,    7,    7, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Client[] = {
-    "Client\0\0connection()\0s\0sendData(string)\0"
+    "Client\0\0connection()\0"
 };
 
 void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -48,10 +47,10 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Client *_t = static_cast<Client *>(_o);
         switch (_id) {
         case 0: _t->connection(); break;
-        case 1: _t->sendData((*reinterpret_cast< string(*)>(_a[1]))); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData Client::staticMetaObjectExtraData = {
@@ -86,9 +85,9 @@ int Client::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 1)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 1;
     }
     return _id;
 }

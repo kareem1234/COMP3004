@@ -16,7 +16,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    Client.cc
+    Client.cc \
+    Message.cpp \
+    ta.cpp \
+    task.cpp \
+    user.cpp \
+    course.cpp \
+    evaluation.cpp
 
 HEADERS += \
-    Client.h
+    Client.h \
+    instructor.h \
+    ta.h \
+    task.h \
+    user.h \
+    course.h \
+    evaluation.h

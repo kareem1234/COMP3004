@@ -1,18 +1,17 @@
 #ifndef COURSE_H
 #define COURSE_H
 
-#include<iostream>
-using namespace std;
-
-class Course{
+class Course
+{
 public:
     Course();
-    string toString();
+    std::string tostring();
 private:
-    string courseName;
-    string courseCode;
-    string courseDescription;
-    string term;
+    std::string courseName;
+    std::string courseCode;
+    std::string courseDescription;
+    std::string term;
+    int id;
     //This isnt the right synta
     //Date meetingTime
 };
