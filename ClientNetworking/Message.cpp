@@ -17,6 +17,7 @@ class Message{
             Message(vector<A>& list);
             static string getMethod(string s);
             string toString();
+            vector<A> returnAvec();
             string returnA();
             string returnB();
 
@@ -102,6 +103,18 @@ Message <A, B>:: Message(vector<A>& list){
         obj1 += ";";
     }
     obj1 += endl;
+}
+template<class A, class B>
+vector<A> Message<A,B>::returnAvec(){
+    vector<A> returnList;
+    stringstream temp;
+    string t1;
+    temp<<obj1;
+    while(getline(temp,t1,';')){
+        A ob(t1);
+        returnList.push_back(ob);
+    }
+    return returnList;
 }
 
 template<class A, class B>

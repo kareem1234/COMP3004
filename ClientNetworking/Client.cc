@@ -53,8 +53,8 @@ Evaluation Client::getEval(Task t){
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
     Message<Evaluation,string> rm(s);
-    // eval e(rm.obj1)
-    // return e
+    Evaluation e(rm.returnA());
+    return e;
 
 }
 
@@ -68,7 +68,7 @@ vector<Task> Client::getTaskListForCourse(TA t, Course c){
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
     Message<Task,string> rm(s);
-    // return rm.obj1vec
+    return rm.returnAvec();
 
 }
 
@@ -82,7 +82,7 @@ vector<TA> Client:: getTAList(Course c){
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
     Message<TA,string> rm(s);
-     // return rm.obj1vec
+    return rm.returnAvec();
 
 }
 vector<Course> Client::getCourseList(Instructor i){
@@ -94,8 +94,8 @@ vector<Course> Client::getCourseList(Instructor i){
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
-    Message<TA,string> rm(s);
-     // return rm.obj1vec
+    Message<Course,string> rm(s);
+    return rm.returnAvec();
 
 }
 
