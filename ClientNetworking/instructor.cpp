@@ -10,17 +10,28 @@
 Instructor::Instructor(){
 
 }
-Instructor::Instructor(std::string line){
+Instructor::Instructor(int tempID, std::string tempName, std::string tempEmail,
+                       std::string tempOffice, std::string tempDep){
+    id = tempID;
+    name = tempName;
+    email = tempEmail;
+    officeRoom = tempOffice
+    department = tempDep;
+
+
+}
+
+Instructor::Instructor(int line, std::string, std::string, std::string, std::string){
 
     std::stringstream ss;
     std::string tempstring;
     ss << line;
-    std::getline(ss, tempstring, ' ');
+    std::getline(ss, tempstring, '*');     //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, name,' ');
-    std::getline(ss, email, ' ');
-    std::getline(ss, officeRoom, ' ');
-    std::getline(ss, department, ' ');
+    std::getline(ss, name,'*');            //name
+    std::getline(ss, email, '*');          //email
+    std::getline(ss, officeRoom, '*');     //officeRoom
+    std::getline(ss, department, '*');     //department
 
 }
 
@@ -39,7 +50,7 @@ std::string Instructor::toString(){
     std::string strInstructor;
     std::stringstream ss;
 
-    ss << id << " " << name << " " << email << " " << officeRoom << " " << department;
+    ss << id << "*" << name << "*" << email << "*" << officeRoom << "*" << department;
     strInstructor =  ss.str();
 
     return strInstructor;

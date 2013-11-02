@@ -4,6 +4,18 @@
 #include "task.h"
 
 Task::Task(){}
+Task::Task(int tempId, int tempTAID, int tempCourseID, std::string tempType,
+           std::string tempDate, std::string tempIns, std::string tempProgress){
+
+    id = tempId;
+    taID = tempTAID;
+    courseId = tempCourseID;
+    type = tempType;
+    dueDate = tempDate;
+    instructions = tempIns;
+    progress = tempProgress;
+
+}
 
 Task::Task(std::string line){
     std::stringstream ss;

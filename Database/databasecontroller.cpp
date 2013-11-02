@@ -31,7 +31,6 @@ bool DatabaseController::initDatabase()
 
 
 
-
 /***
   Save Entity Objects
 ***/

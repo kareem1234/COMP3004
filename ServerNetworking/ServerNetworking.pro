@@ -6,6 +6,7 @@
 QT       += core
 QT       += network
 QT       -= gui
+QT       += sql
 
 TARGET = ServerNetworking
 CONFIG   += console
@@ -17,8 +18,21 @@ TEMPLATE = app
 SOURCES += main.cpp \
     Server.cpp \
     Message.cpp \
-    requesthandler.cpp
+    requesthandler.cpp \
+    ta.cpp \
+    task.cpp \
+    user.cpp \
+    course.cpp \
+    evaluation.cpp \
+    instructor.cpp
 
 HEADERS += \
     Server.h \
-    requesthandler.h
+    requesthandler.h \
+    ta.h \
+    task.h \
+    user.h \
+    course.h \
+    evaluation.h \
+    instructor.h \
+

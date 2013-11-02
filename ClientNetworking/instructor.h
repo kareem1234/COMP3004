@@ -8,7 +8,7 @@ class Instructor : public User
 {
 public:
     Instructor();
-    Instructor(std::string);
+    Instructor(int, std::string, std::string, std::string, std::string);
     Instructor(std::string, std::string);
 
     //set methods

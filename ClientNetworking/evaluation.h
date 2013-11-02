@@ -6,6 +6,7 @@ class Evaluation
 {
 public:
     Evaluation();
+    Evaluation(int, int, int, std::string);
     Evaluation(std::string);
 
     //set methods

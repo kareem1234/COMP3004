@@ -6,16 +6,27 @@ Course::Course()
 {
 }
 
+Course::Course(int tempId, std::string cName, std::string cCode, std::string cDes,
+               std::string mTime, std::string tempTerm){
+    id = tempId;
+    courseName = cName;
+    courseCode = cCode;
+    courseDescription = cDes;
+    meetingTime = mTime;
+    term = tempTerm;
+
+}
+
 Course::Course(std::string line){
     std::stringstream ss;
     std::string tempstring;
     ss << line;
-    std::getline(ss, tempstring, ' ');
+    std::getline(ss, tempstring, '*');        //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, courseName, ' ');
-    std::getline(ss, courseCode, ' ');
-    std::getline(ss, courseDescription, ' ');
-    std::getline(ss, term,  ' ');
+    std::getline(ss, courseName, '*');        //courseName
+    std::getline(ss, courseCode, '*');        //courseCode
+    std::getline(ss, courseDescription, '*'); //courseDescription
+    std::getline(ss, term,  '*');             //term
 
  }
 
@@ -38,7 +49,7 @@ std::string Course::getTerm(){ return term ;}
  std::string Course::toString(){
       std::string strCourse;
       std::stringstream ss;
-     ss<< id<<" "<< courseName <<" "<< courseCode<<" "<< courseDescription <<" " << term <<" ";
+     ss<< id<<"*"<< courseName <<"*"<< courseCode<<"*"<< courseDescription <<"*" << term <<"*";
    strCourse =  ss.str();
       return strCourse;
   }

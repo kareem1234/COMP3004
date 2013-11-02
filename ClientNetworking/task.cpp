@@ -4,6 +4,18 @@
 #include "task.h"
 
 Task::Task(){}
+Task::Task(int tempId, int tempTAID, int tempCourseID, std::string tempType,
+           std::string tempDate, std::string tempIns, std::string tempProgress){
+
+    id = tempId;
+    taID = tempTAID;
+    courseId = tempCourseID;
+    type = tempType;
+    dueDate = tempDate;
+    instructions = tempIns;
+    progress = tempProgress;
+
+}
 
 Task::Task(std::string line){
     std::stringstream ss;
@@ -11,14 +23,14 @@ Task::Task(std::string line){
 
     ss << line;
 
-    std::getline(ss, tempstring,' ');
+    std::getline(ss, tempstring,'*');
     id = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, ' ');
+    std::getline(ss, tempstring, '*');
     taID = atoi(tempstring.c_str());
-    std::getline(ss, type, ' ');
-    std::getline(ss, dueDate, ' ');
-    std::getline(ss, instructions, ' ');
-    std::getline(ss, progress, ' ');
+    std::getline(ss, type, '*');
+    std::getline(ss, dueDate, '*');
+    std::getline(ss, instructions, '*');
+    std::getline(ss, progress, '*');
 
 }
 
@@ -47,8 +59,8 @@ std::string Task::toString(){
     std::string strTask;
     std::stringstream ss;
 
-    ss << id << " "<< taID << " "<< type <<" "<< dueDate << " "
-       << instructions << " " << progress << " ";
+    ss << id << "*"<< taID << "*"<< type <<"*"<< dueDate << "*"
+       << instructions << "*" << progress << "*";
 
     strTask =  ss.str();
 

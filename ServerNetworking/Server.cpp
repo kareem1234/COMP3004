@@ -45,8 +45,8 @@ void Server::readRequest(){
     char* buffer = new char[client->bytesAvailable()];
   	client->read(buffer, client->bytesAvailable());
     cout <<"request was: "<<buffer<< endl;
-    rh = new RequestHandler(buffer);
-    rh->respond(client);
+    string s(buffer);
+    rh = new RequestHandler(s,client);
     delete rh;
     delete buffer;
 }

@@ -29,7 +29,7 @@ class Message{
 
             static string saveEval;
             static string deleteEval;
-            static string viewEval;
+            static string getEval;
 
             static string viewTaskListForCourse;
             static string viewTaList;
@@ -39,31 +39,31 @@ class Message{
 
 /// static string definitions
 template < class A, class B>
-string Message<A,B>::reTurn ="RETURN \n";
+string Message<A,B>::reTurn ="RETURN";
 
 template < class A, class B>
-string Message<A,B>::saveTask ="STASK \n";
+string Message<A,B>::saveTask ="STASK";
 
 template < class A, class B>
-string Message<A,B>::deleteTask ="DTASK \n";
+string Message<A,B>::deleteTask ="DTASK";
 
 template < class A, class B>
-string Message<A,B>::saveEval ="SEVAL \n";
+string Message<A,B>::saveEval ="SEVAL";
 
 template < class A, class B>
-string Message<A,B>::deleteEval ="DEVAL \n";
+string Message<A,B>::deleteEval ="DEVAL";
 
 template < class A, class B>
-string Message<A,B>::viewEval ="VEVAL \n";
+string Message<A,B>::getEval ="GEVAL";
 
 template < class A, class B>
-string Message<A,B>::viewTaskListForCourse ="VTASKS \n";
+string Message<A,B>::viewTaskListForCourse ="VTASKS";
 
 template < class A, class B>
-string Message<A,B>::viewTaList="VTAS \n";
+string Message<A,B>::viewTaList="VTAS";
 
 template < class A, class B>
-string Message<A,B>::viewCourseList ="VTAS \n";
+string Message<A,B>::viewCourseList ="VTAS";
 
 
 

@@ -8,15 +8,24 @@
 #include <QtNetwork>
 #include <QObject>
 #include <QTcpSocket>
+#include <course.h>
+#include <ta.h>
+#include <instructor.h>
+#include <course.h>
+#include <task.h>
+#include <evaluation.h>
+//#include <databasecontroller.h>
+using namespace std;
 
 class RequestHandler{
 
     public:
-            RequestHandler(string m);
-            string respond(QTcpSocket* client);
+            RequestHandler(string m,QTcpSocket* client);
+            void respond(QTcpSocket* client);
 
     private:
            string msg;
+          // DatabaseController db;
 };
 
 #endif // REQUESTHANDLER_H
