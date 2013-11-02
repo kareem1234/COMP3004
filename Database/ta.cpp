@@ -34,6 +34,8 @@ void TA::setYearStanding    (int         tempInt)    {  yearStanding = tempInt; 
 void TA::setStudentNumber   (int         tempInt)    {  studentNumber = tempInt;   }
 void TA::setFieldOfStudy    (std::string tempstring) {  fieldOfStudy = tempstring; }
 void TA::setOfficeRoom      (std::string tempstring) {  officeRoom = tempstring;   }
+void TA::setCourseId        (int aCourseId)  {  courseId = aCourseId;   }
+
 
 
 //get methods
@@ -42,6 +44,7 @@ int         TA::getYearStanding()  {  return yearStanding;    }
 int         TA::getStudentNumber() {  return studentNumber;   }
 std::string TA::getOfficeRoom()    {  return officeRoom;      }
 std::string TA::getFieldOfStudy()  {  return fieldOfStudy;    }
+int         TA::getCourseId()      {  return courseId;    }
 
 //toString method
 

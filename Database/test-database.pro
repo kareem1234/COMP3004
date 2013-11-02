@@ -19,9 +19,21 @@ TEMPLATE = app
 SOURCES += main.cpp \
     databasetest.cpp \
     databasemanager.cpp \
-    databasecontroller.cpp
+    databasecontroller.cpp \
+    user.cpp \
+    task.cpp \
+    ta.cpp \
+    instructor.cpp \
+    evaluation.cpp \
+    course.cpp
 
 HEADERS += \
     databasetest.h \
     databasemanager.h \
-    databasecontroller.h
+    databasecontroller.h \
+    user.h \
+    task.h \
+    ta.h \
+    instructor.h \
+    evaluation.h \
+    course.h

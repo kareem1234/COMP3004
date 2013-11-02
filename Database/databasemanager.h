@@ -34,9 +34,9 @@ public:
 
 
     // Insert SQL Record Methods
-    int insertInstructor(QString firstName, QString lastName, QString email,
+    int insertInstructor(QString name, QString email,
                          QString department, QString office_room);
-    int insertTA(QString firstName, QString lastName, QString email,
+    int insertTA(QString name, QString email,
                  qreal GPA, qint32 studentNumber);
     int insertCourse(QString courseName, QString courseCode, QString term,
                      QString courseDescription, QString meetingTime);
@@ -48,19 +48,19 @@ public:
 
 
     // Select SQL Methods
-    QSqlQuery getTaskList(qint32 taId, qint32 courseId);
-    QSqlQuery getCourseList(qint32 instructorId);
-    QSqlQuery getTAList(qint32 courseId);
-    QSqlQuery getEvaluation(qint32 taskId);
+    QSqlQuery getTaskList(qint32, qint32);
+    QSqlQuery getCourseList(qint32);
+    QSqlQuery getTAList(qint32);
+    QSqlQuery getEvaluation(qint32);
 
     // Delete SQL Methods
-    bool deleteTask(qint32 taskId);
-    bool deleteEvaluation(qint32 evaluationId);
+    bool deleteTask(qint32);
+    bool deleteEvaluation(qint32);
 
     // Update SQL Methods
-    bool updateTask(qint32 taskId, QString instructions, QString type, QString dueDate, QString progress,
-                    qint32 courseId, qint32 taId);
-    bool updateEvaluation(qint32 evaluationId, qint32 rating, QString comments, qint32 taskId);
+    bool updateTask(qint32, QString, QString, QString, QString,
+                    qint32, qint32);
+    bool updateEvaluation(qint32, qint32, QString, qint32);
 
 
 

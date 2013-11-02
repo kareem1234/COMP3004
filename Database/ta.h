@@ -16,6 +16,7 @@ public:
     void   setStudentNumber(int);
     void   setFieldOfStudy(std::string);
     void   setOfficeRoom(std::string);
+    void   setCourseId(int);
 
     //get methods
     int         getGPA();
@@ -23,6 +24,7 @@ public:
     int         getStudentNumber();
     std::string getOfficeRoom();
     std::string getFieldOfStudy();
+    int         getCourseId();
 
     //toString method
     std::string toString();
@@ -33,6 +35,7 @@ private:
     int         studentNumber;
     std::string fieldOfStudy;
     std::string officeRoom;
+    int         courseId;
 
 };
 
