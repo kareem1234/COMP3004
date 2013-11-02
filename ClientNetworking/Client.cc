@@ -24,7 +24,7 @@ void Client::connection(){
 }
 
 void Client::sendData(string s){
-    cout<<"sending message"<<endl;
+    cout<<"sending message: "<<s<<endl;
     client.write(s.c_str());
 }
 
@@ -44,7 +44,7 @@ void Client:: deleteEval( Evaluation e){
 }
 
 Evaluation Client::getEval(Task t){
-    Message<Task,string> m(Message<string,int>::viewEval,t);
+    Message<Task,string> m(Message<string,int>::getEval,t);
     sendData(m.toString());
     while( client.bytesAvailable() == 0){
         // do nothing
@@ -93,6 +93,7 @@ vector<Course> Client::getCourseList(Instructor i){
     }
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
+    cout<<"recieved message: "<<buffer<<endl;
     string s(buffer);
     Message<Course,string> rm(s);
     return rm.returnAvec();

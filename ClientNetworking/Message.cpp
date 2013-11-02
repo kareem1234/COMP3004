@@ -29,7 +29,7 @@ class Message{
 
             static string saveEval;
             static string deleteEval;
-            static string viewEval;
+            static string getEval;
 
             static string viewTaskListForCourse;
             static string viewTaList;
@@ -54,7 +54,7 @@ template < class A, class B>
 string Message<A,B>::deleteEval ="DEVAL \n";
 
 template < class A, class B>
-string Message<A,B>::viewEval ="VEVAL \n";
+string Message<A,B>::viewEval ="GEVAL \n";
 
 template < class A, class B>
 string Message<A,B>::viewTaskListForCourse ="VTASKS \n";
