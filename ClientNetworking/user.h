@@ -6,6 +6,7 @@ class User
 {
 public:
     User();
+    User(int, std::string ,std::string );
     User(std::string);
 
     //set method

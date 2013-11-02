@@ -7,10 +7,18 @@
 Evaluation::Evaluation()
 {
 }
+Evaluation::Evaluation(int tempRating, int tempID, int tempTaskID, std::string tempComment){
+    rating = tempRating;
+    id = tempID;
+    taskID = tempTaskID;
+    comment = tempComment;
+}
+
 Evaluation::Evaluation(std::string line){
     std::stringstream ss;
     std::string tempstring;
     ss << line;
+<<<<<<< HEAD
     std::getline(ss, tempstring,'$');
     id = atoi(tempstring.c_str());
     std::getline(ss, tempstring, '$');
@@ -18,6 +26,15 @@ Evaluation::Evaluation(std::string line){
     std::getline(ss, tempstring, '$');
     rating = atoi(tempstring.c_str());
     std::getline(ss, comment, '$');
+=======
+    std::getline(ss, tempstring,' ');     //id
+    id = atoi(tempstring.c_str());
+    std::getline(ss, tempstring, ' ');    //taskID
+    taskID = atoi(tempstring.c_str());
+    std::getline(ss, tempstring, ' ');    //rating
+    rating = atoi(tempstring.c_str());
+    std::getline(ss, comment, ' ');       //comment
+>>>>>>> 1562a016fd55ec5e1e359a9364897b755726d94d
 
 }
 

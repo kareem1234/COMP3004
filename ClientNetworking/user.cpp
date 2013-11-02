@@ -6,15 +6,21 @@
 User::User()
 {
 }
+User::User(int tempID, std::string tempName,std::string tempEmail){
+    id = tempID;
+    name = tempName;
+    email = tempEmail;
+}
+
 User::User(std::string line){
     std::stringstream ss;
     std::string tempstring;
 
     ss << line;
-    std::getline(ss, tempstring,' ');
+    std::getline(ss, tempstring,' ');    //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, name, ' ');
-    std::getline(ss, email,' ');
+    std::getline(ss, name, ' ');         //name
+    std::getline(ss, email,' ');         //email
 }
 //set methods
 void User::setName  (std::string tempstring){ name = tempstring;    }

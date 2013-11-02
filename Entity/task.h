@@ -6,6 +6,7 @@ class Task
 {
 public:
     Task();
+    Task(int, int, int, std::string, std::string, std::string, std::string);
     Task(std::string);
     std::string toString ();
 
