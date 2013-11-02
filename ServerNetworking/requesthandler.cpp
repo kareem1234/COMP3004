@@ -7,9 +7,6 @@ RequestHandler::RequestHandler(string m,QTcpSocket* client){
 
 void RequestHandler::respond(QTcpSocket* client){
    string method = Message<string,int>::getMethod(msg);
-   cout<<"method was: "<<method;
-   cout<<"static string is: "<<Message<string,int>::deleteEval<<endl;
-   cout<<"return of comparator"<<method.compare(Message<string,int>::deleteEval)<<endl;
 
    if(method.compare(Message<string,int>::saveTask) == 0 ){
        Message<TA,Task> m(msg);
@@ -31,7 +28,6 @@ void RequestHandler::respond(QTcpSocket* client){
    }else if(method.compare(Message<string,int>::deleteEval) == 0){
         Message<Evaluation,string> m(msg);
         Evaluation e(m.returnA());
-        cout<<"printing eval: "<<e.toString()<<endl;
         //call database method , create message with return objects then return message.tostring
 
    }else if(method.compare(Message<string,int>::getEval)==0){

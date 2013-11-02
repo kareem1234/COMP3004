@@ -26,12 +26,12 @@ Instructor::Instructor(int line, std::string, std::string, std::string, std::str
     std::stringstream ss;
     std::string tempstring;
     ss << line;
-    std::getline(ss, tempstring, ' ');     //id
+    std::getline(ss, tempstring, '*');     //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, name,' ');            //name
-    std::getline(ss, email, ' ');          //email
-    std::getline(ss, officeRoom, ' ');     //officeRoom
-    std::getline(ss, department, ' ');     //department
+    std::getline(ss, name,'*');            //name
+    std::getline(ss, email, '*');          //email
+    std::getline(ss, officeRoom, '*');     //officeRoom
+    std::getline(ss, department, '*');     //department
 
 }
 
@@ -50,7 +50,7 @@ std::string Instructor::toString(){
     std::string strInstructor;
     std::stringstream ss;
 
-    ss << id << " " << name << " " << email << " " << officeRoom << " " << department;
+    ss << id << "*" << name << "*" << email << "*" << officeRoom << "*" << department;
     strInstructor =  ss.str();
 
     return strInstructor;

@@ -18,23 +18,13 @@ Evaluation::Evaluation(std::string line){
     std::stringstream ss;
     std::string tempstring;
     ss << line;
-<<<<<<< HEAD
-    std::getline(ss, tempstring,'$');
+    std::getline(ss, tempstring,'*');     //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, '$');
+    std::getline(ss, tempstring, '*');    //taskID
     taskID = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, '$');
+    std::getline(ss, tempstring, '*');    //rating
     rating = atoi(tempstring.c_str());
-    std::getline(ss, comment, '$');
-=======
-    std::getline(ss, tempstring,' ');     //id
-    id = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, ' ');    //taskID
-    taskID = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, ' ');    //rating
-    rating = atoi(tempstring.c_str());
-    std::getline(ss, comment, ' ');       //comment
->>>>>>> 1562a016fd55ec5e1e359a9364897b755726d94d
+    std::getline(ss, comment, '*');       //comment
 
 }
 
@@ -55,7 +45,11 @@ std::string Evaluation::getComment(){ return comment;}
 std::string Evaluation::toString(){
     std::string strCourse;
     std::stringstream ss;
+<<<<<<< HEAD
     ss<< id<<"$"<< taskID <<"$"<< rating<<"$"<< comment <<"$";
+=======
+    ss<< id<<"*"<< taskID <<"*"<< rating<<"*"<< comment <<"*";
+>>>>>>> 2fabc503d2ea15f73139a309a22ad9985a2401f9
     strCourse =  ss.str();
     return strCourse;
 
