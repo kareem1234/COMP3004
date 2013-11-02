@@ -2,40 +2,38 @@
 #define TA_H
  #include <QString>
 #include "user.h"
-#include "course.h"
-#include "task.h"
+
 
 class TA : public User
 {
 public:
     TA();
-    //TA(const TA&);
+    TA(std::string);
+
+    //set methods
     void   setGPA(int);
-    void   setNewTaskBoolean(bool);
-    void   setFieldOfStudy(std::string);
     void   setYearStanding(int);
     void   setStudentNumber(int);
+    void   setFieldOfStudy(std::string);
     void   setOfficeRoom(std::string);
 
-
-    bool        getNewTaskBoolean();
+    //get methods
     int         getGPA();
     int         getYearStanding();
     int         getStudentNumber();
-    std::string getFieldOfStudy();
     std::string getOfficeRoom();
+    std::string getFieldOfStudy();
 
-    std::string tostring();
+    //toString method
+    std::string toString();
 
 private:
-    int         GPA;
-    bool        newTask;
-    std::string fieldOfStudy;
+    int         gpa;
     int         yearStanding;
     int         studentNumber;
+    std::string fieldOfStudy;
     std::string officeRoom;
-    Task        aTask;
-    Course      aCourse;
+
 };
 
 #endif // TA_H

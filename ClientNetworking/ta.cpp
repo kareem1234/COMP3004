@@ -27,7 +27,7 @@ TA::TA(std::string line){
 
 }
 
-//void TA::setNewTaskBoolean  (bool        tempBool)   {  newTask = tempBool;        }
+
 //set methods
 void TA::setGPA             (int         tempInt)    {  gpa = tempInt;             }
 void TA::setYearStanding    (int         tempInt)    {  yearStanding = tempInt;    }
@@ -35,7 +35,7 @@ void TA::setStudentNumber   (int         tempInt)    {  studentNumber = tempInt;
 void TA::setFieldOfStudy    (std::string tempstring) {  fieldOfStudy = tempstring; }
 void TA::setOfficeRoom      (std::string tempstring) {  officeRoom = tempstring;   }
 
-//bool        TA::getNewTaskBoolean(){  return newTask;         }
+
 //get methods
 int         TA::getGPA()           {  return gpa ;            }
 int         TA::getYearStanding()  {  return yearStanding;    }
@@ -48,7 +48,11 @@ std::string TA::getFieldOfStudy()  {  return fieldOfStudy;    }
 std::string TA::toString(){
     std::string strTA;
     std::stringstream ss;
-    ss<< id<<" "<<name <<" "<< gpa<<" "<< email <<" " << yearStanding <<" " << officeRoom <<" "<< studentNumber <<" "<< fieldOfStudy <<" ";
+
+    ss << id << " "<< name << " " << gpa <<" "<< email << " " << yearStanding
+       <<" " << officeRoom << " " << studentNumber <<" "<< fieldOfStudy <<" ";
+
     strTA =  ss.str();
+
     return strTA;
 }
