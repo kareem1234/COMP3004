@@ -9,6 +9,7 @@ class Course
 {
 public:
     Course();
+    Course(int, std::string, std::string, std::string, std::string, std::string);
     Course(std::string);
 
     void setId(int);
