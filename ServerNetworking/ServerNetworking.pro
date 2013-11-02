@@ -23,7 +23,10 @@ SOURCES += main.cpp \
     user.cpp \
     course.cpp \
     evaluation.cpp \
-    instructor.cpp
+    instructor.cpp \
+    databasetest.cpp \
+    databasemanager.cpp \
+    databasecontroller.cpp
 
 HEADERS += \
     Server.h \
@@ -33,4 +36,6 @@ HEADERS += \
     user.h \
     course.h \
     evaluation.h \
-    instructor.h
+    instructor.h \
+    databasemanager.h \
+    databasecontroller.h

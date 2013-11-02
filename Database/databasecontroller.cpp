@@ -27,7 +27,10 @@ bool DatabaseController::initDatabase()
     dbManager.deleteDB();
 
     return success;
-}
+}<<<<<<< HEAD
+<!-- Written by Qt Creator 2.4.1, 2013-11-02T13:49:45. -->
+=======
+
 
 
 
