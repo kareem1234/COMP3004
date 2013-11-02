@@ -25,20 +25,20 @@ TA::TA(std::string line){
     std::string tempstring;
 
     ss << line;
-    std::getline(ss, tempstring,' ');       //id
+    std::getline(ss, tempstring,'*');       //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, ' ');      //courseID;
+    std::getline(ss, tempstring, '*');      //courseID;
     courseID = atoi(tempstring.c_str());
-    std::getline(ss, name, ' ');            //name
-    std::getline(ss, tempstring,' ');       //gpa
+    std::getline(ss, name, '*');            //name
+    std::getline(ss, tempstring,'*');       //gpa
     gpa = atoi(tempstring.c_str());
-    std::getline(ss, email, ' ');           //email
-    std::getline(ss, tempstring,' ');       //yearStanding
+    std::getline(ss, email, '*');           //email
+    std::getline(ss, tempstring,'*');       //yearStanding
     yearStanding = atoi(tempstring.c_str());
-    std::getline(ss, officeRoom, ' ' );     //officeRoom
-    std::getline(ss, tempstring,' ');       //studentNumber
+    std::getline(ss, officeRoom, '*' );     //officeRoom
+    std::getline(ss, tempstring,'*');       //studentNumber
     studentNumber = atoi(tempstring.c_str());
-    std::getline(ss, fieldOfStudy, ' ');    //fieldOfStudy
+    std::getline(ss, fieldOfStudy, '*');    //fieldOfStudy
 
 
 }
@@ -67,8 +67,8 @@ std::string TA::toString(){
     std::string strTA;
     std::stringstream ss;
 
-    ss << id << " "<< courseID << " "<< name << " " << gpa <<" "<< email << " "
-       << yearStanding <<" " << officeRoom << " " << studentNumber <<" "<< fieldOfStudy <<" ";
+    ss << id << "*"<< courseID << "*"<< name << "*" << gpa <<"*"<< email << "*"
+       << yearStanding <<"*" << officeRoom << "*" << studentNumber <<"*"<< fieldOfStudy <<"*";
 
     strTA =  ss.str();
 

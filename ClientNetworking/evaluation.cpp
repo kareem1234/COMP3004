@@ -18,13 +18,13 @@ Evaluation::Evaluation(std::string line){
     std::stringstream ss;
     std::string tempstring;
     ss << line;
-    std::getline(ss, tempstring,' ');     //id
+    std::getline(ss, tempstring,'*');     //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, ' ');    //taskID
+    std::getline(ss, tempstring, '*');    //taskID
     taskID = atoi(tempstring.c_str());
-    std::getline(ss, tempstring, ' ');    //rating
+    std::getline(ss, tempstring, '*');    //rating
     rating = atoi(tempstring.c_str());
-    std::getline(ss, comment, ' ');       //comment
+    std::getline(ss, comment, '*');       //comment
 
 }
 
@@ -45,7 +45,7 @@ std::string Evaluation::getComment(){ return comment;}
 std::string Evaluation::toString(){
     std::string strCourse;
     std::stringstream ss;
-    ss<< id<<" "<< taskID <<" "<< rating<<" "<< comment <<" ";
+    ss<< id<<"*"<< taskID <<"*"<< rating<<"*"<< comment <<"*";
     strCourse =  ss.str();
     return strCourse;
 

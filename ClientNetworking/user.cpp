@@ -17,10 +17,10 @@ User::User(std::string line){
     std::string tempstring;
 
     ss << line;
-    std::getline(ss, tempstring,' ');    //id
+    std::getline(ss, tempstring,'*');    //id
     id = atoi(tempstring.c_str());
-    std::getline(ss, name, ' ');         //name
-    std::getline(ss, email,' ');         //email
+    std::getline(ss, name, '*');         //name
+    std::getline(ss, email,'*');         //email
 }
 //set methods
 void User::setName  (std::string tempstring){ name = tempstring;    }
