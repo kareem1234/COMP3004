@@ -11,6 +11,7 @@ Instructor::Instructor(){
 
 }
 Instructor::Instructor(std::string line){
+
     std::stringstream ss;
     std::string tempstring;
     ss << line;
@@ -25,8 +26,9 @@ Instructor::Instructor(std::string line){
 
 
 //set methods
-void Instructor::setDepartment(std::string tempstring){    department = tempstring;}
-void Instructor::setOfficeRoom(std::string tempstring){    officeRoom = tempstring;}
+void Instructor::setDepartment(std::string tempstring){  department = tempstring;}
+void Instructor::setOfficeRoom(std::string tempstring){  officeRoom = tempstring;}
+
 //get methods
 std::string Instructor::getOfficeRoom() { return officeRoom;    }
 std::string Instructor::getDepartment() { return department;    }
@@ -36,7 +38,9 @@ std::string Instructor::getDepartment() { return department;    }
 std::string Instructor::toString(){
     std::string strInstructor;
     std::stringstream ss;
-    ss<< id<<" "<<name <<" "<< email<<" "<< officeRoom <<" " << department ;
+
+    ss << id << " " << name << " " << email << " " << officeRoom << " " << department;
     strInstructor =  ss.str();
+
     return strInstructor;
 }

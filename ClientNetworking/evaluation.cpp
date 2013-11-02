@@ -20,6 +20,19 @@ Evaluation::Evaluation(std::string line){
     std::getline(ss, comment, ' ');
 
 }
+
+//set methods
+void Evaluation::setRating  (int tempInt)           { rating = tempInt;     }
+void Evaluation::setId      (int tempInt)           { id = tempInt;         }
+void Evaluation::setTaskId  (int tempInt)           { taskID = tempInt;     }
+void Evaluation::setComment (std::string tempstring){ comment = tempstring; }
+
+//get methods
+int Evaluation::getRating()         { return rating; }
+int Evaluation::getId()             { return id;     }
+int Evaluation::getTaskId()         { return taskID; }
+std::string Evaluation::getComment(){ return comment;}
+
 //toString method
 
 std::string Evaluation::toString(){
