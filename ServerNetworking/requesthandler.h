@@ -14,7 +14,7 @@
 #include <course.h>
 #include <task.h>
 #include <evaluation.h>
-#include <databasecontroller.h>
+//#include <databasecontroller.h>
 using namespace std;
 
 class RequestHandler{
@@ -25,7 +25,7 @@ class RequestHandler{
 
     private:
            string msg;
-           DatabaseController db;
+          // DatabaseController db;
 };
 
 #endif // REQUESTHANDLER_H

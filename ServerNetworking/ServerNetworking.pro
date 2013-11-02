@@ -6,6 +6,7 @@
 QT       += core
 QT       += network
 QT       -= gui
+QT       += sql
 
 TARGET = ServerNetworking
 CONFIG   += console
@@ -23,10 +24,7 @@ SOURCES += main.cpp \
     user.cpp \
     course.cpp \
     evaluation.cpp \
-    instructor.cpp \
-    databasetest.cpp \
-    databasemanager.cpp \
-    databasecontroller.cpp
+    instructor.cpp
 
 HEADERS += \
     Server.h \
@@ -37,5 +35,4 @@ HEADERS += \
     course.h \
     evaluation.h \
     instructor.h \
-    databasemanager.h \
-    databasecontroller.h
+
