@@ -173,6 +173,34 @@ Evaluation DatabaseController::getEvaluation(Task task)
     return eval;
 }
 
+vector<Course> DatabaseController::getCourseList(Instructor instructor)
+{
+    QSqlQuery query = dbManager.getCourseList(instructor.getId());
+
+    bool ret = false;
+
+    vector<TA> courseList;
+
+    while (query.next())
+    {
+        Course course;
+
+        course.setId(query.value(0).toInt());
+        course.setcourseName(query.value(1).toString().toUtf8().constData());
+        course.setCourseCode(query.value(2).toInt());
+        course.setTerm(query.value(3).toString().toUtf8().constData());
+        course.setCourseDescription(query.value(4).toString().toUtf8().constData());
+        course.setMeetingTime(query.value(5).toString().toUtf8().constData());
+
+        courseList.push_back(ta);
+        ret = true;
+    }
+
+    return courseList;
+
+
+}
+
 
 
 
