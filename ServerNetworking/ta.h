@@ -8,29 +8,33 @@ class TA : public User
 {
 public:
     TA();
+    TA(int, std::string, int, std::string, int, std::string, int, std::string);
     TA(std::string);
+
+    //set methods
     void   setGPA(int);
-    void   setNewTaskBoolean(bool);
-    void   setFieldOfStudy(std::string);
+    void   setCourseId(int);
     void   setYearStanding(int);
     void   setStudentNumber(int);
+    void   setFieldOfStudy(std::string);
     void   setOfficeRoom(std::string);
 
-
-    bool        getNewTaskBoolean();
+    //get methods
+    int         getCourseId();
     int         getGPA();
     int         getYearStanding();
     int         getStudentNumber();
-    std::string getFieldOfStudy();
     std::string getOfficeRoom();
+    std::string getFieldOfStudy();
 
+    //toString method
     std::string toString();
 
 private:
+    int         courseID;
     int         gpa;
     int         yearStanding;
     int         studentNumber;
-    //bool        newTask;
     std::string fieldOfStudy;
     std::string officeRoom;
 
