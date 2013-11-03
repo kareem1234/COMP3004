@@ -484,7 +484,8 @@ bool DatabaseManager::updateEvaluation(qint32 evaluationId, qint32 rating, QStri
 }
 
 
-
+QSqlQuery DatabaseManager::getTaskList(qint32 taId, qint32 courseId)
+{
 
     QSqlQuery query(QString("SELECT id, instructions, type, duedate, progress, course_id, ta_id"
                             "FROM task WHERE course_id = '%1' AND ta_id = '%2')")
@@ -508,14 +509,20 @@ QSqlQuery DatabaseManager::getTAList(qint32 courseId)
     return query;
 }
 
-
+QSqlQuery DatabaseManager::getEvaluation(qint32 taskId)
+{
+    QSqlQuery query(QString("SELECT *"
+                            "FROM evaluation"
+                            "WHERE (task_id = '%1'").arg(taskId));
+    return query;
+}
 
 
 /****
  Delete SQL Methods
 ****/
 
-bool deleteTask(qint32 taskId)
+bool DatabaseManager::deleteTask(qint32 taskId)
 {
     QSqlQuery evalDelQuery, taskDelQuery;
 
@@ -530,7 +537,7 @@ bool deleteTask(qint32 taskId)
     return ret;
 }
 
-bool deleteEvaluation(qint32 evaluationId)
+bool DatabaseManager::deleteEvaluation(qint32 evaluationId)
 {
     QSqlQuery evalDelQuery;
     // Delete the evaluation

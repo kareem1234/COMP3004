@@ -45,11 +45,7 @@ std::string Evaluation::getComment(){ return comment;}
 std::string Evaluation::toString(){
     std::string strCourse;
     std::stringstream ss;
-<<<<<<< HEAD
-    ss<< id<<"$"<< taskID <<"$"<< rating<<"$"<< comment <<"$";
-=======
     ss<< id<<"*"<< taskID <<"*"<< rating<<"*"<< comment <<"*";
->>>>>>> 2fabc503d2ea15f73139a309a22ad9985a2401f9
     strCourse =  ss.str();
     return strCourse;
 

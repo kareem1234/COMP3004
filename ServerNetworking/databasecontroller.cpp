@@ -1,7 +1,7 @@
 #include "databasecontroller.h"
 
 #include <QSqlQuery>
-#include <vector>
+#include <QVariant>
 
 #include "instructor.h"
 #include "ta.h"
@@ -31,8 +31,6 @@ bool DatabaseController::initDatabase()
 
 
 
-
-
 /***
   Save Entity Objects
 ***/
@@ -44,14 +42,16 @@ bool DatabaseController::saveTask(TA ta, Task task)
     // If it's a new task it won't yet have an id, so insert it
     if (task.getId() == 0)
     {
-        ret = dbManager.insertTask(task.getInstructions(), task.getType(), task.getDueDate(), task.getProgress(),
+        ret = dbManager.insertTask(QString::fromStdString(task.getInstructions()), QString::fromStdString(task.getType()),
+                                   QString::fromStdString(task.getDueDate()), QString::fromStdString(task.getProgress()),
                                    ta.getCourseId(), ta.getId());
     }
     // Otherwise update the record
     else
     {
-        ret = dbManager.updateTask(task.getId(), task.getInstructions(), task.getType(), task.getDueDate(), task.getProgress(),
-                                   ta.courseId(), ta.getId());
+        ret = dbManager.updateTask(task.getId(), QString::fromStdString(task.getInstructions()), QString::fromStdString(task.getType()),
+                                  QString::fromStdString(task.getDueDate()), QString::fromStdString(task.getProgress()),
+                                   ta.getCourseId(), ta.getId());
     }
 
     return ret;
@@ -62,14 +62,14 @@ bool DatabaseController::saveEvaluation(Evaluation eval)
     bool ret = false;
 
     // If it's a new evaluation it won't yet have an id, so insert it
-    if (task.getId() == 0)
+    if (eval.getId() == 0)
     {
-        ret = dbManager.insertEvaluation(eval.getRating(), eval.getComments(), eval.getTaskId());
+        ret = dbManager.insertEvaluation(eval.getRating(), QString::fromStdString(eval.getComment()), eval.getTaskId());
     }
     // Otherwise update the record
     else
     {
-        ret = dbManager.updateEvaluation(eval.getId(), eval.getRating(), eval.getComments(), eval.getTaskId());
+        ret = dbManager.updateEvaluation(eval.getId(), eval.getRating(), QString::fromStdString(eval.getComment()), eval.getTaskId());
     }
 
 
@@ -85,12 +85,12 @@ bool DatabaseController::saveEvaluation(Evaluation eval)
 
 bool DatabaseController::deleteTask(Task task)
 {
-    return dbManager.deleteTask(task.getId);
+    return dbManager.deleteTask(qint32(task.getId()));
 }
 
 bool DatabaseController::deleteEvaluation(Evaluation eval)
 {
-    return dbManager.deleteEvaluation(eval.getId);
+    return dbManager.deleteEvaluation(qint32(eval.getId()));
 }
 
 
@@ -113,12 +113,12 @@ vector<Task> DatabaseController::getTaskListForTACourse(TA ta, Course course)
         Task task;
 
         task.setId(query.value(0).toInt());
-        task.setInstructions(query.value(1).toString());
-        task.setType(query.value(2).toString());
-        task.setDueDate(query.value(3).toString());
-        task.setProgress(query.value(4).toString());
-        task.setCourseId(query.value(5).toString());
-        task.setTaId(query.value(6).toString());
+        task.setInstructions(query.value(1).toString().toUtf8().constData());
+        task.setType(query.value(2).toString().toUtf8().constData());
+        task.setDueDate(query.value(3).toString().toUtf8().constData());
+        task.setProgress(query.value(4).toString().toUtf8().constData());
+        task.setCourseId(query.value(5).toInt());
+        task.setTaId(query.value(6).toInt());
 
         taskList.push_back(task);
         ret = true;
@@ -140,11 +140,11 @@ vector<TA> DatabaseController::getTAList(Course course)
         TA ta;
 
         ta.setId(query.value(0).toInt());
-        ta.setName(query.value(1).toString());
-        ta.setEmail(query.value(2).toString());
-        ta.setGPA(query.value(3).toString());
-        ta.setStudentNumber(query.value(4).toString());
-        ta.setCourseId(query.value(5).toString());
+        ta.setName(query.value(1).toString().toUtf8().constData());
+        ta.setEmail(query.value(2).toString().toUtf8().constData());
+        ta.setGPA(query.value(3).toInt());
+        ta.setStudentNumber(query.value(4).toInt());
+        ta.setCourseId(query.value(5).toInt());
 
         taList.push_back(ta);
         ret = true;
@@ -165,7 +165,7 @@ Evaluation DatabaseController::getEvaluation(Task task)
     {
         eval.setId(query.value(0).toInt());
         eval.setRating(query.value(1).toInt());
-        eval.setComments(query.value(2).toString());
+        eval.setComment(query.value(2).toString().toUtf8().constData());
         eval.setTaskId(query.value(3).toInt());
         ret = true;
     }

@@ -15,13 +15,13 @@ Instructor::Instructor(int tempID, std::string tempName, std::string tempEmail,
     id = tempID;
     name = tempName;
     email = tempEmail;
-    officeRoom = tempOffice
+    officeRoom = tempOffice;
     department = tempDep;
 
 
 }
 
-Instructor::Instructor(int line, std::string, std::string, std::string, std::string){
+Instructor::Instructor(std::string line){
 
     std::stringstream ss;
     std::string tempstring;
