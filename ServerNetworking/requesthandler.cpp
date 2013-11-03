@@ -12,44 +12,68 @@ void RequestHandler::respond(QTcpSocket* client){
        Message<TA,Task> m(msg);
        TA t(m.returnA());
        Task tas(m.returnB());
-       //call database method , create message with return objects then return message.tostring
-
+       db.saveTask(t, tas);
+       return;
    }else if(method.compare(Message<string,int>::deleteTask) == 0 ){
         Message<Task,string> m(msg);
         Task t(m.returnA());
-        //call database method , create message with return objects then return message.tostring
-
+        db.deleteTask(t);
+        return;
    }else if(method.compare(Message<string,int>::saveEval)== 0){
         Message<TA,Evaluation> m(msg);
         TA t(m.returnA());
-        Evaluation(m.returnB());
-         //call database method , create message with return objects then return message.tostring
+        Evaluation e(m.returnB());
+        db.saveEvaluation(e);
+        return;
 
    }else if(method.compare(Message<string,int>::deleteEval) == 0){
         Message<Evaluation,string> m(msg);
         Evaluation e(m.returnA());
-        //call database method , create message with return objects then return message.tostring
+        db.deleteEvaluation(e);
+        return;
+
 
    }else if(method.compare(Message<string,int>::getEval)==0){
         Message<Evaluation,string> m(msg);
-        Evaluation e(m.returnA());
-        //call database method , create message with return objects then return message.tostring
+        Task t(m.returnA());
+        Evaluation e = db.getEvaluation(t);
+        Message<Evaluation,string> f(Message<string,int>::reTurn,e);
+        string s = f.toString();
+        client->write(s.c_str(),s.length());
+        return;
 
    }else if(method.compare(Message<string,int>::viewTaskListForCourse)==0){
         Message<TA,Course> m(msg);
         Course c(m.returnB());
         TA t(m.returnA());
-        //call database method , create message with return objects then return message.tostring
+        vector<Task> mytasks = db.getTaskListForTACourse(t,c);
+        Message<Task,string> f(mytasks);
+        string s = f.toString();
+        client->write(s.c_str(),s.length());
+        return;
+
 
    }else if(method.compare(Message<string,int>::viewTaList)==0){
        Message<Course,string> m(msg);
        Course c(m.returnA());
-         //call database method , create message with return objects then return message.tostring
+       vector<TA> myTas = db.getTAList(c);
+       Message<TA,string> f(myTas);
+       string s = f.toString();
+       client->write(s.c_str(),s.length());
+       return;
+
 
    }else if(method.compare(Message<string,int>::viewCourseList)==0){
         Message<Instructor,string> m(msg);
         Instructor teacher(m.returnA());
-        //call database method , create message with return objects then return message.tostring
+        /*
+        vector<Course> mycourses = db.getCourseList(teacher);
+        Message<Course,string> f(mycourses);
+        string s = f.toString();
+        client->write(s.c_str(),s.length());
+        */
+        return;
+
   }
 
 }
