@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'databasemanager.h'
 **
-** Created: Sun Nov 3 21:43:08 2013
+** Created: Mon Nov 4 10:23:48 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

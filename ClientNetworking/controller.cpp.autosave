@@ -21,7 +21,7 @@ void Controller::createTask(){
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
     Task t(1, 1, 1,"office hours","today","actually come to office hours","Not done");
     connection.saveTask(mary,t);
-    view.createTask(t.getType(),t.getProgress(),t.getInstructions());
+    view.createTask(t.getDueDate(),t.getType(),t.getInstructions());
 }
 
 void Controller::viewCourses(){
