@@ -67,8 +67,13 @@ void Controller:: deleteEvaluation(){
 }
 
 void Controller::deleteTask(){
-    Task t(1, 1, 1,"office hours","today","actually come to office hours","Not done");
-    connection.deleteTask(t);
+    TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
+    Instructor i(1, "Joe Teacher","joeteach@carletoncal",
+                          "HP5120", "CS");
+    vector<Course> courses = connection.getCourseList(i);
+    vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
+    if(t.size() > 0)
+         connection.deleteTask(t[0]);
     ///do stuff
 
 }
@@ -95,8 +100,11 @@ void Controller:: viewTask(){
     vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
     cout<<"size is:"<<t.size()<<endl;
     vector<string> taskNames;
-    for(int z=0;z<t.size();z++)
-        taskNames.push_back(t[0].getType());
+    for(int z=0;z<t.size();z++){
+        string task = "TASK ";
+        task+=toString(t[z].getId());
+        taskNames.push_back(task);
+    }
     view.viewTasks(taskNames);
 }
 
@@ -104,17 +112,19 @@ void Controller::editTask(){
    Instructor i(1, "Joe Teacher","joeteach@carletoncal",
                           "HP5120", "CS");
     vector<Course> courses = connection.getCourseList(i);
-    //Course c = courses[0];
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-
-    //vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
-     /*Task oldtask(t[0].toString());
-    Task newTask(t[0].toString());
-    newTask.setDueDate("never");
-    connection.saveTask(mary,newTask);*/
-    view.editTask("oldtask.getType()","oldtask.getInstructions()","oldtask.getDueDate()",
-                  "newTask.getType()","newTask.getInstructions()","newTask.getDueDate()",true);
+    vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
+    Task oldtask(t[0].toString());
+    Task final (t[0].toString());
+    final .setDueDate("forever");
+    connection.saveTask(mary,final);
+    vector<Task> tasklist = connection.getTaskListForCourse(mary,courses[0]);
+    Task newTask = tasklist[0];
+    view.editTask(oldtask.getType(),oldtask.getInstructions(),oldtask.getDueDate(),
+                  newTask.getType(),newTask.getInstructions(),newTask.getDueDate(),true);
 }
+
+
 
 void Controller::saveEvaluation(){
    view.saveEvaluation();

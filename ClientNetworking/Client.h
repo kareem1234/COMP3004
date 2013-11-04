@@ -32,6 +32,7 @@ class Client : public  QObject{
           vector<Task> getTaskListForCourse(TA t, Course c);
           vector<TA> getTAList(Course c);
           vector<Course> getCourseList(Instructor i);
+          void emptyBuffer();
 
     public slots:
           void connection();
