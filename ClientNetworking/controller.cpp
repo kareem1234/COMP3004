@@ -20,7 +20,7 @@ Controller::Controller(QObject *parent) :
 
 void Controller::createTask(){
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-    Task t(1, 1, 1,"office hours","today","actually come to office hours","Not done");
+    Task t(0, 1, 1,"office hours","today","actually come to office hours","Not done");
     connection.saveTask(mary,t);
     view.createTask(t.getDueDate(),t.getType(),t.getInstructions(),true);
 }
@@ -97,7 +97,6 @@ void Controller:: viewTask(){
     for(int z=0;z<t.size();z++)
         taskNames.push_back(t[0].getType());
     view.viewTasks(taskNames);
-
 }
 
 void Controller::editTask(){
