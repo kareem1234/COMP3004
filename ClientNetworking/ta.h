@@ -9,25 +9,24 @@ class TA : public User
 public:
     TA();
     TA(int tempID, int tempCourseID, std::string tempName,int tempGPA,
-           std::string tempEmail,
-           int tempStudentNumber);
+           std::string tempEmail, int tempStudentNumber);
     TA(std::string);
 
     //set methods
     void   setGPA(int);
     void   setCourseId(int);
-    void   setYearStanding(int);
     void   setStudentNumber(int);
-    void   setFieldOfStudy(std::string);
-    void   setOfficeRoom(std::string);
+    //void   setYearStanding(int);
+    //void   setFieldOfStudy(std::string);
+    //void   setOfficeRoom(std::string);
 
     //get methods
     int         getCourseId();
     int         getGPA();
-    int         getYearStanding();
     int         getStudentNumber();
-    std::string getOfficeRoom();
-    std::string getFieldOfStudy();
+    //int         getYearStanding();
+    //std::string getOfficeRoom();
+    //std::string getFieldOfStudy();
 
     //toString method
     std::string toString();
@@ -35,10 +34,10 @@ public:
 private:
     int         courseID;
     int         gpa;
-    int         yearStanding;
     int         studentNumber;
-    std::string fieldOfStudy;
-    std::string officeRoom;
+    //int         yearStanding;
+    //std::string fieldOfStudy;
+    //std::string officeRoom;
 
 };
 
