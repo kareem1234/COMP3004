@@ -4,7 +4,8 @@
 #include <courses.h>
 #include <QtCore>
 #include <QtGui>
-
+#include <iostream>
+using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -100,13 +101,14 @@ void MainWindow::viewTasksSlot(){
 
 
 void MainWindow::saveEvaluation(){
-
+    cout<<"made it here"<<endl;
     evaluationSaveView= new SaveEvaluation() ;
     this->connect(evaluationSaveView, SIGNAL(createEvaluationSignal()), this, SLOT(createEvaluation()) );
     this->connect(evaluationSaveView, SIGNAL(deleteEvaluationSignal()), this, SLOT(deleteEvaluation()) );
     this->connect(evaluationSaveView, SIGNAL(editEvaluationSignal()), this, SLOT(editEvaluation()) );
     evaluationSaveView->setModal(true);
     evaluationSaveView->exec();
+    cout<<"finished this"<<endl;
 
 }
 

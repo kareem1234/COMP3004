@@ -15,9 +15,9 @@ SaveEvaluation::SaveEvaluation(QWidget *parent) :
 
 void SaveEvaluation::setEvaluation(string mark, string feedback, string status){
 
-    this -> ui -> taskGrade -> setText(QString::fromStdString(mark));
-    this -> ui -> taskFeedback -> setText(QString::fromStdString(feedback));
-    this -> ui -> evalStatus -> setText(QString::fromStdString(status));
+    ui -> taskGrade -> setText(QString::fromStdString(mark));
+    ui -> taskFeedback -> setText(QString::fromStdString(feedback));
+    ui -> evalStatus -> setText(QString::fromStdString(status));
 
 
 }
