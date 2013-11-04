@@ -1,7 +1,11 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'taskcreated.h'
 **
+<<<<<<< HEAD
 ** Created: Mon Nov 4 11:20:40 2013
+=======
+** Created: Mon Nov 4 12:11:22 2013
+>>>>>>> 2816de39d9883517bca2bdfce0cb35b417347e41
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

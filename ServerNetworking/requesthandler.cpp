@@ -39,7 +39,8 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         Evaluation e = db.getEvaluation(t);
         Message<Evaluation,string> f(Message<string,int>::reTurn,e);
         string s = f.toString();
-        client->write(s.c_str(),s.length());
+        cout<<"sending back message: "<<s<<endl;
+        client->write(s.c_str(),100);
         return;
 
    }else if(method.compare(Message<string,int>::viewTaskListForCourse)==0){
@@ -49,7 +50,8 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         vector<Task> mytasks = db.getTaskListForTACourse(t,c);
         Message<Task,string> f(mytasks);
         string s = f.toString();
-        client->write(s.c_str(),s.length());
+        cout<<"sending back message: "<<s<<endl;
+        client->write(s.c_str(),100);
         return;
 
 
@@ -59,7 +61,8 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
        vector<TA> myTas = db.getTAList(c);
        Message<TA,string> f(myTas);
        string s = f.toString();
-       client->write(s.c_str(),s.length());
+       cout<<"sending back message: "<<s<<endl;
+       client->write(s.c_str(),100);
        return;
 
 
@@ -69,7 +72,8 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         vector<Course> mycourses = db.getCourseList(teacher);
         Message<Course,string> f(mycourses);
         string s = f.toString();
-        client->write(s.c_str(),s.length());
+        cout<<"sending back message: "<<s<<endl;
+        client->write(s.c_str(),100);
         return;
 
   }

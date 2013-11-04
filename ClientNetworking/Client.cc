@@ -25,7 +25,8 @@ void Client::connection(){
 
 void Client::sendData(string s){
     cout<<"sending message: "<<s<<endl;
-    client.write(s.c_str());
+    client.write(s.c_str(),s.length());
+    cout<<"sent message"<<endl;
 }
 
 void Client:: saveTask(TA t, Task ts){
@@ -49,8 +50,8 @@ void Client:: deleteEval( Evaluation e){
 Evaluation Client::getEval(Task t){
     Message<Task,string> m(Message<string,int>::getEval,t);
     sendData(m.toString());
-    while( client.bytesAvailable() == 0){
-        // do nothing
+    while( client.bytesAvailable() < 0){
+        client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
@@ -65,7 +66,7 @@ vector<Task> Client::getTaskListForCourse(TA t, Course c){
     Message<TA,Course> m(Message<string,int>::viewTaskListForCourse,t,c);
     sendData(m.toString());
     while( client.bytesAvailable() == 0){
-        // do nothing
+         client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
@@ -78,7 +79,7 @@ vector<TA> Client:: getTAList(Course c){
     Message<Course,string> m(Message<string,int>::viewTaList,c);
     sendData(m.toString());
     while( client.bytesAvailable() == 0){
-        // do nothing
+        client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
@@ -91,7 +92,7 @@ vector<Course> Client::getCourseList(Instructor i){
     Message<Instructor,string> m(Message<string,int>::viewCourseList,i);
     sendData(m.toString());
     while( client.bytesAvailable() == 0){
-        // do nothing
+        client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());

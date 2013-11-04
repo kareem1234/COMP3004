@@ -1,7 +1,11 @@
 /********************************************************************************
 ** Form generated from reading UI file 'viewta.ui'
 **
+<<<<<<< HEAD
 ** Created: Mon Nov 4 11:19:50 2013
+=======
+** Created: Mon Nov 4 12:11:01 2013
+>>>>>>> 2816de39d9883517bca2bdfce0cb35b417347e41
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
