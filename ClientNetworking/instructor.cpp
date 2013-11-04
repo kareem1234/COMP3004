@@ -15,17 +15,17 @@ Instructor::Instructor(int tempID, std::string tempName, std::string tempEmail,
     id = tempID;
     name = tempName;
     email = tempEmail;
-    officeRoom = tempOffice
+    officeRoom = tempOffice;
     department = tempDep;
 
 
 }
 
-Instructor::Instructor(int line, std::string, std::string, std::string, std::string){
+Instructor::Instructor(std::string line){
 
     std::stringstream ss;
+    ss<<line;
     std::string tempstring;
-    ss << line;
     std::getline(ss, tempstring, '*');     //id
     id = atoi(tempstring.c_str());
     std::getline(ss, name,'*');            //name

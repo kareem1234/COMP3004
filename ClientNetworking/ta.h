@@ -8,7 +8,9 @@ class TA : public User
 {
 public:
     TA();
-    TA(int, std::string, int, std::string, int, std::string, int, std::string);
+    TA(int tempID, int tempCourseID, std::string tempName,int tempGPA,
+           std::string tempEmail,
+           int tempStudentNumber);
     TA(std::string);
 
     //set methods
