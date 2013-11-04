@@ -6,6 +6,7 @@ QT       += network
 QT       += gui
 
 
+CONFIG+= debug
 TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
