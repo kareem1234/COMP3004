@@ -1,7 +1,11 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Server.h'
 **
+<<<<<<< HEAD
 ** Created: Mon Nov 4 11:50:46 2013
+=======
+** Created: Mon Nov 4 11:52:13 2013
+>>>>>>> 16a22109c6b61058c0ee5a4fd1eb8ea66d70d7f0
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
