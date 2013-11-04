@@ -11,22 +11,36 @@ DatabaseManager::DatabaseManager(QObject *parent) :
 
 bool DatabaseManager::openDB()
 {
+    bool dbExists = true;
+
     // Find QSLite driver
     db = QSqlDatabase::addDatabase("QSQLITE");
 
-    #ifdef Q_OS_LINUX
     // NOTE: We have to store database file into user home folder in Linux
     QString path(QDir::home().path());
     path.append(QDir::separator()).append("taEval.db.sqlite");
     path = QDir::toNativeSeparators(path);
-    db.setDatabaseName(path);
-    #else
-    // NOTE: File exists in the application private folder, in Symbian Qt implementation
-    db.setDatabaseName("taEval.db.sqlite");
-    #endif
 
-    // Open databasee
-    return db.open();
+    QFile fOut(path);
+
+    if(!fOut.exists())
+    {
+        // if the database does not exist populate it with the default records
+        dbExists = false;
+    }
+    db.setDatabaseName(path);
+
+    // Open database
+    bool dbOpened =  db.open();
+
+    if(!dbExists)
+    {
+        buildDB();
+        populateDB();
+    }
+
+    // Open database
+    return dbOpened;
 }
 
 QSqlError DatabaseManager::lastError()
@@ -80,28 +94,23 @@ bool DatabaseManager::buildDB()
 void DatabaseManager::populateDB()
 {
     // insert some TAs
-    insertTA("Brodie Gallinger", "whatup@yo.com", qreal(4.0), qint32(100869790));
-    insertTA("Billy Bob", "whatup@friend.com", qreal(4.0), qint32(100869791));
+    insertTA("Mary Sue", "mary.sue@carleton.ca", qreal(4.0), qint32(100869040));
 
-    insertInstructor("Joe Teacher", "joeteach@carletonca", "CS", "HP5120");
+    insertInstructor("Joe Teacher", "joeteach@carleton.ca", "CS", "HP5120");
 
-    insertCourse("Software Engineering", "COMP3004", "F2013", "Its a course, ok?", "Tuesday");
-    insertCourse("Software Engineering", "COMP3004", "F2013", "Its a course, ok?", "Tuesday");
-    insertCourse("Software Engineering", "COMP3004", "F2013", "Its a course, ok?", "Tuesday");
+    insertCourse("Software Engineering", "COMP3004", "F2013", "Design some sofware.", "Tuesday");
+    insertCourse("Programming Paradigms", "COMP3007", "F2013", "Learn about programming languages.", "Wednesday");
+    insertCourse("Intro to Computer Science", "COMP1405", "F2013", "Learn some basic computery things.", "Friday");
+    insertCourse("Systems Programming", "COMP2401", "F2013", "Do some low level things. You like C?", "Monday");
+    insertCourse("Discrete Mathematics", "COMP1805", "F2013", "Logic and proofs uh oh.", "Thursday");
 
     insertCourseTARelationship(1, 1);
-    insertCourseTARelationship(1, 2);
 
     insertInstructorCourseRelationship(1, 1);
     insertInstructorCourseRelationship(1, 2);
     insertInstructorCourseRelationship(1, 3);
-    insertInstructorCourseRelationship(2, 4);
-
-    insertTask("Instructions", "Assignment", "Tomorrow", "In Progress", 1, 1);
-    insertTask("Instructions", "Assignment", "Tomorrow", "In Progress", 1, 1);
-    insertTask("Instructions", "Assignment", "Tomorrow", "In Progress", 1, 1);
-
-
+    insertInstructorCourseRelationship(1, 4);
+    insertInstructorCourseRelationship(1, 5);
 }
 
 bool DatabaseManager::createTATable()

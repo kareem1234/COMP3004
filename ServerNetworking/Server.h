@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include "requesthandler.h"
+#include "databasecontroller.h"
 
 
 using namespace std;
@@ -27,6 +28,7 @@ class Server: public QObject {
   		QTcpSocket* client;
         vector<QTcpSocket*> clients;
         RequestHandler *rh;
+        DatabaseController db;
 
 };
 #endif
