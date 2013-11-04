@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'viewtasks.ui'
 **
-** Created: Mon Nov 4 10:24:20 2013
+** Created: Mon Nov 4 11:53:28 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
