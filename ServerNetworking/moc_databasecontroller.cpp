@@ -1,7 +1,11 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'databasecontroller.h'
 **
+<<<<<<< HEAD
 ** Created: Mon Nov 4 11:18:14 2013
+=======
+** Created: Mon Nov 4 11:28:16 2013
+>>>>>>> 596246b87af55cf7e799ab3b6bda79cbce336e3c
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

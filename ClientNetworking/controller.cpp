@@ -4,6 +4,7 @@ Controller::Controller(QObject *parent) :
     QObject(parent)
 {
      count = 0;
+     connection.start("127.0.0.1",8888);
     this->connect(&view,SIGNAL(taskCreateTaskButtonPressed()),this,SLOT(createTask()));
     this->connect(&view,SIGNAL(viewCoursesSignal()),this,SLOT(viewCourses()));
     this->connect(&view,SIGNAL(viewTASignal()),this,SLOT(viewTA()));
@@ -36,6 +37,7 @@ void Controller::viewCourses(){
 }
 
 void Controller:: createEvaluation(){
+    cout<<"in this function3"<<endl;
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
     Evaluation e(5,1,1,"well done");
     connection.saveEval(mary,e);
@@ -43,6 +45,7 @@ void Controller:: createEvaluation(){
 }
 
 void Controller:: editEvaluation(){
+    cout<<"in this function2"<<endl;
     count ++;
     stringstream edited;
     edited<<"Eddidted" <<count<<"times"<<endl;
@@ -54,6 +57,7 @@ void Controller:: editEvaluation(){
 }
 
 void Controller:: deleteEvaluation(){
+    cout<<"in this function1"<<endl;
     Evaluation e(5,1,1,"well done");
     connection.deleteEval(e);
     view.evaluationSaveView->setEvaluation("","","");

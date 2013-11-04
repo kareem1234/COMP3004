@@ -1,11 +1,11 @@
 #include "requesthandler.h"
 
-RequestHandler::RequestHandler(string m,QTcpSocket* client){
+RequestHandler::RequestHandler(string m,QTcpSocket* client,DatabaseController &db){
      msg =m;
-     respond(client);
+     respond(client,db);
 }
 
-void RequestHandler::respond(QTcpSocket* client){
+void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
    string method = Message<string,int>::getMethod(msg);
 
    if(method.compare(Message<string,int>::saveTask) == 0 ){
@@ -66,12 +66,10 @@ void RequestHandler::respond(QTcpSocket* client){
    }else if(method.compare(Message<string,int>::viewCourseList)==0){
         Message<Instructor,string> m(msg);
         Instructor teacher(m.returnA());
-        /*
         vector<Course> mycourses = db.getCourseList(teacher);
         Message<Course,string> f(mycourses);
         string s = f.toString();
         client->write(s.c_str(),s.length());
-        */
         return;
 
   }

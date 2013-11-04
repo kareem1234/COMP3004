@@ -20,12 +20,12 @@ using namespace std;
 class RequestHandler{
 
     public:
-            RequestHandler(string m,QTcpSocket* client);
-            void respond(QTcpSocket* client);
+            RequestHandler(string m,QTcpSocket* client,DatabaseController &db);
+            void respond(QTcpSocket* client,DatabaseController &db);
 
     private:
            string msg;
-           DatabaseController db;
+
 };
 
 #endif // REQUESTHANDLER_H
