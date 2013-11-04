@@ -72,7 +72,6 @@ vector<Task> Client::getTaskListForCourse(TA t, Course c){
     string s(buffer);
     Message<Task,string> rm(s);
     return rm.returnAvec();
-
 }
 
 vector<TA> Client:: getTAList(Course c){
