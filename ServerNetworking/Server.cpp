@@ -46,7 +46,7 @@ void Server::readRequest(){
   	client->read(buffer, client->bytesAvailable());
     cout <<"request was: "<<buffer<< endl;
     string s(buffer);
-    rh = new RequestHandler(s,client);
+    rh = new RequestHandler(s,client,db);
     delete rh;
     delete buffer;
 }

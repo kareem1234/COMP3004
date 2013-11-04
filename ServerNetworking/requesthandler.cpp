@@ -1,11 +1,11 @@
 #include "requesthandler.h"
 
-RequestHandler::RequestHandler(string m,QTcpSocket* client){
+RequestHandler::RequestHandler(string m,QTcpSocket* client,DatabaseController &db){
      msg =m;
-     respond(client);
+     respond(client,db);
 }
 
-void RequestHandler::respond(QTcpSocket* client){
+void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
    string method = Message<string,int>::getMethod(msg);
 
    if(method.compare(Message<string,int>::saveTask) == 0 ){
