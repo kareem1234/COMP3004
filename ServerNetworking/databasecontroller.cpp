@@ -21,10 +21,6 @@ bool DatabaseController::initDatabase()
     bool success = false;
 
     success = dbManager.openDB();
-    success = dbManager.buildDB();
-   // success = dbManager.populateDB();
-
-    dbManager.deleteDB();
 
     return success;
 }
@@ -179,20 +175,20 @@ vector<Course> DatabaseController::getCourseList(Instructor instructor)
 
     bool ret = false;
 
-    vector<TA> courseList;
+    vector<Course> courseList;
 
     while (query.next())
     {
         Course course;
 
         course.setId(query.value(0).toInt());
-        course.setcourseName(query.value(1).toString().toUtf8().constData());
-        course.setCourseCode(query.value(2).toInt());
+        course.setCourseName(query.value(1).toString().toUtf8().constData());
+        course.setCourseCode(query.value(2).toString().toUtf8().constData());
         course.setTerm(query.value(3).toString().toUtf8().constData());
         course.setCourseDescription(query.value(4).toString().toUtf8().constData());
         course.setMeetingTime(query.value(5).toString().toUtf8().constData());
 
-        courseList.push_back(ta);
+        courseList.push_back(course);
         ret = true;
     }
 
