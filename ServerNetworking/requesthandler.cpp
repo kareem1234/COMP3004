@@ -66,12 +66,10 @@ void RequestHandler::respond(QTcpSocket* client){
    }else if(method.compare(Message<string,int>::viewCourseList)==0){
         Message<Instructor,string> m(msg);
         Instructor teacher(m.returnA());
-        /*
         vector<Course> mycourses = db.getCourseList(teacher);
         Message<Course,string> f(mycourses);
         string s = f.toString();
         client->write(s.c_str(),s.length());
-        */
         return;
 
   }
