@@ -11,7 +11,9 @@ ViewTA::ViewTA(QWidget *parent) :
 
 void ViewTA::addTAS(vector<string>  TANames){
 
-    for(int i = 0 ; i < TANames.size() ; i++){
+    int length = TANames.size();
+
+    for(int i = 0 ; i < length ; i++){
         label = new QLabel(QString::fromStdString(TANames.back()));
         TANames.pop_back();
         TALabels.push_back(label);

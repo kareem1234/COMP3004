@@ -93,6 +93,7 @@ void Controller:: viewTask(){
     vector<Course> courses = connection.getCourseList(i);
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
     vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
+    cout<<"size is:"<<t.size()<<endl;
     vector<string> taskNames;
     for(int z=0;z<t.size();z++)
         taskNames.push_back(t[0].getType());
