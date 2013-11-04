@@ -95,16 +95,22 @@ void DatabaseManager::populateDB()
 {
     // insert some TAs
     insertTA("Mary Sue", "mary.sue@carleton.ca", qreal(4.0), qint32(100869040));
+    insertTA("Joe Quimby", "joe.quimby@carleton.ca", qreal(4.0), qint32(100869039));
+    insertTA("Monty Burns", "monty.burns@carleton.ca", qreal(4.0), qint32(100869038));
+
 
     insertInstructor("Joe Teacher", "joeteach@carleton.ca", "CS", "HP5120");
 
     insertCourse("Software Engineering", "COMP3004", "F2013", "Design some sofware.", "Tuesday");
     insertCourse("Programming Paradigms", "COMP3007", "F2013", "Learn about programming languages.", "Wednesday");
     insertCourse("Intro to Computer Science", "COMP1405", "F2013", "Learn some basic computery things.", "Friday");
-    insertCourse("Systems Programming", "COMP2401", "F2013", "Do some low level things. You like C?", "Monday");
-    insertCourse("Discrete Mathematics", "COMP1805", "F2013", "Logic and proofs uh oh.", "Thursday");
+    insertCourse("Systems Programming", "COMP2401", "F2013", "Do some low level things.", "Monday");
+    insertCourse("Discrete Mathematics", "COMP1805", "F2013", "Logic and proofs.", "Thursday");
 
     insertCourseTARelationship(1, 1);
+    insertCourseTARelationship(1, 2);
+    insertCourseTARelationship(1, 3);
+
 
     insertInstructorCourseRelationship(1, 1);
     insertInstructorCourseRelationship(1, 2);
@@ -562,7 +568,7 @@ bool DatabaseManager::deleteTask(qint32 taskId)
     evalDelQuery.exec(QString("DELETE FROM evaluation WHERE task_id = '%1'").arg(taskId));
 
     // Delete the task
-    ret = taskDelQuery.exec(QString("DELETE FROM task WHERE id = '%1'").arg(taskId));
+    ret = taskDelQuery.exec(QString("DELETE FROM task WHERE task_id = '%1'").arg(taskId));
 
 
     if(!ret)
@@ -578,7 +584,7 @@ bool DatabaseManager::deleteEvaluation(qint32 evaluationId)
     QSqlQuery evalDelQuery;
     // Delete the evaluation
 
-    bool ret = evalDelQuery.exec(QString("DELETE FROM evaluation WHERE id = '%1'").arg(evaluationId));
+    bool ret = evalDelQuery.exec(QString("DELETE FROM evaluation WHERE task_id = '%1'").arg(evaluationId));
 
     if(!ret)
     {
