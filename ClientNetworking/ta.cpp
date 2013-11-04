@@ -6,18 +6,18 @@
 
 TA::TA(){}
 TA::TA(int tempID, int tempCourseID, std::string tempName,int tempGPA,
-       std::string tempEmail, int tempYear, std::string tempOffice,
-       int tempStudentNumber, std::string tempStudy){
+       std::string tempEmail,
+       int tempStudentNumber){
 
     id = tempID;
     courseID = tempCourseID;
     name = tempName;
     gpa = tempGPA;
     email = tempEmail;
-    yearStanding = tempYear;
-    officeRoom = tempOffice;
+
+
     studentNumber = tempStudentNumber;
-    fieldOfStudy = tempStudy;
+
 }
 
 TA::TA(std::string line){

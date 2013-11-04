@@ -1,0 +1,122 @@
+#include "controller.h"
+
+Controller::Controller(QObject *parent) :
+    QObject(parent)
+{
+     count = 0;
+    this->connect(&view,SIGNAL(taskCreateTaskButtonPressed()),this,SLOT(createTask()));
+    this->connect(&view,SIGNAL(viewCoursesSignal()),this,SLOT(viewCourses()));
+    this->connect(&view,SIGNAL(viewTASignal()),this,SLOT(viewTA()));
+    this->connect(&view,SIGNAL( viewTasksSignal()),this,SLOT(viewTask()));
+    this->connect(&view,SIGNAL( editTaskSignal()),this,SLOT(editTask()));
+    this->connect(&view,SIGNAL( saveEvaluationSignal()),this,SLOT(saveEvaluation()));
+    this->connect(&view,SIGNAL( createEval()),this,SLOT(createEvaluation()));
+    this->connect(&view,SIGNAL( deleteEval()),this,SLOT(deleteEvaluation()));
+    this->connect(&view,SIGNAL( editEval()),this,SLOT(editEvaluation()));
+     this->connect(&view,SIGNAL( deleteTaskSignal()),this,SLOT(deleteTask()));
+}
+
+
+void Controller::createTask(){
+    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    Task t(1, 1, 1,"office hours","today","actually come to office hours","Not done");
+    connection.saveTask(bob,t);
+    view.createTask(t.getType(),t.getProgress(),t.getInstructions());
+}
+
+void Controller::viewCourses(){
+    Instructor i(1, "Joe Teacher","joeteach@carletoncal",
+                          "HP5120", "CS");
+    vector<Course> courses = connection.getCourseList(i);
+     string courseNames[5];
+     for(int i =0; i< 5; i++)
+         courseNames[i] = courses[i].getCourseName();
+    view.viewCourses(courseNames,true);
+
+}
+
+void Controller:: createEvaluation(){
+    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    Evaluation e(5,1,1,"well done");
+    connection.saveEval(bob,e);
+    view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
+}
+
+void Controller:: editEvaluation(){
+    count ++;
+    stringstream edited;
+    edited<<"Eddidted" <<count<<"times"<<endl;
+    string s = edited.str();
+    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    Evaluation e(5,1,1,s);
+    connection.saveEval(bob,e);
+    view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
+}
+
+void Controller:: deleteEvaluation(){
+    Evaluation e(5,1,1,"well done");
+    connection.deleteEval(e);
+    view.evaluationSaveView->setEvaluation("","","");
+}
+
+void Controller::deleteTask(){
+    Task t(1, 1, 1,"office hours","today","actually come to office hours","Not done");
+    connection.deleteTask(t);
+    ///do stuff
+
+}
+
+
+void Controller::viewTA()
+{  Instructor i(1, "Joe Teacher","joeteach@carletoncal",
+                "HP5120", "CS");
+    vector<Course> courses = connection.getCourseList(i);
+    vector<string> TANames;
+    vector<TA> tas = connection.getTAList(courses[0]);
+    for(int i=0;i<tas.size();i++)
+        TANames.push_back(courses[i].getCourseName());
+
+    view.viewTA(TANames);
+
+}
+
+void Controller:: viewTask(){
+    Instructor i(1, "Joe Teacher","joeteach@carletoncal",
+                          "HP5120", "CS");
+    vector<Course> courses = connection.getCourseList(i);
+    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    vector<Task> t =connection.getTaskListForCourse(bob,courses[0]);
+    vector<string> taskNames;
+    for(int z=0;z<t.size();z++)
+        taskNames.push_back(t[0].getType());
+    view.viewTasks(taskNames);
+
+}
+
+void Controller::editTask(){
+    Instructor i(1, "Joe Teacher","joeteach@carletoncal",
+                          "HP5120", "CS");
+    vector<Course> courses = connection.getCourseList(i);
+    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    vector<Task> t =connection.getTaskListForCourse(bob,courses[0]);
+    Task oldtask(t[0].toString());
+    Task newTask(t[0].toString());
+    newTask.setDueDate("never");
+    connection.saveTask(bob,newTask);
+    view.editTask(oldtask.getType(),oldtask.getInstructions(),oldtask.getDueDate(),
+                  newTask.getType(),newTask.getInstructions(),newTask.getDueDate(),true);
+}
+
+void Controller::saveEvaluation(){
+    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    Evaluation e(5,1,1,"well done");
+    connection.saveEval(bob,e);
+    view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
+}
+
+string Controller::toString(int a){
+    ostringstream ss;
+         ss << a;
+         return ss.str();
+}
+

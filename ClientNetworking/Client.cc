@@ -32,7 +32,10 @@ void Client:: saveTask(TA t, Task ts){
     Message<TA,Task> m(Message<string,int>::saveTask ,t,ts);
     sendData(m.toString());
 }
-
+void Client:: deleteTask(Task ts){
+    Message<Task,string> m(Message<string,int>::deleteTask,ts);
+    sendData(m.toString());
+}
 void Client:: saveEval(TA t, Evaluation e){
     Message<TA,Evaluation> m(Message<string,int>::saveEval ,t,e);
     sendData(m.toString());

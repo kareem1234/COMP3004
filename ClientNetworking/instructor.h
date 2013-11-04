@@ -9,7 +9,7 @@ class Instructor : public User
 public:
     Instructor();
     Instructor(int, std::string, std::string, std::string, std::string);
-    Instructor(std::string, std::string);
+    Instructor(std::string);
 
     //set methods
     void setDepartment(std::string);

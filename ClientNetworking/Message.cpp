@@ -102,7 +102,7 @@ Message <A, B>:: Message(vector<A>& list){
         obj1 += list[i].toString();
         obj1 += ";";
     }
-    obj1 += endl;
+    obj1 += '\n';
 }
 template<class A, class B>
 vector<A> Message<A,B>::returnAvec(){
