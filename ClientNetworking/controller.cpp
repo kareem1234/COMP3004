@@ -22,7 +22,7 @@ void Controller::createTask(){
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
     Task t(1, 1, 1,"office hours","today","actually come to office hours","Not done");
     connection.saveTask(mary,t);
-    view.createTask(t.getDueDate(),t.getType(),t.getInstructions());
+    view.createTask(t.getDueDate(),t.getType(),t.getInstructions(),true);
 }
 
 void Controller::viewCourses(){
@@ -33,13 +33,17 @@ void Controller::viewCourses(){
      for(int i =0; i< 5; i++)
          courseNames[i] = courses[i].getCourseName();
     view.viewCourses(courseNames,true);
+
 }
 
 void Controller:: createEvaluation(){
     cout<<"in this function3"<<endl;
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-    Evaluation e(5,1,1,"well done");
+    Task t(1,1,1,"","","","");
+    connection.saveTask(mary,t);
+    Evaluation e(5,1,1,"well done"),b(3,2,2,"badbad");
     connection.saveEval(mary,e);
+    e = connection.getEval(t);
     view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
 }
 
@@ -77,9 +81,10 @@ void Controller::viewTA()
     vector<string> TANames;
     vector<TA> tas = connection.getTAList(courses[0]);
     for(int i=0;i<tas.size();i++)
-        TANames.push_back(tas[i].getName());
+        TANames.push_back(tas[0].getName());
 
     view.viewTA(TANames);
+
 }
 
 void Controller:: viewTask(){
@@ -96,24 +101,23 @@ void Controller:: viewTask(){
 }
 
 void Controller::editTask(){
-    Instructor i(1, "Joe Teacher","joeteach@carletoncal",
+   Instructor i(1, "Joe Teacher","joeteach@carletoncal",
                           "HP5120", "CS");
     vector<Course> courses = connection.getCourseList(i);
+    //Course c = courses[0];
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-    vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
-    Task oldtask(t[0].toString());
+
+    //vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
+     /*Task oldtask(t[0].toString());
     Task newTask(t[0].toString());
     newTask.setDueDate("never");
-    connection.saveTask(mary,newTask);
-    view.editTask(oldtask.getType(),oldtask.getInstructions(),oldtask.getDueDate(),
-                  newTask.getType(),newTask.getInstructions(),newTask.getDueDate(),true);
+    connection.saveTask(mary,newTask);*/
+    view.editTask("oldtask.getType()","oldtask.getInstructions()","oldtask.getDueDate()",
+                  "newTask.getType()","newTask.getInstructions()","newTask.getDueDate()",true);
 }
 
 void Controller::saveEvaluation(){
-    TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-    Evaluation e(5,1,1,"well done");
-    connection.saveEval(mary,e);
-    view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
+   view.saveEvaluation();
 }
 
 string Controller::toString(int a){

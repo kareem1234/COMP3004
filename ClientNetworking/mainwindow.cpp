@@ -22,9 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-void MainWindow::createTask(string name, string type, string description){
+void MainWindow::createTask(string name, string type, string description,bool pass){
 
     TaskCreated *task = new TaskCreated(this, name,type,description);
+    task->setPassTag(pass);
     task->setModal(true);
     task->exec();
 

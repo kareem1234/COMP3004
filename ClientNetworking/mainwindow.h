@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void createTask(string name, string type, string desc);
+    void createTask(string name, string type, string desc,bool pass);
     void viewCourses(string courseNames[5],bool coursesRecieved);
     void viewTA(vector<string> TANames);
     void viewTasks(vector<string> taskNames);
@@ -32,6 +32,7 @@ public:
     EditTask *editTaskView;
     ViewTA *TAView;
     SaveEvaluation *evaluationSaveView;
+    TaskCreated *taskCreaedView;
 
 
 

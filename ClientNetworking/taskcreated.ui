@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>247</width>
+    <width>464</width>
     <height>206</height>
    </rect>
   </property>
@@ -68,10 +68,10 @@
   <widget class="QLabel" name="taskDescription">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>120</x>
      <y>70</y>
-     <width>121</width>
-     <height>121</height>
+     <width>241</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -85,6 +85,32 @@
      <y>20</y>
      <width>60</width>
      <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Task recieved successfully:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passTag">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>140</y>
+     <width>111</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">

@@ -21,6 +21,17 @@ TaskCreated:: TaskCreated(QWidget *parent,string type,string date, string dsc):
     ui->taskDescription->setText(QString::fromStdString(dsc));
 }
 
+void TaskCreated::setPassTag(bool pf){
+
+    if(pf==true){
+        ui->passTag->setText(QString::fromStdString("TRUE"));
+    }
+    else{
+        ui->passTag->setText(QString::fromStdString("FALSE"));
+    }
+}
+
+
 TaskCreated::~TaskCreated()
 {
     delete ui;

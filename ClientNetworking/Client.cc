@@ -56,6 +56,7 @@ Evaluation Client::getEval(Task t){
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
+    cout<<"recieved message: "<<buffer<<endl;
     Message<Evaluation,string> rm(s);
     Evaluation e(rm.returnA());
     return e;
@@ -71,8 +72,10 @@ vector<Task> Client::getTaskListForCourse(TA t, Course c){
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
+    cout<<"recieved message: "<<buffer<<endl;
     Message<Task,string> rm(s);
     return rm.returnAvec();
+
 }
 
 vector<TA> Client:: getTAList(Course c){
