@@ -77,7 +77,7 @@ void Controller::viewTA()
     vector<string> TANames;
     vector<TA> tas = connection.getTAList(courses[0]);
     for(int i=0;i<tas.size();i++)
-        TANames.push_back(courses[i].getCourseName());
+        TANames.push_back(tas[i].getName());
 
     view.viewTA(TANames);
 }

@@ -50,7 +50,7 @@ void Client:: deleteEval( Evaluation e){
 Evaluation Client::getEval(Task t){
     Message<Task,string> m(Message<string,int>::getEval,t);
     sendData(m.toString());
-    while( client.bytesAvailable() < 0){
+    while( client.bytesAvailable() < 1000){
         client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
@@ -65,7 +65,7 @@ Evaluation Client::getEval(Task t){
 vector<Task> Client::getTaskListForCourse(TA t, Course c){
     Message<TA,Course> m(Message<string,int>::viewTaskListForCourse,t,c);
     sendData(m.toString());
-    while( client.bytesAvailable() == 0){
+    while( client.bytesAvailable() < 1000){
          client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
@@ -78,12 +78,13 @@ vector<Task> Client::getTaskListForCourse(TA t, Course c){
 vector<TA> Client:: getTAList(Course c){
     Message<Course,string> m(Message<string,int>::viewTaList,c);
     sendData(m.toString());
-    while( client.bytesAvailable() == 0){
+    while( client.bytesAvailable() < 1000){
         client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
+    cout<<"recieved message: "<<buffer<<endl;
     Message<TA,string> rm(s);
     return rm.returnAvec();
 
@@ -91,7 +92,7 @@ vector<TA> Client:: getTAList(Course c){
 vector<Course> Client::getCourseList(Instructor i){
     Message<Instructor,string> m(Message<string,int>::viewCourseList,i);
     sendData(m.toString());
-    while( client.bytesAvailable() == 0){
+    while( client.bytesAvailable() < 1000){
         client.waitForReadyRead(3000);
     }
     char *buffer = new char[client.bytesAvailable()];

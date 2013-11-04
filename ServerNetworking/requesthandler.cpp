@@ -40,7 +40,7 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         Message<Evaluation,string> f(Message<string,int>::reTurn,e);
         string s = f.toString();
         cout<<"sending back message: "<<s<<endl;
-        client->write(s.c_str(),100);
+        client->write(s.c_str(),1000);
         return;
 
    }else if(method.compare(Message<string,int>::viewTaskListForCourse)==0){
@@ -51,7 +51,7 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         Message<Task,string> f(mytasks);
         string s = f.toString();
         cout<<"sending back message: "<<s<<endl;
-        client->write(s.c_str(),100);
+        client->write(s.c_str(),1000);
         return;
 
 
@@ -62,7 +62,7 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
        Message<TA,string> f(myTas);
        string s = f.toString();
        cout<<"sending back message: "<<s<<endl;
-       client->write(s.c_str(),100);
+       client->write(s.c_str(),1000);
        return;
 
 
@@ -73,7 +73,7 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         Message<Course,string> f(mycourses);
         string s = f.toString();
         cout<<"sending back message: "<<s<<endl;
-        client->write(s.c_str(),100);
+        client->write(s.c_str(),1000);
         return;
     }
 
