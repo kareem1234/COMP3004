@@ -13,8 +13,8 @@ ViewTasks::ViewTasks(QWidget *parent) :
 }
 
 void ViewTasks::addTasks(vector<string>  taskNames){
-
-    for(int i = 0 ; i < taskNames.size() ; i++){
+    int size = taskNames.size();
+    for(int i = 0 ; i < size ; i++){
         label = new QLabel(QString::fromStdString(taskNames.back()));
         taskNames.pop_back();
         taskLabels.push_back(label);
