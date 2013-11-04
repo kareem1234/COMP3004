@@ -75,7 +75,6 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         cout<<"sending back message: "<<s<<endl;
         client->write(s.c_str(),100);
         return;
-
-  }
+    }
 
 }

@@ -461,8 +461,7 @@ bool DatabaseManager::updateTask(qint32 taskId, QString instructions, QString ty
     if (db.isOpen())
     {
         QSqlQuery query;
-        bool ret = query.exec(QString("UPDATE task SET instructions = '%1', type = '%2', due_date = '%3', "
-                                      "progress = '%4', course_id = '%5', ta_id = '%6' WHERE task_id = '%7'")
+        bool ret = query.exec(QString("UPDATE task SET instructions = '%1', type = '%2', due_date = '%3', progress = '%4', course_id = '%5', ta_id = '%6' WHERE task_id = '%7'")
                               .arg(instructions).arg(type).arg(dueDate).arg(progress)
                               .arg(courseId).arg(taId).arg(taskId));
         if(!ret)
@@ -496,33 +495,55 @@ bool DatabaseManager::updateEvaluation(qint32 evaluationId, qint32 rating, QStri
 QSqlQuery DatabaseManager::getTaskList(qint32 taId, qint32 courseId)
 {
 
-    QSqlQuery query(QString("SELECT id, instructions, type, duedate, progress, course_id, ta_id"
-                            "FROM task WHERE course_id = '%1' AND ta_id = '%2')")
+    QSqlQuery query;
+    bool ret = query.exec(QString("SELECT id, instructions, type, duedate, progress, course_id, ta_id FROM task WHERE course_id = '%1' AND ta_id = '%2')")
                             .arg(taId).arg(courseId));
+
+    if(!ret)
+    {
+        printLastError("getTaskList", query.lastError().databaseText(), query.lastError().driverText());
+    }
+
     return query;
 }
 
 QSqlQuery DatabaseManager::getCourseList(qint32 instructorId)
 {
-    QSqlQuery query(QString("SELECT course_id, course_name, course_code, term, course_description, meeting_time"
-                            "FROM course NATURAL JOIN instructor_courses"
-                            "WHERE (instructor_id = '%1'").arg(instructorId));
+    QSqlQuery query;
+    bool ret = query.exec(QString("SELECT course_id, course_name, course_code, term, course_description, meeting_time FROM course NATURAL JOIN instructor_courses WHERE instructor_id = '%1'").arg(instructorId));
+
+    if(!ret)
+    {
+        printLastError("getCourseList", query.lastError().databaseText(), query.lastError().driverText());
+    }
     return query;
 }
 
 QSqlQuery DatabaseManager::getTAList(qint32 courseId)
 {
-    QSqlQuery query(QString("SELECT ta_id, name, email, GPA, student_number, course_id"
-                            "FROM ta NATURAL JOIN course_tas"
-                            "WHERE (course_id = '%1'").arg(courseId));
+    QSqlQuery query;
+    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM ta NATURAL JOIN course_tas WHERE course_id = '%1'").arg(courseId));
+
+    if(!ret)
+    {
+        printLastError("getTAList", query.lastError().databaseText(), query.lastError().driverText());
+    }
+
     return query;
 }
 
 QSqlQuery DatabaseManager::getEvaluation(qint32 taskId)
 {
-    QSqlQuery query(QString("SELECT *"
+    QSqlQuery query;
+    bool ret = query.exec(QString("SELECT *"
                             "FROM evaluation"
-                            "WHERE (task_id = '%1'").arg(taskId));
+                            "WHERE task_id = '%1'").arg(taskId));
+
+    if(!ret)
+    {
+        printLastError("getEvaluation", query.lastError().databaseText(), query.lastError().driverText());
+    }
+
     return query;
 }
 
@@ -543,6 +564,12 @@ bool DatabaseManager::deleteTask(qint32 taskId)
     // Delete the task
     ret = taskDelQuery.exec(QString("DELETE FROM task WHERE id = '%1'").arg(taskId));
 
+
+    if(!ret)
+    {
+        printLastError("deleteTask", taskDelQuery.lastError().databaseText(), taskDelQuery.lastError().driverText());
+    }
+
     return ret;
 }
 
@@ -550,5 +577,13 @@ bool DatabaseManager::deleteEvaluation(qint32 evaluationId)
 {
     QSqlQuery evalDelQuery;
     // Delete the evaluation
-   return evalDelQuery.exec(QString("DELETE FROM evaluation WHERE id = '%1'").arg(evaluationId));
+
+    bool ret = evalDelQuery.exec(QString("DELETE FROM evaluation WHERE id = '%1'").arg(evaluationId));
+
+    if(!ret)
+    {
+        printLastError("deleteEvaluation", evalDelQuery.lastError().databaseText(), evalDelQuery.lastError().driverText());
+    }
+
+    return ret;
 }

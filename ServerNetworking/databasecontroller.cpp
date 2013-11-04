@@ -2,6 +2,7 @@
 
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDebug>
 
 #include "instructor.h"
 #include "ta.h"
