@@ -63,7 +63,7 @@ template < class A, class B>
 string Message<A,B>::viewTaList="VTAS";
 
 template < class A, class B>
-string Message<A,B>::viewCourseList ="VTAS";
+string Message<A,B>::viewCourseList ="VCOURSES";
 
 
 

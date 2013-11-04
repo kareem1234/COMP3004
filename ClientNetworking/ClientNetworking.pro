@@ -53,4 +53,5 @@ SOURCES += Client.cc \
            taskview.cpp \
            user.cpp \
            viewta.cpp \
-           viewtasks.cpp
+           viewtasks.cpp \
+    Message.cpp

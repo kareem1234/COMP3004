@@ -33,7 +33,6 @@ void Controller::viewCourses(){
      for(int i =0; i< 5; i++)
          courseNames[i] = courses[i].getCourseName();
     view.viewCourses(courseNames,true);
-
 }
 
 void Controller:: createEvaluation(){
@@ -81,7 +80,6 @@ void Controller::viewTA()
         TANames.push_back(courses[i].getCourseName());
 
     view.viewTA(TANames);
-
 }
 
 void Controller:: viewTask(){
