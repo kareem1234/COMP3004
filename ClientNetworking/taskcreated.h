@@ -17,6 +17,7 @@ class TaskCreated : public QDialog
 public:
     explicit TaskCreated(QWidget *parent = 0);
     explicit TaskCreated(QWidget *parent = 0,string type=0,string date=0, string dsc=0);
+    void setPassTag(bool pf);
     ~TaskCreated();
     
 private:

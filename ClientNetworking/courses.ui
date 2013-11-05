@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>539</width>
     <height>300</height>
    </rect>
   </property>
@@ -31,12 +31,12 @@
     <rect>
      <x>19</x>
      <y>40</y>
-     <width>171</width>
+     <width>281</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Expected:COMP1 Recieved:</string>
+    <string>Expected: Software Engeneering   Recieved:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -44,12 +44,12 @@
     <rect>
      <x>19</x>
      <y>60</y>
-     <width>171</width>
+     <width>281</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Expected:COMP2 Recieved:</string>
+    <string>Expected:Programming Paradigms Recieved:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -57,12 +57,12 @@
     <rect>
      <x>20</x>
      <y>80</y>
-     <width>171</width>
+     <width>291</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Expected:COMP3 Recieved:</string>
+    <string>Expected: Intro to Computer Science Recieved:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -70,12 +70,12 @@
     <rect>
      <x>20</x>
      <y>100</y>
-     <width>181</width>
+     <width>271</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Expected:COMP4 Recieved:</string>
+    <string>Expected:Systems Programming Recieved:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
@@ -83,12 +83,12 @@
     <rect>
      <x>20</x>
      <y>120</y>
-     <width>171</width>
+     <width>281</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>Expected:COMP5 Recieved:</string>
+    <string>Expected:Descrete Mathematics Recieved:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -120,10 +120,10 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>199</x>
-     <y>39</y>
+     <x>310</x>
+     <y>40</y>
      <width>181</width>
-     <height>101</height>
+     <height>131</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout"/>

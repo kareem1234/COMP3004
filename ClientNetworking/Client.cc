@@ -32,19 +32,23 @@ void Client::sendData(string s){
 void Client:: saveTask(TA t, Task ts){
     Message<TA,Task> m(Message<string,int>::saveTask ,t,ts);
     sendData(m.toString());
+    emptyBuffer();
 }
 void Client:: deleteTask(Task ts){
     Message<Task,string> m(Message<string,int>::deleteTask,ts);
     sendData(m.toString());
+    emptyBuffer();
 }
 void Client:: saveEval(TA t, Evaluation e){
     Message<TA,Evaluation> m(Message<string,int>::saveEval ,t,e);
     sendData(m.toString());
+    emptyBuffer();
 }
 
 void Client:: deleteEval( Evaluation e){
     Message<Evaluation,TA> m(Message<string,int>::deleteEval,e);
     sendData(m.toString());
+    emptyBuffer();
 }
 
 Evaluation Client::getEval(Task t){
@@ -56,6 +60,7 @@ Evaluation Client::getEval(Task t){
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
+    cout<<"recieved message: "<<buffer<<endl;
     Message<Evaluation,string> rm(s);
     Evaluation e(rm.returnA());
     return e;
@@ -71,8 +76,11 @@ vector<Task> Client::getTaskListForCourse(TA t, Course c){
     char *buffer = new char[client.bytesAvailable()];
     client.read(buffer,client.bytesAvailable());
     string s(buffer);
+    cout<<"recieved message: "<<buffer<<endl;
     Message<Task,string> rm(s);
+    cout<<"made message"<<endl;
     return rm.returnAvec();
+
 }
 
 vector<TA> Client:: getTAList(Course c){
@@ -104,5 +112,12 @@ vector<Course> Client::getCourseList(Instructor i){
 
 }
 
+void Client::emptyBuffer(){
+    while( client.bytesAvailable() < 1000){
+        client.waitForReadyRead(3000);
+    }
+    char *buffer = new char[client.bytesAvailable()];
+    client.read(buffer,client.bytesAvailable());
 
+}
 

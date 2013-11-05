@@ -1,6 +1,6 @@
 #include "taskview.h"
 #include "ui_taskview.h"
-
+#include <iostream>
 TaskView::TaskView(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TaskView)
@@ -11,13 +11,16 @@ TaskView::TaskView(QWidget *parent) :
 }
 
 void TaskView::addTasks(vector<string>  taskNames){
-    int size = taskNames.size();
-    for(int i = 0 ; i < size; i++){
+    cout<<"length is: "<< taskNames.size()<<endl;
+    int length = taskNames.size();
+    for(int i = 0 ; i < length; i++){
+        cout<<i<<endl;
         label = new QLabel(QString::fromStdString(taskNames.back()));
         taskNames.pop_back();
         taskLabels.push_back(label);
         ui->verticalLayout->addWidget(label);
     }
+    cout<<"task label size"<<taskLabels.size()<<endl;
 }
 
 
