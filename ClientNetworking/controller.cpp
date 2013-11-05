@@ -38,7 +38,7 @@ void Controller::viewCourses(){
 void Controller:: createEvaluation(){
     cout<<"in this function3"<<endl;
     TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-    Evaluation e(5,1,1,"well done");
+    Evaluation e(5,0,1,"well done");
     connection.saveEval(mary,e);
     view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
 }
@@ -47,12 +47,21 @@ void Controller:: editEvaluation(){
     cout<<"in this function2"<<endl;
     count ++;
     stringstream edited;
-    edited<<"Eddidted" <<count<<"times"<<endl;
+    edited<<"Edited " <<count<<" times"<<endl;
     string s = edited.str();
-    TA bob(1,1,"Brodie Gallinger",4,"whatup@yo.com",100869790);
+    TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
+
+    // create a new evaluation object
     Evaluation e(5,1,1,s);
-    connection.saveEval(bob,e);
-    view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
+
+    // send the new evaluation object to the server
+    connection.saveEval(mary,e);
+
+    Task task(1, 1, 1, "assignment", "Wednesday", "Mark assignment 2", "In Progress");
+
+    // get the created evaluation back from the database
+    Evaluation savedEval = connection.getEval(task);
+    view.evaluationSaveView->setEvaluation(toString(savedEval.getRating()),savedEval.getComment(),toString(savedEval.getId()));
 }
 
 void Controller:: deleteEvaluation(){
@@ -109,10 +118,7 @@ void Controller::editTask(){
 }
 
 void Controller::saveEvaluation(){
-    TA mary(1,1,"Mary Sue",4.0,"mary.sue@carleton.ca",100869040);
-    Evaluation e(5,1,1,"well done");
-    connection.saveEval(mary,e);
-    view.evaluationSaveView->setEvaluation(toString(e.getRating()),e.getComment(),toString(e.getId()));
+    view.saveEvaluation();
 }
 
 string Controller::toString(int a){
