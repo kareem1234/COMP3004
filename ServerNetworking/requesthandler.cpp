@@ -13,23 +13,27 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
        TA t(m.returnA());
        Task tas(m.returnB());
        db.saveTask(t, tas);
+       client->write("true",1000);
        return;
    }else if(method.compare(Message<string,int>::deleteTask) == 0 ){
         Message<Task,string> m(msg);
         Task t(m.returnA());
         db.deleteTask(t);
+        client->write("true",1000);
         return;
    }else if(method.compare(Message<string,int>::saveEval)== 0){
         Message<TA,Evaluation> m(msg);
         TA t(m.returnA());
         Evaluation e(m.returnB());
         db.saveEvaluation(e);
+        client->write("true",1000);
         return;
 
    }else if(method.compare(Message<string,int>::deleteEval) == 0){
         Message<Evaluation,string> m(msg);
         Evaluation e(m.returnA());
         db.deleteEvaluation(e);
+        client->write("true",1000);
         return;
 
 

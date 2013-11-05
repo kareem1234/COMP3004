@@ -86,7 +86,7 @@ void Controller::viewTA()
     vector<string> TANames;
     vector<TA> tas = connection.getTAList(courses[0]);
     for(int i=0;i<tas.size();i++)
-        TANames.push_back(tas[0].getName());
+        TANames.push_back(tas[i].getName());
 
     view.viewTA(TANames);
 
@@ -116,7 +116,7 @@ void Controller::editTask(){
     vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
     Task oldtask(t[0].toString());
     Task final (t[0].toString());
-    final .setDueDate("forever");
+    final .setDueDate(toString(final.getCourseId())+ toString(final.getCourseId()));
     connection.saveTask(mary,final);
     vector<Task> tasklist = connection.getTaskListForCourse(mary,courses[0]);
     Task newTask = tasklist[0];
