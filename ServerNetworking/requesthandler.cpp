@@ -38,7 +38,7 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
 
 
    }else if(method.compare(Message<string,int>::getEval)==0){
-        Message<Evaluation,string> m(msg);
+        Message<Task,string> m(msg);
         Task t(m.returnA());
         Evaluation e = db.getEvaluation(t);
         Message<Evaluation,string> f(Message<string,int>::reTurn,e);

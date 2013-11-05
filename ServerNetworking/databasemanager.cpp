@@ -541,9 +541,7 @@ QSqlQuery DatabaseManager::getTAList(qint32 courseId)
 QSqlQuery DatabaseManager::getEvaluation(qint32 taskId)
 {
     QSqlQuery query;
-    bool ret = query.exec(QString("SELECT *"
-                            "FROM evaluation"
-                            "WHERE task_id = '%1'").arg(taskId));
+    bool ret = query.exec(QString("SELECT * FROM evaluation WHERE task_id = '%1'").arg(taskId));
 
     if(!ret)
     {
@@ -584,7 +582,7 @@ bool DatabaseManager::deleteEvaluation(qint32 evaluationId)
     QSqlQuery evalDelQuery;
     // Delete the evaluation
 
-    bool ret = evalDelQuery.exec(QString("DELETE FROM evaluation WHERE task_id = '%1'").arg(evaluationId));
+    bool ret = evalDelQuery.exec(QString("DELETE FROM evaluation WHERE evaluation_id = '%1'").arg(evaluationId));
 
     if(!ret)
     {
