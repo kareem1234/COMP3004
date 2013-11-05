@@ -398,7 +398,7 @@ int DatabaseManager::insertEvaluation(qint32 rating, QString comments, qint32 ta
     if (db.isOpen())
     {
         QSqlQuery query;
-        ret = query.exec(QString("insert into evaluation values(NULL,'%1','%2', '%3'")
+        ret = query.exec(QString("insert into evaluation values(NULL,'%1','%2', '%3')")
                          .arg(rating).arg(comments).arg(taskId));
 
         // Get database given autoincrement value
@@ -485,7 +485,7 @@ bool DatabaseManager::updateEvaluation(qint32 evaluationId, qint32 rating, QStri
     if (db.isOpen())
     {
         QSqlQuery query;
-        bool ret = query.exec(QString("UPDATE task SET rating = '%1', comments WHERE evaluation_id = '%3'")
+        bool ret = query.exec(QString("UPDATE evaluation SET rating = '%1', comments = '%2', task_id = '%3' WHERE evaluation_id = '%4'")
                               .arg(rating).arg(comments).arg(taskId).arg(evaluationId));
         if(!ret)
         {
