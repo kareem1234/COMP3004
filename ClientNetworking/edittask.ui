@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>20</x>
      <y>30</y>
      <width>121</width>
      <height>16</height>
@@ -29,7 +29,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>20</x>
      <y>60</y>
      <width>60</width>
      <height>16</height>
@@ -42,7 +42,7 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>20</x>
      <y>90</y>
      <width>71</width>
      <height>16</height>
@@ -55,7 +55,7 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>20</x>
      <y>120</y>
      <width>71</width>
      <height>16</height>
@@ -68,7 +68,7 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>200</x>
      <y>30</y>
      <width>111</width>
      <height>16</height>
@@ -81,7 +81,7 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>200</x>
      <y>60</y>
      <width>60</width>
      <height>16</height>
@@ -94,7 +94,7 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>200</x>
      <y>90</y>
      <width>71</width>
      <height>16</height>
@@ -107,7 +107,7 @@
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>200</x>
      <y>120</y>
      <width>71</width>
      <height>16</height>
@@ -120,10 +120,10 @@
   <widget class="QLabel" name="descAfter">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>120</y>
-     <width>60</width>
-     <height>16</height>
+     <x>200</x>
+     <y>150</y>
+     <width>191</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
@@ -133,9 +133,9 @@
   <widget class="QLabel" name="dateBefore">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>100</x>
      <y>90</y>
-     <width>60</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -146,9 +146,9 @@
   <widget class="QLabel" name="descBefore">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>120</y>
-     <width>60</width>
+     <x>10</x>
+     <y>150</y>
+     <width>181</width>
      <height>16</height>
     </rect>
    </property>
@@ -159,9 +159,9 @@
   <widget class="QLabel" name="dateAfter">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>280</x>
      <y>90</y>
-     <width>60</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
@@ -185,9 +185,9 @@
   <widget class="QLabel" name="typeBefore">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>100</x>
      <y>60</y>
-     <width>60</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -198,9 +198,9 @@
   <widget class="QLabel" name="typeAfter">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>249</x>
      <y>60</y>
-     <width>60</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
