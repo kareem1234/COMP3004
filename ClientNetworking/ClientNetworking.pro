@@ -27,7 +27,11 @@ HEADERS += Client.h \
            taskview.h \
            user.h \
            viewta.h \
-           viewtasks.h
+           viewtasks.h \
+    clientNetwork.h \
+    clientUser.h \
+    taClient.h \
+    instructorClient.h
 FORMS += courses.ui \
          edittask.ui \
          mainwindow.ui \
