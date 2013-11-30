@@ -13,7 +13,6 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += Client.h \
-           controller.h \
            course.h \
            courses.h \
            edittask.h \
@@ -31,7 +30,9 @@ HEADERS += Client.h \
     clientNetwork.h \
     clientUser.h \
     taClient.h \
-    instructorClient.h
+    instructorClient.h \
+    tamainscreen.h \
+    TAcontroller.h
 FORMS += courses.ui \
          edittask.ui \
          mainwindow.ui \
@@ -39,9 +40,9 @@ FORMS += courses.ui \
          taskcreated.ui \
          taskview.ui \
          viewta.ui \
-         viewtasks.ui
+         viewtasks.ui \
+    tamainscreen.ui
 SOURCES += Client.cc \
-           controller.cpp \
            course.cpp \
            courses.cpp \
            edittask.cpp \
@@ -61,4 +62,6 @@ SOURCES += Client.cc \
     clientNetwork.cpp \
     Message.cpp \
     instructorClient.cpp \
-    taClient.cpp
+    taClient.cpp \
+    tamainscreen.cpp \
+    TAcontroller.cpp
