@@ -56,4 +56,9 @@ SOURCES += Client.cc \
            taskview.cpp \
            user.cpp \
            viewta.cpp \
-           viewtasks.cpp
+           viewtasks.cpp \
+    clientUser.cpp \
+    clientNetwork.cpp \
+    Message.cpp \
+    instructorClient.cpp \
+    taClient.cpp

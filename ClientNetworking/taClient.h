@@ -7,12 +7,16 @@
 #include <course.h>
 #include <task.h>
 #include <evaluation.h>
+#include "clientUser.h"
 using namespace std;
 
 class taClient : public clientUser{
     Q_OBJECT
     public:
-            taClient( QTcpSocket c,QObject* parent = 0);
+            taClient( QTcpSocket *c,QObject* parent = 0);
+            Course getCurrentCourse(TA self);
+            Evaluation getEval(Task t);
+            vector<Task> getTaskListForCourse(TA self, Course c);
 
 };
 

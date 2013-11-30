@@ -8,14 +8,20 @@
 #include <QTcpSocket>
 #include <iostream>
 #include <vector>
+\
+#include <course.h>
+#include <ta.h>
+#include <instructor.h>
+#include <course.h>
+#include <task.h>
+#include <evaluation.h>
 
 using namespace std;
 
 class clientUser : public  QObject{
     Q_OBJECT
     public:
-          clientUser( QTcpSocket c,QObject* parent = 0);
-          ~clientUser();
+          clientUser( QTcpSocket *c,QObject* parent = 0);
 
 
     public slots:
@@ -24,10 +30,12 @@ class clientUser : public  QObject{
 
 
     protected:
-            QTcpSocket client;
-            virtual void senData(string s);
-            virtual void emptyBuffer();
-            virtual string read();
+            QTcpSocket *client;
+            Instructor ILogin(Instructor t);
+            TA TLogin(TA t);
+            void sendData(string s);
+            void emptyBuffer();
+            string read();
 
 };
 
