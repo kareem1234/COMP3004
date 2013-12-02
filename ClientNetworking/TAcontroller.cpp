@@ -1,39 +1,32 @@
 #include "TAcontroller.h"
 
-TAcontroller::TAcontroller(QObject *parent) :
+TAcontroller::TAcontroller(taClient* c, TA t,QObject *parent) :
     QObject(parent)
 {
-
-     connection.start("127.0.0.1",8888);
-
-     this->connect(&taScreen, SIGNAL(cellSelectedSignal(int,int)), this, SLOT(cellSelected(int, int)));
+    self = t;
+    client = c;
+    this->connect(&taScreen, SIGNAL(cellSelectedSignal(int,int)), this, SLOT(cellSelected(int, int)));
     viewTask();
 }
 
 
 void TAcontroller::viewTask(){
-
-   // vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
-
-   // taScreen.initTA(email, course);
-   // taScreen.setTable(t);
+   Course c = client->getCurrentCourse(self);
+   vector<Task> t = client->getTaskListForCourse(self,c);
+   taScreen.initTA(self.getEmail(), c.toString());
+   taScreen.setTable(t);
 }
 void TAcontroller::viewEval(){
 
-   // vector<Task> t =connection.getTaskListForCourse(mary,courses[0]);
-
-    //taScreen.displayEvaluation(connection.getEval(t.at(row)).toString());
+    Course c = client->getCurrentCourse(self);
+    vector<Task> t = client->getTaskListForCourse(self,c);
+    taScreen.displayEvaluation(client->getEval(t[row]).toString());
 
 }
 void TAcontroller::cellSelected(int r, int c){
     row = r;
 
-    ViewEval();
+    viewEval();
 }
 
-string TAcontroller::toString(int a){
-    ostringstream ss;
-         ss << a;
-         return ss.str();
-}
 

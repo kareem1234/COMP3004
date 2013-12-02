@@ -22,7 +22,8 @@ class clientUser : public  QObject{
     Q_OBJECT
     public:
           clientUser( QTcpSocket *c,QObject* parent = 0);
-
+          Instructor ILogin(Instructor t);
+          TA TLogin(TA t);
 
     public slots:
 
@@ -31,8 +32,6 @@ class clientUser : public  QObject{
 
     protected:
             QTcpSocket *client;
-            Instructor ILogin(Instructor t);
-            TA TLogin(TA t);
             void sendData(string s);
             void emptyBuffer();
             string read();

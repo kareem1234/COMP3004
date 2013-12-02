@@ -2,22 +2,23 @@
 #define TAcontroller_H
 
 #include <QObject>
-#include <Client.h>
 #include <ta.h>
 #include <course.h>
 #include <task.h>
 #include <evaluation.h>
 #include <tamainscreen.h>
+#include "taClient.h"
 
 class TAcontroller : public QObject
 {
     Q_OBJECT
 public:
-    explicit TAcontroller(QObject *parent = 0);
+    TAcontroller(taClient* c ,TA t,QObject *parent = 0);
     TAMainScreen taScreen;
-    Client connection;
-    string toString(int a);
     int row;
+    TA self;
+private:
+    taClient *client;
 signals:
     
 public slots:

@@ -32,7 +32,8 @@ HEADERS += Client.h \
     taClient.h \
     instructorClient.h \
     tamainscreen.h \
-    TAcontroller.h
+    TAcontroller.h \
+    SystemController.h
 FORMS += courses.ui \
          edittask.ui \
          mainwindow.ui \
@@ -64,4 +65,5 @@ SOURCES += Client.cc \
     instructorClient.cpp \
     taClient.cpp \
     tamainscreen.cpp \
-    TAcontroller.cpp
+    TAcontroller.cpp \
+    SystemController.cpp

@@ -8,6 +8,7 @@ clientNetwork::clientNetwork(QObject* parent):
         ta = 0;
         instructor = 0;
         client = new QTcpSocket;
+        //start(127.0.0.1,8888);
 }
 
 clientUser* clientNetwork::getUser(){

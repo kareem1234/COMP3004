@@ -1,11 +1,11 @@
 #include <QtGui/QApplication>
-#include <TAcontroller.h>
+#include <SystemController.h>.
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    TAcontroller cont;
-    cont.taScreen.show();
+    SystemController c;
+    c.taStart();
     
     return a.exec();
 }
