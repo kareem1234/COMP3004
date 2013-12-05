@@ -79,6 +79,33 @@ void RequestHandler::respond(QTcpSocket* client,DatabaseController &db){
         cout<<"sending back message: "<<s<<endl;
         client->write(s.c_str(),1000);
         return;
-    }
+   }else if (method.compare(Message<string,int>::getTa)==0){
+        Message<TA,string> m(msg);
+        TA myTa(m.returnA());
+        TA newT = db.loginTA(myTa.getEmail());
+        Message<TA,string> f(newT.toString());
+        string s = f.toString();
+        cout<<"sending back message: "<<s<<endl;
+        client->write(s.c_str(),1000);
+
+   }else if (method.compare(Message<string,int>::getInstructor)==0){
+       Message<Instructor,string> m(msg);
+       Instructor myInstruct(m.returnA());
+       Instructor newT = db.loginInstructor(myInstruct.getEmail());
+       Message<Instructor,string> f(newT.toString());
+       string s = f.toString();
+       cout<<"sending back message: "<<s<<endl;
+       client->write(s.c_str(),1000);
+
+  }else if (method.compare(Message<string,int>::getCurrentCourse)==0){
+       Message<TA,string> m(msg);
+       TA t(m.returnA());
+       Course c = db.getCurrentCourse(t);
+       Message<TA,string> f(c.toString());
+       string s = f.toString();
+       cout<<"sending back message: "<<s<<endl;
+       client->write(s.c_str(),1000);
+
+  }
 
 }
