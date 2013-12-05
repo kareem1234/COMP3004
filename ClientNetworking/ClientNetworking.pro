@@ -13,13 +13,11 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += Client.h \
-           controller.h \
            course.h \
            courses.h \
            edittask.h \
            evaluation.h \
            instructor.h \
-           mainwindow.h \
            saveevaluation.h \
            ta.h \
            task.h \
@@ -27,24 +25,36 @@ HEADERS += Client.h \
            taskview.h \
            user.h \
            viewta.h \
-           viewtasks.h
+           viewtasks.h \
+    clientNetwork.h \
+    clientUser.h \
+    taClient.h \
+    instructorClient.h \
+    tamainscreen.h \
+    TAcontroller.h \
+    SystemController.h \
+    mainmenu.h \
+    InstructorController.h \
+    instructorwindow.h \
+    viewtaskdialog.h \
+    evaluationdialog.h
 FORMS += courses.ui \
          edittask.ui \
-         mainwindow.ui \
          saveevaluation.ui \
          taskcreated.ui \
          taskview.ui \
          viewta.ui \
-         viewtasks.ui
+         viewtasks.ui \
+    tamainscreen.ui \
+    mainmenu.ui \
+    instructorwindow.ui
 SOURCES += Client.cc \
-           controller.cpp \
            course.cpp \
            courses.cpp \
            edittask.cpp \
            evaluation.cpp \
            instructor.cpp \
            main.cpp \
-           mainwindow.cpp \
            saveevaluation.cpp \
            ta.cpp \
            task.cpp \
@@ -52,4 +62,20 @@ SOURCES += Client.cc \
            taskview.cpp \
            user.cpp \
            viewta.cpp \
-           viewtasks.cpp
+           viewtasks.cpp \
+    clientUser.cpp \
+    clientNetwork.cpp \
+    Message.cpp \
+    instructorClient.cpp \
+    taClient.cpp \
+    tamainscreen.cpp \
+    TAcontroller.cpp \
+    SystemController.cpp \
+    mainmenu.cpp \
+    instructorwindow.cpp \
+    instructorController.cpp \
+    viewtaskdialog.cpp \
+    evaluationdialog.cpp
+
+OTHER_FILES += \
+    mainwindow.o

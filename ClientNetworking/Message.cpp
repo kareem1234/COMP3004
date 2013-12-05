@@ -35,11 +35,25 @@ class Message{
             static string viewTaList;
             static string viewCourseList;
 
+            static string getTa;
+            static string getInstructor;
+            static string getCurrentCourse;
+
 };
 
 /// static string definitions
 template < class A, class B>
+string Message<A,B>::getCurrentCourse ="GETCURRENTCOURSE";
+
+template < class A, class B>
 string Message<A,B>::reTurn ="RETURN";
+
+template < class A, class B>
+string Message<A,B>::getTa ="GETTA";
+
+template < class A, class B>
+string Message<A,B>::getInstructor ="GETINSTRUCTOR";
+
 
 template < class A, class B>
 string Message<A,B>::saveTask ="STASK";
