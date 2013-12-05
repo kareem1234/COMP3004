@@ -14,9 +14,12 @@ class DatabaseManager : public QObject
 public:
     explicit DatabaseManager(QObject *parent = 0);
     bool openDB();
+    bool isOpen();
     bool buildDB();
     void populateDB();
     bool deleteDB();
+
+    QSqlQuery exec(const QString & query = QString() ) const;
 
 
 
@@ -50,7 +53,6 @@ public:
     // Select SQL Methods
     QSqlQuery getTaskList(qint32, qint32);
     QSqlQuery getCourseList(qint32);
-    QSqlQuery getTAList(qint32);
     QSqlQuery getEvaluation(qint32);
 
     // Delete SQL Methods

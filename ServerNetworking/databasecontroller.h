@@ -5,6 +5,12 @@
 #include "databasemanager.h"
 #include <vector>
 
+#include "dbinstructor.h"
+#include "dbta.h"
+#include "dbcourse.h"
+#include "dbtask.h"
+#include "dbevaluation.h"
+
 class Instructor;
 class TA;
 class Course;
@@ -22,11 +28,19 @@ public:
 
     bool initDatabase();
 
+
+
+
     // Database get methods
     vector<Task> getTaskListForTACourse(TA, Course);
     vector<TA> getTAList(Course);
     vector<Course> getCourseList(Instructor);
     Evaluation getEvaluation(Task);
+    Course getCurrentCourse(TA);
+
+    // Login Methods
+    TA loginTA(string email);
+    Instructor loginInstructor(string email);
 
     // Database save methods
     bool saveTask(TA ta, Task);
@@ -40,6 +54,13 @@ public:
 
 private:
     DatabaseManager dbManager;
+
+    DBTa dbTa;
+    DBInstructor dbInstructor;
+    DBCourse dbCourse;
+    DBTask dbTask;
+    DBEvaluation dbEvaluation;
+
 signals:
     
 public slots:

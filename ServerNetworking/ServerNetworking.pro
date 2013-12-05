@@ -26,7 +26,12 @@ SOURCES += main.cpp \
     evaluation.cpp \
     instructor.cpp \
     databasemanager.cpp \
-    databasecontroller.cpp
+    databasecontroller.cpp \
+    dbinstructor.cpp \
+    dbevaluation.cpp \
+    dbtask.cpp \
+    dbta.cpp \
+    dbcourse.cpp
 
 HEADERS += \
     Server.h \
@@ -38,5 +43,10 @@ HEADERS += \
     evaluation.h \
     instructor.h \
     databasemanager.h \
-    databasecontroller.h
+    databasecontroller.h \
+    dbinstructor.h \
+    dbevaluation.h \
+    dbtask.h \
+    dbta.h \
+    dbcourse.h
 

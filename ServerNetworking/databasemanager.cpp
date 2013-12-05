@@ -31,7 +31,7 @@ bool DatabaseManager::openDB()
     db.setDatabaseName(path);
 
     // Open database
-    bool dbOpened =  db.open();
+    bool isDbOpened =  db.open();
 
     if(!dbExists)
     {
@@ -40,7 +40,12 @@ bool DatabaseManager::openDB()
     }
 
     // Open database
-    return dbOpened;
+    return isDbOpened;
+}
+
+bool DatabaseManager::isOpen()
+{
+    return db.isOpen();
 }
 
 QSqlError DatabaseManager::lastError()
@@ -93,31 +98,35 @@ bool DatabaseManager::buildDB()
 
 void DatabaseManager::populateDB()
 {
-    // insert some TAs
-    insertTA("Mary Sue", "mary.sue@carleton.ca", qreal(4.0), qint32(100869040));
-    insertTA("Joe Quimby", "joe.quimby@carleton.ca", qreal(4.0), qint32(100869039));
-    insertTA("Monty Burns", "monty.burns@carleton.ca", qreal(4.0), qint32(100869038));
+    db.exec(QString("INSERT INTO course VALUES(NULL, 'Software Engineering', 'COMP3004', 'F2013', 'Design some sofware.', 'Tuesday')"));
+    db.exec(QString("INSERT INTO course VALUES(NULL, 'Programming Paradigms', 'COMP3007', 'F2013', 'Learn about programming languages.', 'Wednesday')"));
+    db.exec(QString("INSERT INTO course VALUES(NULL, 'Intro to Computer Science', 'COMP1405', 'F2013', 'Learn some basic computery things.', 'Friday')"));
+    db.exec(QString("INSERT INTO course VALUES(NULL, 'Systems Programming', 'COMP2401', 'F2013', 'Do some low level things.', 'Monday')"));
+    db.exec(QString("INSERT INTO course VALUES(NULL, 'Discrete Mathematics', 'COMP1805', 'F2013', 'Logic and proofs.', 'Thursday')"));
 
+    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Mary Sue', 'mary.sue@carleton.ca', 4.0, 100869040)"));
+    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Joe Quimby', 'joe.quimby@carleton.ca', 4.0, 100869039)"));
 
-    insertInstructor("Joe Teacher", "joeteach@carleton.ca", "CS", "HP5120");
+    db.exec(QString("INSERT INTO course_tas VALUES(1, 1, 1)"));
+    db.exec(QString("INSERT INTO course_tas VALUES(2, 1, 0)"));
+    db.exec(QString("INSERT INTO course_tas VALUES(1, 2, 1)"));
 
-    insertCourse("Software Engineering", "COMP3004", "F2013", "Design some sofware.", "Tuesday");
-    insertCourse("Programming Paradigms", "COMP3007", "F2013", "Learn about programming languages.", "Wednesday");
-    insertCourse("Intro to Computer Science", "COMP1405", "F2013", "Learn some basic computery things.", "Friday");
-    insertCourse("Systems Programming", "COMP2401", "F2013", "Do some low level things.", "Monday");
-    insertCourse("Discrete Mathematics", "COMP1805", "F2013", "Logic and proofs.", "Thursday");
+    db.exec(QString("INSERT INTO instructor VALUES(NULL, 'Edna Krabappel', 'edna@carleton.ca', 'CS', 'HP5120')"));
+    db.exec(QString("INSERT INTO instructor VALUES(NULL, 'Elizabeth Hoover', 'elizabeth@carleton.ca', 'CS', 'HP5121')"));
 
-    insertCourseTARelationship(1, 1);
-    insertCourseTARelationship(1, 2);
-    insertCourseTARelationship(1, 3);
-
-
-    insertInstructorCourseRelationship(1, 1);
-    insertInstructorCourseRelationship(1, 2);
-    insertInstructorCourseRelationship(1, 3);
-    insertInstructorCourseRelationship(1, 4);
-    insertInstructorCourseRelationship(1, 5);
+    db.exec(QString("INSERT INTO instructor_courses VALUES(1, 1)"));
+    db.exec(QString("INSERT INTO instructor_courses VALUES(1, 2)"));
+    db.exec(QString("INSERT INTO instructor_courses VALUES(2, 3)"));
+    db.exec(QString("INSERT INTO instructor_courses VALUES(2, 4)"));
 }
+
+/*
+QSqlQuery DatabaseManager::exec(const QString & query = QString() ) const
+{
+  return db.exec(query);
+}
+*/
+
 
 bool DatabaseManager::createTATable()
 {
@@ -270,323 +279,12 @@ bool DatabaseManager::createCourseTAsTable()
         ret = query.exec("CREATE TABLE IF NOT EXISTS course_tas"
                          "(course_id INTEGER references course(id), "
                          "ta_id INTEGER references ta(id), "
+                         "current INTEGER, "
                          "PRIMARY KEY (course_id, ta_id))");
         if (!ret)
         {
             printLastError("createCourseTAsTable", query.lastError().databaseText(), query.lastError().driverText());
         }
-    }
-
-    return ret;
-}
-
-int DatabaseManager::insertInstructor(QString name, QString email,
-                              QString department, QString officeRoom)
-{
-    int newId = -1;
-    bool ret = false;
-
-    if (db.isOpen())
-    {
-         QSqlQuery query;
-         ret = query.exec(QString("insert into instructor values(NULL,'%1','%2','%3','%4')")
-                         .arg(name).arg(email).arg(department).arg(officeRoom));
-
-        // Get database given autoincrement value
-        if (ret)
-        {
-            newId = query.lastInsertId().toInt();
-        }
-        else
-        {
-            printLastError("insertInstructor", query.lastError().databaseText(), query.lastError().driverText());
-        }
-
-    }
-    return newId;
-}
-
-
-
-
-/***
-  Entity insert methods
-****/
-int DatabaseManager::insertTA(QString name, QString email,
-                              qreal GPA, qint32 studentNumber)
-{
-    int newId = -1;
-    bool ret = false;
-
-    if (db.isOpen())
-    {
-
-        QSqlQuery query;
-        ret = query.exec(QString("insert into ta values(NULL,'%1','%2','%3','%4')")
-                         .arg(name).arg(email).arg(GPA).arg(studentNumber));
-
-        // Get database given autoincrement value
-        if (ret)
-        {
-            newId = query.lastInsertId().toInt();
-        }
-        else
-        {
-            printLastError("insertTA", query.lastError().databaseText(), query.lastError().driverText());
-        }
-    }
-    return newId;
-}
-
-int DatabaseManager::insertCourse(QString courseName, QString courseCode, QString term,
-                              QString courseDescription, QString meetingTime)
-{
-    int newId = -1;
-    bool ret = false;
-
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        ret = query.exec(QString("insert into course values(NULL,'%1','%2','%3', '%4','%5')")
-                         .arg(courseName).arg(courseCode).arg(term).arg(courseDescription)
-                         .arg(meetingTime));
-
-        // Get database given autoincrement value
-        if (ret)
-        {
-            newId = query.lastInsertId().toInt();
-        }
-        else
-        {
-            printLastError("insertCourse", query.lastError().databaseText(), query.lastError().driverText());
-        }
-    }
-    return newId;
-}
-
-int DatabaseManager::insertTask(QString instructions, QString type, QString dueDate, QString progress,
-                                qint32 courseId, qint32 taId)
-{
-    int newId = -1;
-    bool ret = false;
-
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        ret = query.exec(QString("insert into task values(NULL,'%1','%2','%3', '%4', '%5', '%6')")
-                         .arg(instructions).arg(type).arg(dueDate).arg(progress)
-                         .arg(courseId).arg(taId));
-
-        // Get database given autoincrement value
-        if (ret)
-        {
-            newId = query.lastInsertId().toInt();
-        }
-        else
-        {
-            printLastError("insertTA", query.lastError().databaseText(), query.lastError().driverText());
-        }
-    }
-    return newId;
-}
-
-int DatabaseManager::insertEvaluation(qint32 rating, QString comments, qint32 taskId)
-{
-    int newId = -1;
-    bool ret = false;
-
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        ret = query.exec(QString("insert into evaluation values(NULL,'%1','%2', '%3')")
-                         .arg(rating).arg(comments).arg(taskId));
-
-        // Get database given autoincrement value
-        if (ret)
-        {
-            newId = query.lastInsertId().toInt();
-        }
-        else
-        {
-            printLastError("insertEval", query.lastError().databaseText(), query.lastError().driverText());
-        }
-    }
-    return newId;
-}
-
-
-
-
-/****
-  Insert relationship tables
-****/
-bool DatabaseManager::insertInstructorCourseRelationship(qint32 instructorId, qint32 courseId)
-{
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        bool ret = query.exec(QString("insert into instructor_courses values('%1',%2)")
-                         .arg(instructorId).arg(courseId));
-        if(!ret)
-        {
-            printLastError("insertInstructorCourseRelationship", query.lastError().databaseText(), query.lastError().driverText());
-        }
-        return ret;
-    }
-
-    return false;
-}
-
-bool DatabaseManager::insertCourseTARelationship(qint32 courseId, qint32 taId)
-{
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        bool ret = query.exec(QString("insert into course_tas values('%1',%2)")
-                         .arg(courseId).arg(taId));
-        if(!ret)
-        {
-            printLastError("insertCourseTARelationship", query.lastError().databaseText(), query.lastError().driverText());
-        }
-        return ret;
-    }
-
-    return false;
-}
-
-
-
-
-/***
-  Update SQL Methods
-***/
-
-bool DatabaseManager::updateTask(qint32 taskId, QString instructions, QString type, QString dueDate, QString progress,
-                qint32 courseId, qint32 taId)
-{
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        bool ret = query.exec(QString("UPDATE task SET instructions = '%1', type = '%2', due_date = '%3', progress = '%4', course_id = '%5', ta_id = '%6' WHERE task_id = '%7'")
-                              .arg(instructions).arg(type).arg(dueDate).arg(progress)
-                              .arg(courseId).arg(taId).arg(taskId));
-        if(!ret)
-        {
-            printLastError("updateTask", query.lastError().databaseText(), query.lastError().driverText());
-        }
-        return ret;
-    }
-
-    return false;
-}
-
-bool DatabaseManager::updateEvaluation(qint32 evaluationId, qint32 rating, QString comments, qint32 taskId)
-{
-    if (db.isOpen())
-    {
-        QSqlQuery query;
-        bool ret = query.exec(QString("UPDATE evaluation SET rating = '%1', comments = '%2', task_id = '%3' WHERE evaluation_id = '%4'")
-                              .arg(rating).arg(comments).arg(taskId).arg(evaluationId));
-        if(!ret)
-        {
-            printLastError("updateEvaluation", query.lastError().databaseText(), query.lastError().driverText());
-        }
-        return ret;
-    }
-
-    return false;
-}
-
-
-QSqlQuery DatabaseManager::getTaskList(qint32 taId, qint32 courseId)
-{
-
-    QSqlQuery query;
-    bool ret = query.exec(QString("SELECT task_id, instructions, type, due_date, progress, course_id, ta_id FROM task WHERE course_id = '%1' AND ta_id = '%2'")
-                            .arg(taId).arg(courseId));
-
-    if(!ret)
-    {
-        printLastError("getTaskList", query.lastError().databaseText(), query.lastError().driverText());
-    }
-
-    return query;
-}
-
-QSqlQuery DatabaseManager::getCourseList(qint32 instructorId)
-{
-    QSqlQuery query;
-    bool ret = query.exec(QString("SELECT course_id, course_name, course_code, term, course_description, meeting_time FROM course NATURAL JOIN instructor_courses WHERE instructor_id = '%1'").arg(instructorId));
-
-    if(!ret)
-    {
-        printLastError("getCourseList", query.lastError().databaseText(), query.lastError().driverText());
-    }
-    return query;
-}
-
-QSqlQuery DatabaseManager::getTAList(qint32 courseId)
-{
-    QSqlQuery query;
-    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM ta NATURAL JOIN course_tas WHERE course_id = '%1'").arg(courseId));
-
-    if(!ret)
-    {
-        printLastError("getTAList", query.lastError().databaseText(), query.lastError().driverText());
-    }
-
-    return query;
-}
-
-QSqlQuery DatabaseManager::getEvaluation(qint32 taskId)
-{
-    QSqlQuery query;
-    bool ret = query.exec(QString("SELECT * FROM evaluation WHERE task_id = '%1'").arg(taskId));
-
-    if(!ret)
-    {
-        printLastError("getEvaluation", query.lastError().databaseText(), query.lastError().driverText());
-    }
-
-    return query;
-}
-
-
-/****
- Delete SQL Methods
-****/
-
-bool DatabaseManager::deleteTask(qint32 taskId)
-{
-    QSqlQuery evalDelQuery, taskDelQuery;
-
-    bool ret;
-
-    // Delete the associated evaluation if it exists
-    evalDelQuery.exec(QString("DELETE FROM evaluation WHERE task_id = '%1'").arg(taskId));
-
-    // Delete the task
-    ret = taskDelQuery.exec(QString("DELETE FROM task WHERE task_id = '%1'").arg(taskId));
-
-
-    if(!ret)
-    {
-        printLastError("deleteTask", taskDelQuery.lastError().databaseText(), taskDelQuery.lastError().driverText());
-    }
-
-    return ret;
-}
-
-bool DatabaseManager::deleteEvaluation(qint32 evaluationId)
-{
-    QSqlQuery evalDelQuery;
-    // Delete the evaluation
-
-    bool ret = evalDelQuery.exec(QString("DELETE FROM evaluation WHERE evaluation_id = '%1'").arg(evaluationId));
-
-    if(!ret)
-    {
-        printLastError("deleteEvaluation", evalDelQuery.lastError().databaseText(), evalDelQuery.lastError().driverText());
     }
 
     return ret;
