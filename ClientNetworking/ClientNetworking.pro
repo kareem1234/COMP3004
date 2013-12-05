@@ -18,7 +18,6 @@ HEADERS += Client.h \
            edittask.h \
            evaluation.h \
            instructor.h \
-           mainwindow.h \
            saveevaluation.h \
            ta.h \
            task.h \
@@ -33,16 +32,22 @@ HEADERS += Client.h \
     instructorClient.h \
     tamainscreen.h \
     TAcontroller.h \
-    SystemController.h
+    SystemController.h \
+    mainmenu.h \
+    InstructorController.h \
+    instructorwindow.h \
+    viewtaskdialog.h \
+    evaluationdialog.h
 FORMS += courses.ui \
          edittask.ui \
-         mainwindow.ui \
          saveevaluation.ui \
          taskcreated.ui \
          taskview.ui \
          viewta.ui \
          viewtasks.ui \
-    tamainscreen.ui
+    tamainscreen.ui \
+    mainmenu.ui \
+    instructorwindow.ui
 SOURCES += Client.cc \
            course.cpp \
            courses.cpp \
@@ -50,7 +55,6 @@ SOURCES += Client.cc \
            evaluation.cpp \
            instructor.cpp \
            main.cpp \
-           mainwindow.cpp \
            saveevaluation.cpp \
            ta.cpp \
            task.cpp \
@@ -66,4 +70,12 @@ SOURCES += Client.cc \
     taClient.cpp \
     tamainscreen.cpp \
     TAcontroller.cpp \
-    SystemController.cpp
+    SystemController.cpp \
+    mainmenu.cpp \
+    instructorwindow.cpp \
+    instructorController.cpp \
+    viewtaskdialog.cpp \
+    evaluationdialog.cpp
+
+OTHER_FILES += \
+    mainwindow.o

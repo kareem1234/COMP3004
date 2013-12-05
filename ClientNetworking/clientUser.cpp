@@ -12,6 +12,7 @@ TA clientUser::TLogin(TA t){
     Message<TA,Task> m(Message<string,int>::getTa,t);
     sendData(m.toString());
     Message<TA,string> rm(read());
+    cout<<"finished reading"<<endl;
     TA f(rm.returnA());
     return f;
 }
@@ -40,11 +41,13 @@ void clientUser:: sendData(string s){
 }
 
 string clientUser::read(){
+    cout<<"attempting to read"<<endl;
     while( client->bytesAvailable() < 1000){
         client->waitForReadyRead(3000);
     }
     char *buffer = new char[client->bytesAvailable()];
     client->read(buffer,client->bytesAvailable());
     string s(buffer);
+    cout<<"return data was: "<<s<<endl;
     return s;
 }

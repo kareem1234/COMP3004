@@ -1,14 +1,23 @@
 #include "TAcontroller.h"
-
+#include <iostream>
 TAcontroller::TAcontroller(taClient* c, TA t,QObject *parent) :
     QObject(parent)
 {
+    cout<<"t is: "<<t.toString()<<endl;
     self = t;
     client = c;
     this->connect(&taScreen, SIGNAL(cellSelectedSignal(int,int)), this, SLOT(cellSelected(int, int)));
+    taScreen.show();
     viewTask();
 }
 
+TAcontroller::~TAcontroller(){
+    taScreen.close();
+}
+
+void TAcontroller:: logoutClicked(){
+    emit logout();
+}
 
 void TAcontroller::viewTask(){
    Course c = client->getCurrentCourse(self);

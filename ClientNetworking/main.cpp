@@ -4,8 +4,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    SystemController c;
-    c.taStart();
-    
+    SystemController c; 
     return a.exec();
 }

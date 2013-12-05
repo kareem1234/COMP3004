@@ -14,17 +14,20 @@ class TAcontroller : public QObject
     Q_OBJECT
 public:
     TAcontroller(taClient* c ,TA t,QObject *parent = 0);
+    ~TAcontroller();
     TAMainScreen taScreen;
     int row;
     TA self;
 private:
     taClient *client;
 signals:
+    void logout();
     
 public slots:
     void viewTask();
     void viewEval();
     void cellSelected(int, int);
+    void logoutClicked();
 
 
 
