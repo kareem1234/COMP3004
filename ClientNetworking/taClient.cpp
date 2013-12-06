@@ -9,7 +9,7 @@ taClient:: taClient(QTcpSocket*c, QObject *parent):
 Course taClient:: getCurrentCourse(TA self){
     Message<TA,string> m(Message<string,int>::getCurrentCourse,self);
     clientUser::sendData(m.toString());
-    Message<Evaluation,string> rm(clientUser::read());
+    Message<Course,string> rm(Message<string,int>::reTurn,clientUser::read());
     Course c(rm.returnA());
     return c;
 }

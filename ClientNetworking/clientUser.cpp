@@ -6,20 +6,23 @@ using namespace std;
 clientUser::clientUser(QTcpSocket *c,QObject* parent):
 QObject(parent){
     client = c;
+    //emptyBuffer();
 }
 
 TA clientUser::TLogin(TA t){
     Message<TA,Task> m(Message<string,int>::getTa,t);
     sendData(m.toString());
-    Message<TA,string> rm(read());
+    Message<TA,string> rm(Message<string,int>::reTurn,read());
     cout<<"finished reading"<<endl;
     TA f(rm.returnA());
+    cout<<"ta is:"<<rm.returnA()<<endl;
     return f;
 }
 
 Instructor clientUser:: ILogin(Instructor i){
     Message<Instructor,Task> m(Message<string,int>::getInstructor,i);
     sendData(m.toString());
+    cout<<"send data returned"<<endl;
     Message<Instructor,string> rm(read());
     Instructor f(rm.returnA());
     return f;
@@ -36,8 +39,7 @@ void clientUser:: emptyBuffer(){
 
 void clientUser:: sendData(string s){
     cout<<"send message"<<s<<endl;
-    client->write(s.c_str());
-    cout<<"sent message"<<endl;
+    int i =client->write(s.c_str(),1000);
 }
 
 string clientUser::read(){

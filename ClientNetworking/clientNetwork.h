@@ -9,7 +9,11 @@
 #include "instructorClient.h"
 #include "taClient.h"
 #include "clientUser.h"
-
+#include <QHostAddress>
+#include <QtNetwork>
+#include <QObject>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class clientNetwork : public  QObject{
@@ -30,7 +34,7 @@ class clientNetwork : public  QObject{
 
 
     private:
-            QTcpSocket * client;
+            QTcpSocket*  client;
             clientUser* user;
             taClient* ta;
             instructorClient* instructor;
