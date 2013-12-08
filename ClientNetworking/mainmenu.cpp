@@ -19,7 +19,7 @@ void MainMenu::logInButtonPressed(){
         emit instructorLogin();
 }
 QString MainMenu::getText(){
-    return ui->userName->selectedText();
+    return ui->userName->text();
 }
 MainMenu::~MainMenu()
 {

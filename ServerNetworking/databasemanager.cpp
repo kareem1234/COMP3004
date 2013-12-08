@@ -118,6 +118,11 @@ void DatabaseManager::populateDB()
     db.exec(QString("INSERT INTO instructor_courses VALUES(1, 2)"));
     db.exec(QString("INSERT INTO instructor_courses VALUES(2, 3)"));
     db.exec(QString("INSERT INTO instructor_courses VALUES(2, 4)"));
+
+    db.exec(QString("INSERT INTO task VALUES(NULL, 'Mark assignment 1', 'Assignment', 'Next Wednesday', 'Not Started', 1, 1)"));
+    db.exec(QString("INSERT INTO task VALUES(NULL, 'Mark assignment 2', 'Assignment', 'Next next Wednesday', 'Not Started', 1, 1)"));
+
+    db.exec(QString("INSERT INTO evaluation VALUES(NULL, '4', 'Good work!', 1)"));
 }
 
 /*
