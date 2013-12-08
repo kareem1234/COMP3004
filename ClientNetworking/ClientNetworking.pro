@@ -43,7 +43,6 @@ FORMS += courses.ui \
          saveevaluation.ui \
          taskcreated.ui \
          taskview.ui \
-         viewta.ui \
          viewtasks.ui \
     tamainscreen.ui \
     mainmenu.ui \

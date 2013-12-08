@@ -31,7 +31,7 @@ void InstructorController:: logoutClicked(){
 void InstructorController:: updateCourseList(){
     vector<Course> courses = client->getCourseList(self);
     vector<QString> cStringList;
-    for(int i= 0; i<courses.size(); i++){
+    for(int i= courses.size()-1; i>= 0; i--){
         cStringList.push_back(QString::fromStdString(courses[i].getCourseName()));
     }
     iScreen->refreshList(cStringList,"course");
@@ -52,8 +52,10 @@ void InstructorController:: updateTAList(){
 void InstructorController:: updateTaskList(){
     int tr = iScreen->getTRow();
     int cr = iScreen->getCRow();
-    Course c = client->getCourseList(self)[cr];
+    vector<Course> courses = client->getCourseList(self);
+    Course c = courses[cr];
     TA t = client->getTAList(c)[tr];
+    cout<<"THIS TA IS: "<<t.toString();
     vector<Task> tasks = client->getTaskListForCourse(t,c);
     vector<QString> tStrings;
     for(int i = 0; i < tasks.size(); i++ ){

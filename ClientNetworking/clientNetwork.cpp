@@ -11,6 +11,7 @@ clientNetwork::clientNetwork(QObject* parent):
         //client->open(QIODevice::Write);
 
         this->connect(client,SIGNAL(connected()),this,SLOT(connection()));
+
         start("127.0.0.1",8888);
 }
 
