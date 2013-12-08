@@ -19,8 +19,8 @@ TAMainScreen::~TAMainScreen()
 }
 
 void TAMainScreen::initTA(std::string email, std::string course){
-    this->ui->userName->setText(QString::fromStdString(email));
-    this->ui->courseAssigned->setText(QString::fromStdString(course));
+    this->ui->textEmail->setText(QString::fromStdString(email));
+    this->ui->textCourse->setText(QString::fromStdString(course));
 }
 
 void TAMainScreen::setTable(std::vector<Task> tasks){
