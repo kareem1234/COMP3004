@@ -23,8 +23,9 @@ Instructor clientUser:: ILogin(Instructor i){
     Message<Instructor,Task> m(Message<string,int>::getInstructor,i);
     sendData(m.toString());
     cout<<"send data returned"<<endl;
-    Message<Instructor,string> rm(read());
+    Message<Instructor,string> rm(Message<string,int>::reTurn,read());
     Instructor f(rm.returnA());
+    cout<<"instructor is:"<<rm.returnA()<<endl;
     return f;
 
 }

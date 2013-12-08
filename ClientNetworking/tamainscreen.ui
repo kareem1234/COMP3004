@@ -50,10 +50,10 @@ QLabel#labelLogo {
   <widget class="QLabel" name="labelCourse">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>150</y>
-     <width>61</width>
-     <height>21</height>
+     <x>30</x>
+     <y>60</y>
+     <width>271</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -259,37 +259,30 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>10</y>
-     <width>90</width>
-     <height>27</height>
+     <x>670</x>
+     <y>30</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Logout</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelLogo">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>10</y>
-     <width>91</width>
+     <width>171</width>
      <height>61</height>
     </rect>
    </property>
    <property name="text">
-    <string>TAEval</string>
+    <string/>
    </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>10</y>
-     <width>111</width>
-     <height>81</height>
-    </rect>
+   <property name="pixmap">
+    <pixmap>Logo.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="label">

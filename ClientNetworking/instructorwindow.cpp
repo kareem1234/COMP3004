@@ -1,5 +1,6 @@
 #include "instructorwindow.h"
 #include "ui_instructorwindow.h"
+#include "task.h"
 
 InstructorWindow::InstructorWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +14,7 @@ InstructorWindow::InstructorWindow(QWidget *parent) :
     this->connect(this->ui->taskList,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(activateTaskButtons()));
     this->connect(this->ui->evaluationButton,SIGNAL(clicked()),this,SLOT(evaluationButtonPressed()));
     this->connect(this->ui->deleteTaskButton,SIGNAL(clicked()),this,SLOT(deleteTaskSlot()));
+    myList = ui->taskList;
 }
 
 InstructorWindow::~InstructorWindow()
@@ -56,13 +58,11 @@ void InstructorWindow::viewTaskButtonSlot(){
 void InstructorWindow::saveTaskSignalSlot(){
 
     emit saveTaskSignal();
-    //change the get Task attributes in tsk Dialog
-    this->taskDialog->getTaskAtributes();
 }
 
-void InstructorWindow::saveTask(){
+void InstructorWindow::saveTask(Task* t){
 
-    this->taskDialog->getTaskAtributes();
+    this->taskDialog->getTaskAtributes(t);
 }
 
 void InstructorWindow:: courseSelectionChangeSlot(){

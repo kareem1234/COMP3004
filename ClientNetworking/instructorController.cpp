@@ -10,28 +10,36 @@ Instructor i,QObject* parent): QObject(parent){
     this->connect(this->iScreen,SIGNAL(updateTaskListSignal()),this,SLOT(updateTaskList()));
     this->connect(this->iScreen,SIGNAL(updateTAListSignal()),this,SLOT(updateTAList()));
     this->connect(this->iScreen,SIGNAL(deleteTaskSignal()),this,SLOT(deleteTask()));
+    this->connect(this->iScreen,SIGNAL(saveTaskSignal()),this,SLOT(saveTaskChanges()));
     iScreen->show();
+    cout<<"instructor is: "<<self.toString();
+    updateCourseList();
 }
 InstructorController::~InstructorController(){
+    cout<<"deleted instructor"<<endl;
     iScreen-> close();
     delete iScreen;
     iScreen = 0;
 }
 
 void InstructorController:: logoutClicked(){
+    cout<<"logging out"<<endl;
     emit logout();
 
 }
 
+void InstructorController:: updateCourseList(){
+    vector<Course> courses = client->getCourseList(self);
+    vector<QString> cStringList;
+    for(int i= courses.size()-1; i>= 0; i--){
+        cStringList.push_back(QString::fromStdString(courses[i].getCourseName()));
+    }
+    iScreen->refreshList(cStringList,"course");
+}
+
 void InstructorController:: updateTAList(){
     vector<Course> courses = client->getCourseList(self);
-    vector<TA> allTas;
-    for(int i=0; i< courses.size(); i++){
-        vector<TA>  tas = client->getTAList(courses[i]);
-        for(int z = 0; z< tas.size(); z++){
-            allTas.push_back(tas[z]);
-        }
-    }
+    vector<TA>  allTas = client->getTAList(courses[iScreen->getCRow()]);
     vector<QString> taStringList;
     for(int y = 0; y< allTas.size(); y++){
        QString title = QString::fromStdString(allTas[y].getName());
@@ -44,8 +52,10 @@ void InstructorController:: updateTAList(){
 void InstructorController:: updateTaskList(){
     int tr = iScreen->getTRow();
     int cr = iScreen->getCRow();
-    Course c = client->getCourseList(self)[cr];
+    vector<Course> courses = client->getCourseList(self);
+    Course c = courses[cr];
     TA t = client->getTAList(c)[tr];
+    cout<<"THIS TA IS: "<<t.toString();
     vector<Task> tasks = client->getTaskListForCourse(t,c);
     vector<QString> tStrings;
     for(int i = 0; i < tasks.size(); i++ ){
@@ -69,5 +79,12 @@ void InstructorController::saveEvaluation(){
 }
 
 void InstructorController::saveTaskChanges(){
-//   not sure wat u want
+    int tr = iScreen->getTRow();
+    int cr = iScreen->getCRow();
+    Course c = client->getCourseList(self)[cr];
+    TA t = client->getTAList(c)[tr];
+    int row = iScreen->myList->currentRow();
+    Task tas = client->getTaskListForCourse(t,c)[row];
+    iScreen->saveTask(&tas);
+
 }

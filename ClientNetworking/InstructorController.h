@@ -24,6 +24,7 @@ class InstructorController : public QObject{
     signals:
             void logout();
     public slots:
+            void updateCourseList();
             void logoutClicked();
             void updateTAList();
             void updateTaskList();

@@ -24,7 +24,6 @@ class clientUser : public  QObject{
           clientUser( QTcpSocket *c,QObject* parent = 0);
           Instructor ILogin(Instructor t);
           TA TLogin(TA t);
-
     public slots:
 
 

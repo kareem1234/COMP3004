@@ -13,6 +13,7 @@ TAcontroller::TAcontroller(taClient* c, TA t,QObject *parent) :
 }
 
 TAcontroller::~TAcontroller(){
+    cout<<"deleted ta"<<endl;
     taScreen.close();
 }
 

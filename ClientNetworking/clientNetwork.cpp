@@ -49,18 +49,25 @@ void clientNetwork::start(QString address, quint16 port){
     client->connectToHost(address, port);
 }
 
+void clientNetwork::deleteTa(){
+    if(ta != 0){
+        delete ta;
+        ta = 0;
+    }
+}
+
+
+void clientNetwork::deleteInstructor(){
+    if(instructor != 0){
+        delete instructor;
+        instructor= 0;
+    }
+}
+
+
 void clientNetwork::deleteUser(){
     if(user != 0){
         delete user;
         user= 0;
     }
-    if(ta !=0 ){
-        delete ta;
-        ta = 0;
-    }
-    if(instructor != 0){
-        delete instructor;
-        instructor = 0;
-    }
-
 }

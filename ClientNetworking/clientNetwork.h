@@ -24,9 +24,12 @@ class clientNetwork : public  QObject{
           void start(QString address, quint16 port);
           taClient* getTa();
           instructorClient* getInstructor();
-          void deleteUser();
           QTcpSocket* getClient();
           clientUser* getUser();
+          void deleteTa();
+          void deleteInstructor();
+          void deleteUser();
+
 
     public slots:
           void connection();
