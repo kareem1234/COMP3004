@@ -23,11 +23,17 @@ void TAMainScreen::initTA(std::string email, std::string course){
     this->ui->courseAssigned->setText(QString::fromStdString(course));
 }
 
-void TAMainScreen::setTable(std::vector<Task> t){
+void TAMainScreen::setTable(std::vector<Task> tasks){
 
-    for(size_t i = 0; i < t.size(); i++){
-        QTableWidgetItem *item1 = new QTableWidgetItem(t.at(i).getId());
-        QTableWidgetItem *item2 = new QTableWidgetItem(QString::fromStdString(t.at(i).getDueDate()));
+    for(size_t i = 0; i < tasks.size(); i++){
+        Task task = tasks.at(i);
+
+        QString taskType = QString::fromStdString(task.getType());
+        QString taskDueDate = QString::fromStdString(task.getDueDate());
+
+        QTableWidgetItem *item1 = new QTableWidgetItem(taskType);
+        QTableWidgetItem *item2 = new QTableWidgetItem(taskDueDate);
+
         this->ui->taskItems->setItem(i, 0, item1);
         this->ui->taskItems->setItem(i, 1, item2);
     }
