@@ -6,7 +6,8 @@
 #include "viewtaskdialog.h"
 #include "evaluationdialog.h"
 #include <vector>
-
+#include "task.h"
+#include"QListWidget"
 using namespace std;
 
 
@@ -23,12 +24,13 @@ public:
     ~InstructorWindow();
 
     void refreshList(vector<QString> newList,string listType);
-    void saveTask();
+    void saveTask(Task * t);
     void saveEvaluation();
     void deleteEvaluation();
     void deleteTask();
     int getTRow();
     int getCRow();
+    QListWidget* myList;
 
 
 private:

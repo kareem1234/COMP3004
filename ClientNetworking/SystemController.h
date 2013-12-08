@@ -12,6 +12,7 @@ class SystemController : public QObject{
     public:
         SystemController(QObject* parent = 0);
         ~SystemController();
+        void del();
     public slots:
         void taStart();
         void instructorStart();

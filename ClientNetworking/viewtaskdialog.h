@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
-
+#include "task.h"
 namespace Ui {
 class ViewTaskDialog;
 }
@@ -17,7 +17,7 @@ public:
     void setTaskDate(int taskMonth,int taskDay,int taskTimeHours,int taskTimeMinutes);//This function sets the date for the task selected
     void setTaskDescription(QString description);//This function sets the description for the task
     void setTaskNameTag(QString description);//This function sets the task name tag
-    void getTaskAtributes();//this method assigns all of the atributes in the task dialogue to a task(ADD TASK POINTER AND SET VALUES TO CORRESPONDING DUMMY VARIABLES)
+    void getTaskAtributes(Task* t);//this method assigns all of the atributes in the task dialogue to a task(ADD TASK POINTER AND SET VALUES TO CORRESPONDING DUMMY VARIABLES)
 
     ~ViewTaskDialog();
     

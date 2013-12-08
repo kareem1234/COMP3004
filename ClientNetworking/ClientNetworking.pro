@@ -47,7 +47,8 @@ FORMS += courses.ui \
          viewtasks.ui \
     tamainscreen.ui \
     mainmenu.ui \
-    instructorwindow.ui
+    instructorwindow.ui \
+    viewtaskdialog.ui
 SOURCES += Client.cc \
            course.cpp \
            courses.cpp \

@@ -3,6 +3,8 @@
 SystemController:: SystemController(QObject* parent){
        client = network.getUser();
        menu = new MainMenu();
+       ta = 0;
+       instructor = 0;
        menu->show();
        this->connect(this->menu,SIGNAL(taLogin()),
                      this,SLOT(taStart()));
@@ -13,16 +15,29 @@ SystemController:: SystemController(QObject* parent){
 
 SystemController::~SystemController(){
     network.deleteUser();
-    delete ta;
 }
 
-void SystemController:: menuStart(){
-    network.deleteUser();
-    client = network.getUser();
+void SystemController::del(){
+    cout<<"deleting controllers"<<endl;
+    cout<<"t is: "<<ta<<"i is: "<<instructor<<endl;
     if(ta != 0){
         delete ta;
         ta = 0;
     }
+
+    if(instructor != 0){
+        delete instructor;
+        instructor = 0;
+    }
+
+}
+void SystemController:: menuStart(){
+    cout<<"starting menu"<<endl;
+    network.deleteTa();
+    network.deleteInstructor();
+    del();
+    client = network.getUser(); 
+    cout<<"deleted ta pointer"<<endl;
     menu = new MainMenu();
     menu->show();
     this->connect(this->menu,SIGNAL(taLogin()),
@@ -30,7 +45,6 @@ void SystemController:: menuStart(){
     this->connect(this->menu,SIGNAL(instructorLogin()),
                    this,SLOT(instructorStart()));
 }
-
 void SystemController:: taStart(){
     cout<<"starting ta"<<endl;
     TA t;
@@ -42,12 +56,12 @@ void SystemController:: taStart(){
     menu = 0;
     ta = new TAcontroller(network.getTa(),client->TLogin(t));
     this->connect(ta,SIGNAL(logout()),this,SLOT(menuStart()));
-
+    network.deleteUser();
 }
 
 void SystemController::instructorStart(){
     cout<<"starting instructor"<<endl;
-    network.deleteUser();
+   //network.deleteUser();
     menu->close();
     Instructor i;
     i.setEmail(menu->getText().toStdString());
@@ -58,5 +72,6 @@ void SystemController::instructorStart(){
                     client->ILogin(i));
     this->connect(this->instructor,SIGNAL(logout()),
                   this,SLOT(menuStart()));
+    network.deleteUser();
 
 }

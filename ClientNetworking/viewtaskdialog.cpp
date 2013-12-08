@@ -1,5 +1,6 @@
 #include "viewtaskdialog.h"
 #include "ui_viewtaskdialog.h"
+#include "task.h"
 
 ViewTaskDialog::ViewTaskDialog(QWidget *parent) :
     QDialog(parent),
@@ -41,7 +42,8 @@ void ViewTaskDialog::confirmSave()
     if(ret ==QMessageBox::Save){
         emit saveChanges();
     }
-
+    QString taskDay = ui->dayComboBox->currentText();
+    QString taskMonth = ui->monthComboBox->currentText();
 }
 
 
@@ -76,18 +78,14 @@ void ViewTaskDialog::setTaskNameTag(QString name){
 }
 
 
-void ViewTaskDialog::getTaskAtributes(){
-
-
-    QString taskName,taskHour,taskMinute,taskDay,taskMonth;
-    taskName = ui->taskNameLabel->text();
-    taskHour = ui->timeComboBox1->currentText();
-    taskMinute = ui->timeComboBox2->currentText();
-    taskDay = ui->dayComboBox->currentText();
-    taskMonth = ui->monthComboBox->currentText();
-
-
-
+void ViewTaskDialog::getTaskAtributes(Task* t){
+   // QString taskName,taskHour,taskMinute,taskDay,taskMonth;
+    t->setType( ui->taskNameLabel->text().toStdString() );
+    t->setDueDate(ui->timeComboBox1->currentText().toStdString()+" "+
+                  ui->timeComboBox2->currentText().toStdString()+" "+
+                  ui->dayComboBox->currentText().toStdString()+" "+
+                  ui->monthComboBox->currentText().toStdString());
+    t->setInstructions(ui->description->toPlainText().toStdString());
 }
 
 //This function sets the proper amount of days in the dayComboBox for each month selected
