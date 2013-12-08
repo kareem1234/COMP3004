@@ -1,4 +1,4 @@
-COMPP 3004 Fall 2013 Deliverable 2
+COMP 3004 Fall 2013 Deliverable 2
 
 Brodie Gallinger 100869790
 Anvar Gazizov 100867768
