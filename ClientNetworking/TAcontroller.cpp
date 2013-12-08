@@ -7,6 +7,7 @@ TAcontroller::TAcontroller(taClient* c, TA t,QObject *parent) :
     self = t;
     client = c;
     this->connect(&taScreen, SIGNAL(cellSelectedSignal(int,int)), this, SLOT(cellSelected(int, int)));
+    this->connect(&taScreen, SIGNAL(logout()), this,SLOT(logoutClicked()));
     taScreen.show();
     viewTask();
 }
@@ -21,8 +22,9 @@ void TAcontroller:: logoutClicked(){
 
 void TAcontroller::viewTask(){
    Course c = client->getCurrentCourse(self);
+   cout<<"course Name is: "<<c.toString()<<endl;
    vector<Task> t = client->getTaskListForCourse(self,c);
-   taScreen.initTA(self.getEmail(), c.toString());
+   taScreen.initTA(self.getEmail(), c.getCourseName());
    taScreen.setTable(t);
 }
 void TAcontroller::viewEval(){

@@ -4,6 +4,7 @@
 TAMainScreen::TAMainScreen(QWidget *parent) : QFrame(parent), ui(new Ui::TAMainScreen)
 {
     ui->setupUi(this);
+    this->connect(this->ui->pushButton,SIGNAL(clicked()),this,SLOT(logoutClicked()));
     this->ui->taskItems->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->taskItems->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->taskItems->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -34,6 +35,9 @@ void TAMainScreen::setTable(std::vector<Task> t){
 
 void TAMainScreen::cellSelected(int r, int c){
     emit cellSelectedSignal(r,c);
+}
+void TAMainScreen::logoutClicked(){
+    emit logout();
 }
 
 void TAMainScreen::displayEvaluation(std::string eval){

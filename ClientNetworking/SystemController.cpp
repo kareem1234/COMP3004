@@ -6,6 +6,7 @@ SystemController:: SystemController(QObject* parent){
        menu->show();
        this->connect(this->menu,SIGNAL(taLogin()),
                      this,SLOT(taStart()));
+
        this->connect(this->menu,SIGNAL(instructorLogin()),
                       this,SLOT(instructorStart()));
 }
@@ -33,12 +34,14 @@ void SystemController:: menuStart(){
 void SystemController:: taStart(){
     cout<<"starting ta"<<endl;
     TA t;
-    network.deleteUser();
+    //network.deleteUser();
     t.setEmail(menu->getText().toStdString());
+    cout<<"email is: "<<menu->getText().toStdString()<<endl;
     menu->close();
     delete(menu);
     menu = 0;
     ta = new TAcontroller(network.getTa(),client->TLogin(t));
+    this->connect(ta,SIGNAL(logout()),this,SLOT(menuStart()));
 
 }
 

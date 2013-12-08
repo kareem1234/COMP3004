@@ -24,8 +24,10 @@ private:
 
 
 private slots:
+    void logoutClicked();
     void cellSelected(int r, int c);
 signals:
+    void logout();
     void cellClicked();
     void cellSelectedSignal(int, int);
 };

@@ -19,7 +19,13 @@ void MainMenu::logInButtonPressed(){
         emit instructorLogin();
 }
 QString MainMenu::getText(){
+<<<<<<< HEAD
     return ui->userName->text();
+=======
+    cout<<ui->userName->text().toStdString()<<endl;
+    return ui->userName->text();
+
+>>>>>>> e0c8e54061e0449239da50987ea7eaed6cd3f80c
 }
 MainMenu::~MainMenu()
 {

@@ -8,6 +8,10 @@ clientNetwork::clientNetwork(QObject* parent):
         ta = 0;
         instructor = 0;
         client = new QTcpSocket;
+        //client->open(QIODevice::Write);
+
+        this->connect(client,SIGNAL(connected()),this,SLOT(connection()));
+
         start("127.0.0.1",8888);
 }
 
