@@ -40,7 +40,7 @@ TA DBTa::getTA(string email)
 QSqlQuery DBTa::getTAQuery(string email)
 {
     QSqlQuery query;
-    bool ret = query.exec(QString("SELECT * FROM ta WHERE email = '%1'").arg(QString::fromStdString(email)));
+    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM course_tas NATURAL JOIN (SELECT * FROM ta WHERE email = '%1')").arg(QString::fromStdString(email)));
 
     if(!ret)
     {

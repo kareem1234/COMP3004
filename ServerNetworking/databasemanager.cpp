@@ -109,7 +109,6 @@ void DatabaseManager::populateDB()
 
     db.exec(QString("INSERT INTO course_tas VALUES(1, 1, 1)"));
     db.exec(QString("INSERT INTO course_tas VALUES(2, 1, 0)"));
-    db.exec(QString("INSERT INTO course_tas VALUES(1, 2, 1)"));
 
     db.exec(QString("INSERT INTO instructor VALUES(NULL, 'Edna Krabappel', 'edna@carleton.ca', 'CS', 'HP5120')"));
     db.exec(QString("INSERT INTO instructor VALUES(NULL, 'Elizabeth Hoover', 'elizabeth@carleton.ca', 'CS', 'HP5121')"));

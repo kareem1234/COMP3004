@@ -31,6 +31,10 @@ Evaluation DBEvaluation::getEvaluation(Task task)
         eval.setTaskId(query.value(3).toInt());
         ret = true;
     }
+    else
+    {
+        eval.setId(-1);
+    }
 
     return eval;
 }
