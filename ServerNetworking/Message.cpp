@@ -1,3 +1,5 @@
+#ifndef MESSAGE_H
+#define MESSAGE_H
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -158,3 +160,4 @@ template<class A, class B>
 string Message <A, B>::returnB(){
     return obj2;
 }
+#endif
