@@ -104,11 +104,13 @@ void DatabaseManager::populateDB()
     db.exec(QString("INSERT INTO course VALUES(NULL, 'Systems Programming', 'COMP2401', 'F2013', 'Do some low level things.', 'Monday')"));
     db.exec(QString("INSERT INTO course VALUES(NULL, 'Discrete Mathematics', 'COMP1805', 'F2013', 'Logic and proofs.', 'Thursday')"));
 
-    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Mary Sue', 'mary.sue@carleton.ca', 4.0, 100869040)"));
-    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Joe Quimby', 'joe.quimby@carleton.ca', 4.0, 100869039)"));
+    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Mary Sue', 'mary@carleton.ca', 4.0, 100869040)"));
+    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Billy Bob', 'billy@carleton.ca', 4.0, 100869039)"));
+    db.exec(QString("INSERT INTO ta VALUES(NULL, 'Sally Jane', 'sally@carleton.ca', 4.0, 100869037)"));
 
     db.exec(QString("INSERT INTO course_tas VALUES(1, 1, 1)"));
-    db.exec(QString("INSERT INTO course_tas VALUES(2, 1, 0)"));
+    db.exec(QString("INSERT INTO course_tas VALUES(1, 2, 1)"));
+    db.exec(QString("INSERT INTO course_tas VALUES(2, 3, 1)"));
 
     db.exec(QString("INSERT INTO instructor VALUES(NULL, 'Edna Krabappel', 'edna@carleton.ca', 'CS', 'HP5120')"));
     db.exec(QString("INSERT INTO instructor VALUES(NULL, 'Elizabeth Hoover', 'elizabeth@carleton.ca', 'CS', 'HP5121')"));

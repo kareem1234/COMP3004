@@ -41,8 +41,9 @@ void InstructorController:: updateTAList(){
     vector<Course> courses = client->getCourseList(self);
     vector<TA>  allTas = client->getTAList(courses[iScreen->getCRow()]);
     vector<QString> taStringList;
-    for(int y = 0; y< allTas.size(); y++){
-       QString title = QString::fromStdString(allTas[y].getName());
+
+    for(int i = allTas.size() - 1; i>= 0; i--) {
+       QString title = QString::fromStdString(allTas[i].getName());
        taStringList.push_back(title);
     }
 
