@@ -15,8 +15,8 @@ public:
     explicit TAMainScreen(QWidget *parent = 0);
     ~TAMainScreen();
     void setTable(std::vector<Task>);
-    void displayEvaluation(std::string);
-    void displayDetails(std::string);
+    void displayEvaluation(QString, QString);
+    void displayDetails(QString instructions, QString type, QString progress);
     void initTA(std::string, std::string);
 private:
     Ui::TAMainScreen *ui;
