@@ -11,6 +11,7 @@ EvaluationDialog::EvaluationDialog(QWidget *parent) :
     editButton = ui->saveChangesButton;
     comments = ui->comments;
     grade = ui->gradeCombo;
+    passLabel = ui->hasEvalTag;
 }
 
 

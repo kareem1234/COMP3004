@@ -95,21 +95,23 @@ void InstructorController::deleteTask(){
 }
 
 void InstructorController::createEvaluation(){
+    QMessageBox msgBox;
+    msgBox.setText("You are about to create an evaluation.");
+    msgBox.setInformativeText("Do you want to save your changes?");
+    msgBox.setStandardButtons(QMessageBox::Save |  QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Save);
+    int ret = msgBox.exec();
+    if(ret ==QMessageBox::Save){
 
-
-    int tr = iScreen->getTRow();
-    int cr = iScreen->getCRow();
-    Course c = client->getCourseList(self)[cr];
-    TA t = client->getTAList(c)[tr];
-    int row = iScreen->myList->currentRow();
-    Task tas = client->getTaskListForCourse(t,c)[row];
-    Evaluation e;
-    int taskId = tas.getId();
-    e.setTaskId(taskId);
-    iScreen->saveEvaluation(&e);
-    e.setId(0);
-    client->saveEval(t,e);
-
+        Task tas = getSelectedTask();
+        Evaluation e;
+        int taskId = tas.getId();
+        e.setTaskId(taskId);
+        iScreen->saveEvaluation(&e);
+        e.setId(0);
+        client->saveEval(getSelectedTA(),e);
+        iScreen->evaluationDialog->close();
+    }
 }
 
 void InstructorController::saveTaskChanges(){
@@ -194,16 +196,12 @@ Task InstructorController::getSelectedTask()
 
 void InstructorController::createEvaluationDialogSlot(){
 
-    int tr = iScreen->getTRow();
-    int cr = iScreen->getCRow();
-    Course c = client->getCourseList(self)[cr];
-    TA t = client->getTAList(c)[tr];
-    int row = iScreen->myList->currentRow();
-    Task tas = client->getTaskListForCourse(t,c)[row];
+    Task tas = getSelectedTask();
     Evaluation e = client->getEval(tas);
     iScreen->evaluationDialog= new EvaluationDialog();
-    this->connect(iScreen->evaluationDialog->deleteButton,SIGNAL(clicked()),this,SLOT(deleteEvaluationSLot()));
+    this->connect(iScreen->evaluationDialog->deleteButton,SIGNAL(clicked()),this,SLOT(deleteEvaluationSlot()));
     this->connect(iScreen->evaluationDialog->saveButton,SIGNAL(clicked()),this,SLOT(createEvaluation()));
+    this->connect(iScreen->evaluationDialog->editButton,SIGNAL(clicked()),this,SLOT(editEvaluation()));
 
     if(e.getId() != -1){
 
@@ -212,9 +210,46 @@ void InstructorController::createEvaluationDialogSlot(){
         iScreen->evaluationDialog->deleteButton->setEnabled(true);
         iScreen->evaluationDialog->comments->setText(QString::fromStdString(e.getComment()));
         iScreen->evaluationDialog->grade->setCurrentIndex(e.getRating()-1);
+        iScreen->evaluationDialog->passLabel->setText("True");
 
     }
 
     iScreen->evaluationDialog->show();
+
+}
+
+
+void InstructorController::deleteEvaluationSlot(){
+    QMessageBox msgBox;
+    msgBox.setText("You are about to delete the evaluation for this task.");
+    msgBox.setInformativeText("Would you like to proceed?");
+    msgBox.setStandardButtons(QMessageBox::Ok|  QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    int ret = msgBox.exec();
+    if(ret ==QMessageBox::Ok){
+
+        Task t = getSelectedTask();
+        Evaluation e = client->getEval(t);
+        client->deleteEval(e);
+        iScreen->evaluationDialog->close();
+
+    }
+}
+
+void InstructorController::editEvaluation(){
+    QMessageBox msgBox;
+    msgBox.setText("The changes are about to be saved.");
+    msgBox.setInformativeText("Do you want to save your changes?");
+    msgBox.setStandardButtons(QMessageBox::Save |  QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Save);
+    int ret = msgBox.exec();
+    if(ret ==QMessageBox::Save){
+        Task tas = getSelectedTask();
+        Evaluation e = client->getEval(tas);
+        iScreen->saveEvaluation(&e);
+        client->saveEval(getSelectedTA(),e);
+        iScreen->evaluationDialog->close();
+    }
+
 
 }

@@ -5,6 +5,8 @@
 #include "evaluation.h"
 #include <QComboBox>
 #include <QTextEdit>
+#include <QLabel>
+
 
 namespace Ui {
 class EvaluationDialog;
@@ -21,6 +23,7 @@ public:
     QPushButton *editButton;
     QComboBox *grade;
     QTextEdit *comments;
+    QLabel *passLabel;
 
 
     void saveEvaluation(Evaluation *e);

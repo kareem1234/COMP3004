@@ -44,5 +44,7 @@ class InstructorController : public QObject{
             void viewTaskSlot();
             void createTaskSlot();
             void createEvaluationDialogSlot();
+            void deleteEvaluationSlot();
+            void editEvaluation();
 };
 #endif // INSTRUCTORCONTROLLER_H
