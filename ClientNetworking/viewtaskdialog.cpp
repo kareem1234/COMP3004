@@ -7,6 +7,7 @@ ViewTaskDialog::ViewTaskDialog(QWidget *parent) :
     ui(new Ui::ViewTaskDialog)
 {
 
+
     ui->setupUi(this);
 //Setting the time combo box values
     for(int i = 1 ; i < 25; i++){
@@ -27,7 +28,7 @@ ViewTaskDialog::ViewTaskDialog(QWidget *parent) :
 
     this->connect(this->ui->monthComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(setAmountOfDays()));
     this->connect(this->ui->pushButton,SIGNAL(clicked()),this,SLOT(confirmSave()));
-
+    createTask = ui->pushButton;
 }
 
 void ViewTaskDialog::confirmSave()

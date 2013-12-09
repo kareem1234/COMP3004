@@ -1,3 +1,4 @@
+
 #include "InstructorController.h"
 
 
@@ -11,6 +12,8 @@ Instructor i,QObject* parent): QObject(parent){
     this->connect(this->iScreen,SIGNAL(updateTAListSignal()),this,SLOT(updateTAList()));
     this->connect(this->iScreen,SIGNAL(deleteTaskSignal()),this,SLOT(deleteTask()));
     this->connect(this->iScreen,SIGNAL(saveTaskSignal()),this,SLOT(saveTaskChanges()));
+    this->connect(this->iScreen->createTaskButton,SIGNAL(clicked()),this,SLOT(createTaskButtonClicked()));
+    this->connect(this->iScreen,SIGNAL(viewTaskSignal()),this,SLOT(viewTaskSlot()));
     iScreen->show();
     cout<<"instructor is: "<<self.toString();
     updateCourseList();
@@ -59,7 +62,7 @@ void InstructorController:: updateTaskList(){
     cout<<"THIS TA IS: "<<t.toString();
     vector<Task> tasks = client->getTaskListForCourse(t,c);
     vector<QString> tStrings;
-    for(int i = 0; i < tasks.size(); i++ ){
+    for(int i = tasks.size()-1; i >= 0; i-- ){
        QString t= QString::fromStdString(tasks[i].getType());
         tStrings.push_back(t);
     }
@@ -72,7 +75,17 @@ void InstructorController::deleteEvaluation(){
 }
 
 void InstructorController::deleteTask(){
-    // not sure what u want
+
+    int tr = iScreen->getTRow();
+    int cr = iScreen->getCRow();
+    Course c = client->getCourseList(self)[cr];
+    TA t = client->getTAList(c)[tr];
+    int row = iScreen->myList->currentRow();
+    Task tas = client->getTaskListForCourse(t,c)[row];
+    client->deleteTask(tas);
+
+    updateTaskList();
+
 }
 
 void InstructorController::saveEvaluation(){
@@ -80,6 +93,7 @@ void InstructorController::saveEvaluation(){
 }
 
 void InstructorController::saveTaskChanges(){
+
     int tr = iScreen->getTRow();
     int cr = iScreen->getCRow();
     Course c = client->getCourseList(self)[cr];
@@ -87,5 +101,40 @@ void InstructorController::saveTaskChanges(){
     int row = iScreen->myList->currentRow();
     Task tas = client->getTaskListForCourse(t,c)[row];
     iScreen->saveTask(&tas);
+    //save task in database
+}
+
+
+void InstructorController::createTaskButtonClicked(){
+
+
+    iScreen->createTaskDialog();
+    connect(this->iScreen->taskDialog->createTask,SIGNAL(clicked()),this,SLOT(createTaskSlot()));
+
+
+}
+
+void InstructorController::createTaskSlot(){
+
+    Task t;
+    int tr = iScreen->getTRow();
+    int cr = iScreen->getCRow();
+    iScreen->saveTask(&t);
+    Course c = client->getCourseList(self)[cr];
+    TA tA = client->getTAList(c)[tr];
+    client->saveTask(tA,t);
+    updateTaskList();
+
+}
+
+
+void InstructorController::viewTaskSlot(){
+
+    iScreen->taskDialog = new ViewTaskDialog();
+    iScreen->taskDialog->setModal(true);
+    connect(iScreen->taskDialog,SIGNAL(saveChanges()),iScreen,SLOT(saveTaskSignalSlot()));
+    iScreen->taskDialog->exec();
+
+
 
 }

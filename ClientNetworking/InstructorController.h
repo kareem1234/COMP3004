@@ -32,6 +32,16 @@ class InstructorController : public QObject{
             void saveEvaluation();
             void deleteEvaluation();
             void deleteTask();
+<<<<<<< HEAD
+            void createTaskButtonClicked();
+            void viewTaskSlot();
+            void createTaskSlot();
+
+
+
+
+=======
+>>>>>>> 31b2458ffdcd1e011f33766ddd8807fe55fec853
 
 };
 #endif // INSTRUCTORCONTROLLER_H
