@@ -18,6 +18,7 @@ Instructor i,QObject* parent): QObject(parent){
     cout<<"instructor is: "<<self.toString();
     updateCourseList();
 }
+
 InstructorController::~InstructorController(){
     cout<<"deleted instructor"<<endl;
     iScreen-> close();
@@ -32,21 +33,22 @@ void InstructorController:: logoutClicked(){
 }
 
 void InstructorController:: updateCourseList(){
-    vector<Course> courses = client->getCourseList(self);
+    courseList = client->getCourseList(self);
+
     vector<QString> cStringList;
-    for(int i= courses.size()-1; i>= 0; i--){
-        cStringList.push_back(QString::fromStdString(courses[i].getCourseName()));
+    for(int i= courseList.size()-1; i>= 0; i--){
+        cStringList.push_back(QString::fromStdString(courseList[i].getCourseName()));
     }
     iScreen->refreshList(cStringList,"course");
 }
 
 void InstructorController:: updateTAList(){
-    vector<Course> courses = client->getCourseList(self);
-    vector<TA>  allTas = client->getTAList(courses[iScreen->getCRow()]);
+    taList = client->getTAList(courseList[iScreen->getCRow()]);
+
     vector<QString> taStringList;
 
-    for(int i = allTas.size() - 1; i>= 0; i--) {
-       QString title = QString::fromStdString(allTas[i].getName());
+    for(int i = taList.size() - 1; i>= 0; i--) {
+       QString title = QString::fromStdString(taList[i].getName());
        taStringList.push_back(title);
     }
 
@@ -56,14 +58,18 @@ void InstructorController:: updateTAList(){
 void InstructorController:: updateTaskList(){
     int tr = iScreen->getTRow();
     int cr = iScreen->getCRow();
-    vector<Course> courses = client->getCourseList(self);
-    Course c = courses[cr];
-    TA t = client->getTAList(c)[tr];
+
+    Course c = courseList[cr];
+
+    TA t = taList[tr];
+
     cout<<"THIS TA IS: "<<t.toString();
-    vector<Task> tasks = client->getTaskListForCourse(t,c);
+
+    taskList = client->getTaskListForCourse(t,c);
+
     vector<QString> tStrings;
-    for(int i = tasks.size()-1; i >= 0; i-- ){
-       QString t= QString::fromStdString(tasks[i].getType());
+    for(int i = taskList.size()-1; i >= 0; i-- ){
+       QString t = QString::fromStdString(taskList[i].getType());
         tStrings.push_back(t);
     }
     iScreen->refreshList(tStrings,"task");
@@ -117,14 +123,13 @@ void InstructorController::createTaskButtonClicked(){
 void InstructorController::createTaskSlot(){
 
     Task t;
-    int tr = iScreen->getTRow();
-    int cr = iScreen->getCRow();
-    iScreen->saveTask(&t);
-    Course c = client->getCourseList(self)[cr];
-    TA tA = client->getTAList(c)[tr];
-    client->saveTask(tA,t);
-    updateTaskList();
 
+    iScreen->saveTask(&t);
+
+    TA ta = getSelectedTA();
+
+    client->saveTask(ta, t);
+    updateTaskList();
 }
 
 
@@ -133,8 +138,33 @@ void InstructorController::viewTaskSlot(){
     iScreen->taskDialog = new ViewTaskDialog();
     iScreen->taskDialog->setModal(true);
     connect(iScreen->taskDialog,SIGNAL(saveChanges()),iScreen,SLOT(saveTaskSignalSlot()));
+
+    // Set the values of the task dialog
+
+
+
     iScreen->taskDialog->exec();
 
 
+}
 
+Course InstructorController::getSelectedCourse()
+{
+    int cr = iScreen->getCRow();
+
+    return courseList[cr];
+}
+
+TA InstructorController::getSelectedTA()
+{
+    int tr = iScreen->getTRow();
+
+    return taList[tr];
+}
+
+Task InstructorController::getSelectedTask()
+{
+    int tr = iScreen->getTaskRow();
+
+    return taskList[tr];
 }
