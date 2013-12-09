@@ -33,10 +33,5 @@ class InstructorController : public QObject{
             void deleteEvaluation();
             void deleteTask();
 
-
-
-
-
-
 };
 #endif // INSTRUCTORCONTROLLER_H
