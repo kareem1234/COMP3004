@@ -19,11 +19,10 @@ using namespace std;
 class instructorRequest : public Request{
 
     public:
-            instructorRequest(string m,QTcpSocket* client,DatabaseController &db);
+            instructorRequest(string m);
              void respond(QTcpSocket* client,DatabaseController &db);
 
-    private:
-           string msg;
+
 
 };
 #endif // INSTRUCTORREQUEST_H

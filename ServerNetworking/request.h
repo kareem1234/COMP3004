@@ -19,10 +19,10 @@ using namespace std;
 class Request{
 
     public:
-            Request(string m,QTcpSocket* client,DatabaseController &db);
+            Request(string m);
             virtual void respond(QTcpSocket* client,DatabaseController &db)= 0;
 
-    private:
+    protected:
            string msg;
 
 };

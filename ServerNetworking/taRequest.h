@@ -19,11 +19,8 @@ using namespace std;
 class taRequest : public Request{
 
     public:
-            taRequest(string m,QTcpSocket* client,DatabaseController &db);
+            taRequest(string m);
              void respond(QTcpSocket* client,DatabaseController &db);
-
-    private:
-           string msg;
 
 };
 #endif // TAREQUEST_H

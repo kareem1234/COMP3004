@@ -1,8 +1,8 @@
 
 #include "taRequest.h"
 
-taRequest::taRequest(string m, QTcpSocket *client, DatabaseController &db)
-    :Request( m, client, db){}
+taRequest::taRequest(string m)
+    :Request( m){}
 
 void taRequest::respond(QTcpSocket *client, DatabaseController &db){
     string method = Message<string,int>::getMethod(msg);

@@ -1,7 +1,7 @@
 
 #include "request.h"
 
-Request::Request(string m,QTcpSocket* client,DatabaseController &db){
+Request::Request(string m){
     msg = m;
 
 }
