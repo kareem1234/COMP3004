@@ -50,7 +50,7 @@ QSqlQuery DBTask::getTaskList(qint32 taId, qint32 courseId)
 
     QSqlQuery query;
     bool ret = query.exec(QString("SELECT task_id, instructions, type, due_date, progress, course_id, ta_id FROM task WHERE course_id = '%1' AND ta_id = '%2'")
-                            .arg(taId).arg(courseId));
+                            .arg(courseId).arg(taId));
 
     if(!ret)
     {

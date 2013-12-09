@@ -60,14 +60,9 @@ void InstructorController:: updateTAList(){
 }
 
 void InstructorController:: updateTaskList(){
-    int tr = iScreen->getTRow();
-    int cr = iScreen->getCRow();
+    Course c = getSelectedCourse();
 
-    Course c = courseList[cr];
-
-    TA t = taList[tr];
-
-    cout<<"THIS TA IS: "<<t.toString();
+    TA t = getSelectedTA();
 
     taskList = client->getTaskListForCourse(t,c);
 
