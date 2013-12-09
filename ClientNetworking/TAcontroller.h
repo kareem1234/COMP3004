@@ -15,17 +15,23 @@ class TAcontroller : public QObject
 public:
     TAcontroller(taClient* c ,TA t,QObject *parent = 0);
     ~TAcontroller();
+
     TAMainScreen taScreen;
     int row;
     TA self;
 private:
     taClient *client;
+    Course currentCourse;
+    vector<Task> taskList;
+
 signals:
     void logout();
-    
+
 public slots:
     void viewTask();
+    void viewTaskDetails(int row);
     void viewEval();
+    void clearDetails();
     void cellSelected(int, int);
     void logoutClicked();
 

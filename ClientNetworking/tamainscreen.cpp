@@ -42,13 +42,21 @@ void TAMainScreen::setTable(std::vector<Task> tasks){
 void TAMainScreen::cellSelected(int r, int c){
     emit cellSelectedSignal(r,c);
 }
+
 void TAMainScreen::logoutClicked(){
     emit logout();
 }
 
-void TAMainScreen::displayEvaluation(std::string eval){
-    //this->ui->evaluation->setText(QString::fromStdString(eval));
+void TAMainScreen::displayEvaluation(QString rating, QString comments){
+    this->ui->textRating->setText(rating);
+
+    this->ui->textComments->setText(comments);
 }
-void TAMainScreen::displayDetails(std::string details){
-    //this->ui->details->setText(QString::fromStdString(details));
+
+void TAMainScreen::displayDetails(QString instructions, QString type, QString progress) {
+    this->ui->textInstructions->setText(instructions);
+
+    this->ui->textType->setText(type);
+
+    this->ui->textProgress->setText(progress);
 }
