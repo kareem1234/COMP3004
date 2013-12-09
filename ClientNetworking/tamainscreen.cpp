@@ -24,6 +24,7 @@ void TAMainScreen::initTA(std::string email, std::string course){
 }
 
 void TAMainScreen::setTable(std::vector<Task> tasks){
+    ui->taskItems->setRowCount(tasks.size());
 
     for(size_t i = 0; i < tasks.size(); i++){
         Task task = tasks.at(i);
