@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QMessageBox>
 #include "task.h"
+#include <QPushButton>
+
 namespace Ui {
 class ViewTaskDialog;
 }
@@ -13,6 +15,7 @@ class ViewTaskDialog : public QDialog
     Q_OBJECT
     
 public:
+    QPushButton *createTask;
     explicit ViewTaskDialog(QWidget *parent = 0);
     void setTaskDate(int taskMonth,int taskDay,int taskTimeHours,int taskTimeMinutes);//This function sets the date for the task selected
     void setTaskDescription(QString description);//This function sets the description for the task

@@ -1,3 +1,4 @@
+
 #include "InstructorController.h"
 
 
@@ -11,6 +12,7 @@ Instructor i,QObject* parent): QObject(parent){
     this->connect(this->iScreen,SIGNAL(updateTAListSignal()),this,SLOT(updateTAList()));
     this->connect(this->iScreen,SIGNAL(deleteTaskSignal()),this,SLOT(deleteTask()));
     this->connect(this->iScreen,SIGNAL(saveTaskSignal()),this,SLOT(saveTaskChanges()));
+    this->connect(this->iScreen->createTaskButton,SIGNAL(clicked()),this,SLOT(createTaskButtonClicked()));
     iScreen->show();
     cout<<"instructor is: "<<self.toString();
     updateCourseList();
@@ -86,5 +88,20 @@ void InstructorController::saveTaskChanges(){
     int row = iScreen->myList->currentRow();
     Task tas = client->getTaskListForCourse(t,c)[row];
     iScreen->saveTask(&tas);
+    //save task in database
+}
+
+
+void InstructorController::createTaskButtonClicked(){
+
+    iScreen->createTaskDialog();
+    connect(this->iScreen->taskDialog->createTask,SIGNAL(clicked()),this,SLOT(createTaskSlot()));
+
+
+}
+
+void InstructorController::createTaskSlot(){
+
+   updateTaskList();
 
 }

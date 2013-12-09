@@ -14,6 +14,8 @@ InstructorWindow::InstructorWindow(QWidget *parent) :
     this->connect(this->ui->taskList,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(activateTaskButtons()));
     this->connect(this->ui->evaluationButton,SIGNAL(clicked()),this,SLOT(evaluationButtonPressed()));
     this->connect(this->ui->deleteTaskButton,SIGNAL(clicked()),this,SLOT(deleteTaskSlot()));
+    this->connect(this->ui->taskList,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(taskListSelectionChangedSlot()));
+    createTaskButton = ui->createTask;
     myList = ui->taskList;
 }
 
@@ -37,6 +39,7 @@ void InstructorWindow::TAListItemChangedSlot(){
     ui->viewTaskButton->setEnabled(false);
     ui->deleteTaskButton->setEnabled(false);
     ui->evaluationButton->setEnabled(false);
+    ui->createTask->setEnabled(true);
 
 }
 
@@ -74,6 +77,7 @@ void InstructorWindow:: courseSelectionChangeSlot(){
     ui->viewTaskButton->setEnabled(false);
     ui->deleteTaskButton->setEnabled(false);
     ui->evaluationButton->setEnabled(false);
+    ui->createTask->setEnabled(false);
 }
 
 
@@ -151,4 +155,14 @@ void InstructorWindow::deleteTask(){
 
 void InstructorWindow::deleteTaskSlot(){
     emit deleteTaskSignal();
+}
+
+void InstructorWindow:: taskListSelectionChangedSlot(){
+    ui->createTask->setEnabled(false);
+
+}
+void InstructorWindow::createTaskDialog(){
+    taskDialog= new ViewTaskDialog();
+    taskDialog->createTask->setText("Create Task");
+    taskDialog->show();
 }

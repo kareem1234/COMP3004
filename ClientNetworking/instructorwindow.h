@@ -8,6 +8,7 @@
 #include <vector>
 #include "task.h"
 #include"QListWidget"
+#include <QPushButton>
 using namespace std;
 
 
@@ -23,6 +24,7 @@ public:
     explicit InstructorWindow(QWidget *parent = 0);
     ~InstructorWindow();
 
+    QPushButton *createTaskButton;
     void refreshList(vector<QString> newList,string listType);
     void saveTask(Task * t);
     void saveEvaluation();
@@ -30,14 +32,16 @@ public:
     void deleteTask();
     int getTRow();
     int getCRow();
+    void createTaskDialog();
     QListWidget* myList;
-
+    ViewTaskDialog *taskDialog;
 
 private:
 
     Ui::InstructorWindow *ui;
-    ViewTaskDialog *taskDialog;
+
     EvaluationDialog *evaluationDialog;
+
 
 signals:
 
@@ -52,6 +56,7 @@ signals:
 
 private slots:
 
+    void taskListSelectionChangedSlot();
     void courseSelectionChangeSlot();
     void logOutSlot();
     void TAListItemChangedSlot();

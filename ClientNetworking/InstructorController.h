@@ -32,7 +32,8 @@ class InstructorController : public QObject{
             void saveEvaluation();
             void deleteEvaluation();
             void deleteTask();
-
+            void createTaskButtonClicked();
+            void createTaskSlot();
 
 
 
