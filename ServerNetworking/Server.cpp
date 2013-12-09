@@ -46,8 +46,18 @@ void Server::readRequest(){
   	client->read(buffer, client->bytesAvailable());
     cout <<"request was: "<<buffer<< endl;
     string s(buffer);
-    rh = new RequestHandler(s,client,db);
-    delete rh;
+    //RequestHandler* rhh = new RequestHandler(s,client,db);
+    MethodInterpreter method(s);
+    if(method.isTA()){
+        cout<<"ta request"<<endl;
+        taRequest th(s);
+        th.respond(client,db);
+    }else{
+        cout<<"instructor request"<<endl;
+        instructorRequest ih(s);
+        ih.respond(client, db);
+
+    }
     delete buffer;
 }
 

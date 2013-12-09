@@ -31,7 +31,11 @@ SOURCES += main.cpp \
     dbevaluation.cpp \
     dbtask.cpp \
     dbta.cpp \
-    dbcourse.cpp
+    dbcourse.cpp \
+    methodInterpreter.cpp \
+    taRequest.cpp \
+    request.cpp \
+    instructorRequest.cpp
 
 HEADERS += \
     Server.h \
@@ -48,5 +52,9 @@ HEADERS += \
     dbevaluation.h \
     dbtask.h \
     dbta.h \
-    dbcourse.h
+    dbcourse.h \
+    methodInterpreter.h \
+    request.h \
+    taRequest.h \
+    instructorRequest.h
 

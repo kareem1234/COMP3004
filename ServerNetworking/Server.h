@@ -8,6 +8,10 @@
 #include <vector>
 #include "requesthandler.h"
 #include "databasecontroller.h"
+#include  "methodInterpreter.h"
+#include "request.h"
+#include "instructorRequest.h"
+#include "taRequest.h"
 
 
 using namespace std;
@@ -27,7 +31,7 @@ class Server: public QObject {
   		QTcpServer server;
   		QTcpSocket* client;
         vector<QTcpSocket*> clients;
-        RequestHandler *rh;
+        Request *rh;
         DatabaseController db;
 
 };
