@@ -99,7 +99,7 @@ void InstructorController::saveEvaluation(){
 }
 
 void InstructorController::saveTaskChanges(){
-
+    cout<<"SAVING TASK RaasaIGHT NOW BRAHHHH"<<endl;
     int tr = iScreen->getTRow();
     int cr = iScreen->getCRow();
     Course c = client->getCourseList(self)[cr];
@@ -123,7 +123,7 @@ void InstructorController::createTaskButtonClicked(){
 void InstructorController::createTaskSlot(){
 
     Task t;
-
+    t.setId(0);
     iScreen->saveTask(&t);
 
     TA ta = getSelectedTA();

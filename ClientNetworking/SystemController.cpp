@@ -72,19 +72,19 @@ void SystemController:: taStart(){
 
 void SystemController::instructorStart(){
     cout<<"starting instructor"<<endl;
-    menu->close();
     Instructor i;
     i.setEmail(menu->getText().toStdString());
     i = client->ILogin(i);
     if(i.getId() == -1){
         cout<<"bad id"<<endl;
         QMessageBox msgBox;
+        msgBox.setText("Incorrect email adress     ");
         msgBox.setWindowModality(Qt::WindowModal);
-        msgBox.setText("Incorrect email adress       ");
-        msgBox.move(menu->width()/2+20 ,
-                    menu->height()/2+20);
-       int i = msgBox.exec();
+        msgBox.move(menu->width()/2 ,
+                    menu->height()/2 );
+       int i=  msgBox.exec();
     }else{
+        cout<<"good id"<<endl;
         menu->close();
         delete(menu);
         menu = 0;
