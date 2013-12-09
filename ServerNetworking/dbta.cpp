@@ -32,6 +32,10 @@ TA DBTa::getTA(string email)
         ta.setCourseId(query.value(5).toInt());
         ret = true;
     }
+    else
+    {
+        ta.setId(-1);
+    }
 
     return ta;
 }

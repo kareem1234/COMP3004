@@ -32,6 +32,10 @@ Instructor DBInstructor::getInstructor(string email)
 
         ret = true;
     }
+    else
+    {
+        instructor.setId(-1);
+    }
 
     return instructor;
 }
