@@ -2,6 +2,8 @@
 #include "ui_viewtaskdialog.h"
 #include "task.h"
 
+#include <QDateTime>
+
 ViewTaskDialog::ViewTaskDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ViewTaskDialog)
@@ -82,10 +84,19 @@ void ViewTaskDialog::setTaskNameTag(QString name){
 void ViewTaskDialog::getTaskAtributes(Task* t){
    // QString taskName,taskHour,taskMinute,taskDay,taskMonth;
     t->setType( ui->taskNameLabel->text().toStdString() );
-    t->setDueDate(ui->timeComboBox1->currentText().toStdString()+" "+
-                  ui->timeComboBox2->currentText().toStdString()+" "+
-                  ui->dayComboBox->currentText().toStdString()+" "+
-                  ui->monthComboBox->currentText().toStdString());
+
+    QDate date = QDate(2013,
+                       ui->monthComboBox->currentText().toInt(),
+                       ui->dayComboBox->currentText().toInt());
+
+    QTime time = QTime(ui->timeComboBox1->currentText().toInt(),
+                       ui->timeComboBox2->currentText().toInt());
+    QDateTime dateTime = QDateTime(date, time);
+
+    QString dateTimeString = dateTime.toString(Qt::ISODate);
+
+    t->setDueDate(dateTimeString.toStdString());
+
     t->setInstructions(ui->description->toPlainText().toStdString());
 }
 

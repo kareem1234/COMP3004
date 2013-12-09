@@ -1,6 +1,10 @@
 
 #include "InstructorController.h"
 
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
+
 
 InstructorController:: InstructorController(instructorClient *c,
 Instructor i,QObject* parent): QObject(parent){
@@ -100,14 +104,14 @@ void InstructorController::saveEvaluation(){
 
 void InstructorController::saveTaskChanges(){
 
-    int tr = iScreen->getTRow();
-    int cr = iScreen->getCRow();
-    Course c = client->getCourseList(self)[cr];
-    TA t = client->getTAList(c)[tr];
-    int row = iScreen->myList->currentRow();
-    Task tas = client->getTaskListForCourse(t,c)[row];
+    Task tas = getSelectedTask();
+
     iScreen->saveTask(&tas);
+
     //save task in database
+    client->saveTask(getSelectedTA(), tas);
+
+    updateTaskList();
 }
 
 
@@ -140,12 +144,21 @@ void InstructorController::viewTaskSlot(){
     connect(iScreen->taskDialog,SIGNAL(saveChanges()),iScreen,SLOT(saveTaskSignalSlot()));
 
     // Set the values of the task dialog
+    Task task = getSelectedTask();
 
+    iScreen->taskDialog->setTaskDescription(QString::fromStdString(task.getInstructions()));
 
+    // Set the date and the time
+    QDateTime dateTime = QDateTime::fromString(QString::fromStdString(task.getDueDate()), Qt::ISODate);
+
+    QDate date = dateTime.date();
+    QTime time = dateTime.time();
+
+    iScreen->taskDialog->setTaskDate(date.month(), date.day(), time.hour(), time.minute());
+
+    iScreen->taskDialog->setTaskNameTag(QString::fromStdString(task.getType()));
 
     iScreen->taskDialog->exec();
-
-
 }
 
 Course InstructorController::getSelectedCourse()
