@@ -90,7 +90,7 @@ void InstructorController::deleteTask(){
     client->deleteTask(tas);
 
     updateTaskList();
-
+    iScreen->disableButtons();
 }
 
 void InstructorController::saveEvaluation(){

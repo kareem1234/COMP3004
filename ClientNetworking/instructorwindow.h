@@ -34,6 +34,9 @@ public:
     int getCRow();
     int getTaskRow();
     void createTaskDialog();
+
+    void disableButtons();
+
     QListWidget* myList;
     ViewTaskDialog *taskDialog;
 
