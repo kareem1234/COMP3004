@@ -52,6 +52,7 @@ signals:
     void deleteEvaluationSignal();
     void saveEvaluationSignal();
     void deleteTaskSignal();
+    void viewTaskSignal();
 
 
 private slots:

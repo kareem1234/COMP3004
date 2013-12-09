@@ -47,7 +47,7 @@ void TAMainScreen::logoutClicked(){
 }
 
 void TAMainScreen::displayEvaluation(std::string eval){
-    this->ui->evaluation->setText(QString::fromStdString(eval));
+    //this->ui->evaluation->setText(QString::fromStdString(eval));
 }
 void TAMainScreen::displayDetails(std::string details){
     //this->ui->details->setText(QString::fromStdString(details));

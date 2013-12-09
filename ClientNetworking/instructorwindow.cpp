@@ -50,11 +50,8 @@ void InstructorWindow::logOutSlot(){
 
 
 void InstructorWindow::viewTaskButtonSlot(){
+    emit viewTaskSignal();
 
-    taskDialog = new ViewTaskDialog();
-    taskDialog->setModal(true);
-    connect(taskDialog,SIGNAL(saveChanges()),this,SLOT(saveTaskSignalSlot()));
-    taskDialog->exec();
 
 }
 
