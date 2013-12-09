@@ -84,6 +84,12 @@ int InstructorWindow::getTRow(){
 int InstructorWindow:: getCRow(){
     return ui->courseList->currentRow();
 }
+
+int InstructorWindow::getTaskRow()
+{
+    return ui->taskList->currentRow();
+}
+
 void InstructorWindow:: refreshList(vector<QString> newList,string listType){
 
     QListWidget *list;
