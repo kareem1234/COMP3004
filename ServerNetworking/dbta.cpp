@@ -40,7 +40,7 @@ TA DBTa::getTA(string email)
 QSqlQuery DBTa::getTAQuery(string email)
 {
     QSqlQuery query;
-    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM course_tas NATURAL JOIN (SELECT * FROM ta WHERE email = '%1')").arg(QString::fromStdString(email)));
+    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM course_tas NATURAL JOIN (SELECT * FROM ta WHERE email = '%1') WHERE current = 1;").arg(QString::fromStdString(email)));
 
     if(!ret)
     {
@@ -85,7 +85,7 @@ vector<TA> DBTa::getTAList(Course course)
 QSqlQuery DBTa::getTAList(qint32 courseId)
 {
     QSqlQuery query;
-    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM ta NATURAL JOIN course_tas WHERE course_id = '%1'").arg(courseId));
+    bool ret = query.exec(QString("SELECT ta_id, name, email, GPA, student_number, course_id FROM ta NATURAL JOIN course_tas WHERE course_id = '%1' AND current = 1").arg(courseId));
 
     if(!ret)
     {
