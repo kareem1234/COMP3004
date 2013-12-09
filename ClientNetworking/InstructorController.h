@@ -18,9 +18,17 @@ class InstructorController : public QObject{
     ~InstructorController();
 
     private:
+    Course getSelectedCourse();
+    TA getSelectedTA();
+    Task getSelectedTask();
+
             InstructorWindow* iScreen;
             Instructor self;
             instructorClient* client;
+
+            vector<Course> courseList;
+            vector<TA> taList;
+            vector<Task> taskList;
     signals:
             void logout();
     public slots:
@@ -36,11 +44,5 @@ class InstructorController : public QObject{
             void viewTaskSlot();
             void createTaskSlot();
             void createEvaluationDialogSlot();
-
-
-
-
-
-
 };
 #endif // INSTRUCTORCONTROLLER_H

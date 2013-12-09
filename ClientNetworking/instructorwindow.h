@@ -33,7 +33,11 @@ public:
     void deleteTask();
     int getTRow();
     int getCRow();
+    int getTaskRow();
     void createTaskDialog();
+
+    void disableButtons();
+
     QListWidget* myList;
     EvaluationDialog *evaluationDialog;
     ViewTaskDialog *taskDialog;

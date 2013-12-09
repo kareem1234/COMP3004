@@ -84,6 +84,12 @@ int InstructorWindow::getTRow(){
 int InstructorWindow:: getCRow(){
     return ui->courseList->currentRow();
 }
+
+int InstructorWindow::getTaskRow()
+{
+    return ui->taskList->currentRow();
+}
+
 void InstructorWindow:: refreshList(vector<QString> newList,string listType){
 
     QListWidget *list;
@@ -160,4 +166,13 @@ void InstructorWindow::createTaskDialog(){
     taskDialog= new ViewTaskDialog();
     taskDialog->createTask->setText("Create Task");
     taskDialog->show();
+}
+
+
+void InstructorWindow::disableButtons()
+{
+    ui->deleteTaskButton->setEnabled(false);
+    ui->viewTaskButton->setEnabled(false);
+    ui->evaluationButton->setEnabled(false);
+
 }

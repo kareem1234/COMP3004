@@ -50,28 +50,47 @@ void SystemController:: taStart(){
     TA t;
     //network.deleteUser();
     t.setEmail(menu->getText().toStdString());
-    cout<<"email is: "<<menu->getText().toStdString()<<endl;
-    menu->close();
-    delete(menu);
-    menu = 0;
-    ta = new TAcontroller(network.getTa(),client->TLogin(t));
-    this->connect(ta,SIGNAL(logout()),this,SLOT(menuStart()));
-    network.deleteUser();
+    t = client->TLogin(t);
+    if(t.getId() == -1 ){
+        cout<<"bad id"<<endl;
+        QMessageBox msgBox;
+        msgBox.setText("Incorrect email adress     ");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.move(menu->width()/2 ,
+                    menu->height()/2 );
+       int i=  msgBox.exec();
+    }else{
+        cout<<"email is: "<<menu->getText().toStdString()<<endl;
+        menu->close();
+        delete(menu);
+        menu = 0;
+        ta = new TAcontroller(network.getTa(),t);
+        this->connect(ta,SIGNAL(logout()),this,SLOT(menuStart()));
+        network.deleteUser();
+    }
 }
 
 void SystemController::instructorStart(){
     cout<<"starting instructor"<<endl;
-   //network.deleteUser();
-    menu->close();
     Instructor i;
     i.setEmail(menu->getText().toStdString());
-    menu->close();
-    delete(menu);
-    menu = 0;
-    instructor = new InstructorController(network.getInstructor(),
-                    client->ILogin(i));
-    this->connect(this->instructor,SIGNAL(logout()),
-                  this,SLOT(menuStart()));
-    network.deleteUser();
-
+    i = client->ILogin(i);
+    if(i.getId() == -1){
+        cout<<"bad id"<<endl;
+        QMessageBox msgBox;
+        msgBox.setText("Incorrect email adress     ");
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.move(menu->width()/2 ,
+                    menu->height()/2 );
+       int i=  msgBox.exec();
+    }else{
+        cout<<"good id"<<endl;
+        menu->close();
+        delete(menu);
+        menu = 0;
+        instructor = new InstructorController(network.getInstructor(),i);
+        this->connect(this->instructor,SIGNAL(logout()),
+                      this,SLOT(menuStart()));
+        network.deleteUser();
+    }
 }
