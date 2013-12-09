@@ -43,5 +43,6 @@ class InstructorController : public QObject{
             void createTaskButtonClicked();
             void viewTaskSlot();
             void createTaskSlot();
+
 };
 #endif // INSTRUCTORCONTROLLER_H
