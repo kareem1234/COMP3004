@@ -169,3 +169,12 @@ void InstructorWindow::createTaskDialog(){
     taskDialog->createTask->setText("Create Task");
     taskDialog->show();
 }
+
+
+void InstructorWindow::disableButtons()
+{
+    ui->deleteTaskButton->setEnabled(false);
+    ui->viewTaskButton->setEnabled(false);
+    ui->evaluationButton->setEnabled(false);
+
+}
