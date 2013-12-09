@@ -14,6 +14,7 @@ Instructor i,QObject* parent): QObject(parent){
     this->connect(this->iScreen,SIGNAL(saveTaskSignal()),this,SLOT(saveTaskChanges()));
     this->connect(this->iScreen->createTaskButton,SIGNAL(clicked()),this,SLOT(createTaskButtonClicked()));
     this->connect(this->iScreen,SIGNAL(viewTaskSignal()),this,SLOT(viewTaskSlot()));
+    connect(this->iScreen,SIGNAL(createEvaluationSignal()),this,SLOT(createEvaluationDialogSlot()));
     iScreen->show();
     cout<<"instructor is: "<<self.toString();
     updateCourseList();
@@ -88,8 +89,22 @@ void InstructorController::deleteTask(){
 
 }
 
-void InstructorController::saveEvaluation(){
-    // not sure what u want
+void InstructorController::createEvaluation(){
+
+
+    int tr = iScreen->getTRow();
+    int cr = iScreen->getCRow();
+    Course c = client->getCourseList(self)[cr];
+    TA t = client->getTAList(c)[tr];
+    int row = iScreen->myList->currentRow();
+    Task tas = client->getTaskListForCourse(t,c)[row];
+    Evaluation e;
+    int taskId = tas.getId();
+    e.setTaskId(taskId);
+    iScreen->saveEvaluation(&e);
+    e.setId(0);
+    client->saveEval(t,e);
+
 }
 
 void InstructorController::saveTaskChanges(){
@@ -136,5 +151,33 @@ void InstructorController::viewTaskSlot(){
     iScreen->taskDialog->exec();
 
 
+
+}
+
+
+void InstructorController::createEvaluationDialogSlot(){
+
+    int tr = iScreen->getTRow();
+    int cr = iScreen->getCRow();
+    Course c = client->getCourseList(self)[cr];
+    TA t = client->getTAList(c)[tr];
+    int row = iScreen->myList->currentRow();
+    Task tas = client->getTaskListForCourse(t,c)[row];
+    Evaluation e = client->getEval(tas);
+    iScreen->evaluationDialog= new EvaluationDialog();
+    this->connect(iScreen->evaluationDialog->deleteButton,SIGNAL(clicked()),this,SLOT(deleteEvaluationSLot()));
+    this->connect(iScreen->evaluationDialog->saveButton,SIGNAL(clicked()),this,SLOT(createEvaluation()));
+
+    if(e.getId() != -1){
+
+        iScreen->evaluationDialog->saveButton->setEnabled(false);
+        iScreen->evaluationDialog->editButton->setEnabled(true);
+        iScreen->evaluationDialog->deleteButton->setEnabled(true);
+        iScreen->evaluationDialog->comments->setText(QString::fromStdString(e.getComment()));
+        iScreen->evaluationDialog->grade->setCurrentIndex(e.getRating()-1);
+
+    }
+
+    iScreen->evaluationDialog->show();
 
 }

@@ -7,34 +7,29 @@ EvaluationDialog::EvaluationDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     deleteButton = ui->deleteButton;
-    saveButton = ui->saveButton;
+    saveButton = ui->createEval;
+    editButton = ui->saveChangesButton;
+    comments = ui->comments;
+    grade = ui->gradeCombo;
 }
+
+
 
 EvaluationDialog::~EvaluationDialog()
 {
     delete ui;
 }
 
-void EvaluationDialog:: enableWindow(){
+void EvaluationDialog::saveEvaluation(Evaluation *e){
 
+    e->setRating(ui->gradeCombo->currentIndex()+1);
+    QString comments = ui->comments->toPlainText();
 
-    this->ui->saveButton->setEnabled(true);
-    this->ui->deleteButton->setEnabled(true);
-    this->ui->remarks->setEnabled(true);
-    this->ui->grade->setEnabled(true);
+    e->setComment(comments.toStdString());
+    ui->hasEvalTag->setText("True");
+    ui->createEval->setEnabled(false);
+    ui->deleteButton->setEnabled(true);
+    ui->saveChangesButton->setEnabled(true);
 }
 
-void EvaluationDialog::saveEvaluation(){
 
-        QString grade,description;
-        grade =1+this->ui->grade->currentIndex();
-        description= this->ui->remarks->toPlainText();
-
-
-}
-
-void EvaluationDialog::deleteEvaluation(){
-
-
-
-}

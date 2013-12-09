@@ -9,6 +9,7 @@
 #include "task.h"
 #include"QListWidget"
 #include <QPushButton>
+#include "evaluation.h"
 using namespace std;
 
 
@@ -27,20 +28,21 @@ public:
     QPushButton *createTaskButton;
     void refreshList(vector<QString> newList,string listType);
     void saveTask(Task * t);
-    void saveEvaluation();
+    void saveEvaluation(Evaluation *e);
     void deleteEvaluation();
     void deleteTask();
     int getTRow();
     int getCRow();
     void createTaskDialog();
     QListWidget* myList;
+    EvaluationDialog *evaluationDialog;
     ViewTaskDialog *taskDialog;
 
 private:
 
     Ui::InstructorWindow *ui;
 
-    EvaluationDialog *evaluationDialog;
+
 
 
 signals:
@@ -53,6 +55,7 @@ signals:
     void saveEvaluationSignal();
     void deleteTaskSignal();
     void viewTaskSignal();
+    void createEvaluationSignal();
 
 
 private slots:

@@ -114,10 +114,8 @@ void InstructorWindow::activateTaskButtons(){
 
 
 void InstructorWindow:: evaluationButtonPressed(){
-    evaluationDialog= new EvaluationDialog();
-    this->connect(evaluationDialog->deleteButton,SIGNAL(clicked()),this,SLOT(deleteEvaluationSLot()));
-    this->connect(evaluationDialog->saveButton,SIGNAL(clicked()),this,SLOT(saveEvaluationSlot()));
-    evaluationDialog->show();
+
+    emit createEvaluationSignal();
 
 }
 void InstructorWindow::saveEvaluationSlot()
@@ -132,9 +130,9 @@ void InstructorWindow::deleteEvaluationSLot(){
     emit deleteEvaluationSignal();
 
 }
-void InstructorWindow::saveEvaluation(){
+void InstructorWindow::saveEvaluation(Evaluation *e){
 
-        evaluationDialog->saveEvaluation();
+        evaluationDialog->saveEvaluation(e);
 
 }
 
