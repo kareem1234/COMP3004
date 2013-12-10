@@ -93,7 +93,7 @@ bool DBTask::insertTask(QString instructions, QString type, QString dueDate, QSt
                                 qint32 courseId, qint32 taId)
 {
     bool ret = false;
-
+    cout <<"inserting task "<< endl;
     if (db.isOpen())
     {
         QSqlQuery query;

@@ -1,4 +1,6 @@
-COMP 3004 Fall 2013 Deliverable 2
+COMP 3004 Fall 2013 Deliverable 4
+
+Team A plus plus
 
 Brodie Gallinger 100869790
 Anvar Gazizov 100867768
@@ -7,10 +9,15 @@ Kareem Lewis
 
 This folder contains two executables, the client and the server. 
 The server executable is in the ServerNetworking folder while the client is in the Client networking folder.
-First compile and run the server then do the same for the client.
-1.The create a task button creates a task sends it over the network and returns the task as it is stored in the database. 
-2. The view courses displays a default instructors courses. These are hardcded in the database.
-3. The edit task buttton edits a task that is first created then sent over the network and displayed as it is stored in the database.(PLEASE CREATE A TASK FIRST BEFORE EDITING A TASK)
-4.The evaluation button brings up the evaluation test case window. This window consists of options to ceate an evaluation, edit evaluation, and delete an evaluation. These must be done in the order they are listede.
-5. The view alll tasks button creates a dialogue with the list of tasks for a default TA. The delete button deletes the tasks from the data base. As tasks arecreated with the create task button they are added to the task list.
-6.The view all TA's button displays the list of three default TA's hardcoded into the database.
+
+First compile and run the server then do the same for the client. Using 'qmake' then 'make' in both cases.
+
+There are several users you can log in as.
+
+You should use 'edna@carleton.ca' for the Instructor. She has several TAs assigned to her courses: 'mary@carleton.ca', 'billy@carleton.ca', and 'sally@carleton.ca'. You must select the appropriate user type from the dropdown to login.
+
+As an instructor you can select a course you are teaching. Then select a TA assigned to the course. You can then create a new task for the TA. Once a task is created, a number of more options become available. You can edit the selected task, view the evaluation for the task, or delete the task. 
+To manage a Task's evaluation, you click the view evaluation button. If an evaluation has not yet been created for the task, you can create one. If there is one already created, you can either edit it or delete it.
+
+
+The TA user can simply view their assigned Tasks and corresponding evaluations. This functionality is straightforward. The TA can also refresh their task list with the 'Reload' button.

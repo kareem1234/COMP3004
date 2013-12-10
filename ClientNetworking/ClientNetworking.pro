@@ -14,7 +14,6 @@ INCLUDEPATH += .
 # Input
 HEADERS += Client.h \
            course.h \
-           courses.h \
            evaluation.h \
            instructor.h \
            ta.h \
@@ -40,7 +39,6 @@ FORMS += \
     evaluationdialog.ui
 SOURCES += Client.cc \
            course.cpp \
-           courses.cpp \
            evaluation.cpp \
            instructor.cpp \
            main.cpp \

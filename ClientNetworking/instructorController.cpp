@@ -179,6 +179,7 @@ Task InstructorController::getSelectedTask()
     if (tr == -1)
     {
         Task t;
+        t.setId(0);
         return t;
     }
     else
