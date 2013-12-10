@@ -8,10 +8,11 @@ TAcontroller::TAcontroller(taClient* c, TA t,QObject *parent) :
     client = c;
     this->connect(&taScreen, SIGNAL(cellSelectedSignal(int,int)), this, SLOT(cellSelected(int, int)));
     this->connect(&taScreen, SIGNAL(logout()), this,SLOT(logoutClicked()));
+    this->connect(&taScreen, SIGNAL(reload()), this,SLOT(reloadClicked()));
     taScreen.show();
 
     currentCourse = client->getCurrentCourse(self);
-    taskList = client->getTaskListForCourse(self,currentCourse);
+    updateTaskList();
 
     viewTask();
 }
@@ -25,6 +26,18 @@ void TAcontroller:: logoutClicked(){
     emit logout();
 }
 
+void TAcontroller::reloadClicked()
+{
+    updateTaskList();
+    clearDetails();
+}
+
+void TAcontroller::updateTaskList()
+{
+    taskList = client->getTaskListForCourse(self,currentCourse);
+    viewTask();
+}
+
 void TAcontroller::viewTask(){
    taScreen.initTA(self.getEmail(), currentCourse.getCourseName());
 
@@ -34,7 +47,14 @@ void TAcontroller::viewTask(){
 void TAcontroller::viewEval(){
     Evaluation eval = client->getEval(taskList[row]);
 
-    taScreen.displayEvaluation(QString::number(eval.getRating()), QString::fromStdString(eval.getComment()));
+    if (eval.getId() != -1)
+    {
+        taScreen.displayEvaluation(QString::number(eval.getRating()), QString::fromStdString(eval.getComment()));
+    }
+    else
+    {
+        taScreen.displayEvaluation("N/A", "N/A");
+    }
 }
 
 void TAcontroller::viewTaskDetails(int row)
@@ -42,8 +62,7 @@ void TAcontroller::viewTaskDetails(int row)
     Task taskSel = taskList[row];
 
     taScreen.displayDetails(QString::fromStdString(taskSel.getInstructions()),
-                            QString::fromStdString(taskSel.getType()),
-                            QString::fromStdString(taskSel.getProgress()));
+                            QString::fromStdString(taskSel.getType()));
 }
 
 void TAcontroller::cellSelected(int r, int c) {
@@ -57,7 +76,7 @@ void TAcontroller::cellSelected(int r, int c) {
 void TAcontroller::clearDetails()
 {
     taScreen.displayEvaluation("", "");
-    taScreen.displayDetails("", "", "");
+    taScreen.displayDetails("", "");
 }
 
 

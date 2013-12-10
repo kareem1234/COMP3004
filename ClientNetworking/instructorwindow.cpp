@@ -26,13 +26,8 @@ InstructorWindow::~InstructorWindow()
 
 
 void InstructorWindow::TAListItemChangedSlot(){
-
-
-
     ui->taskList->clear();
 
-    QString name = this->ui->TAList->currentItem()->text();
-    this->ui->TASelectedLabel->setText(name);
 
     emit updateTaskListSignal();
 
@@ -163,9 +158,12 @@ void InstructorWindow:: taskListSelectionChangedSlot(){
     ui->createTask->setEnabled(false);
 
 }
+
 void InstructorWindow::createTaskDialog(){
     taskDialog= new ViewTaskDialog();
     taskDialog->createTask->setText("Create Task");
+    connect(this->taskDialog,SIGNAL(saveChanges()),this,SLOT(saveTaskSignalSlot()));
+
     taskDialog->show();
 }
 
@@ -176,4 +174,9 @@ void InstructorWindow::disableButtons()
     ui->viewTaskButton->setEnabled(false);
     ui->evaluationButton->setEnabled(false);
 
+}
+
+void InstructorWindow::updateEmailLabel(QString email)
+{
+    ui->labelEmail->setText(email);
 }

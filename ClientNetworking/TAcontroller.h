@@ -28,12 +28,14 @@ signals:
     void logout();
 
 public slots:
+    void updateTaskList();
     void viewTask();
     void viewTaskDetails(int row);
     void viewEval();
     void clearDetails();
     void cellSelected(int, int);
     void logoutClicked();
+    void reloadClicked();
 
 
 

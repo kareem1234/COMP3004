@@ -15,17 +15,11 @@ INCLUDEPATH += .
 HEADERS += Client.h \
            course.h \
            courses.h \
-           edittask.h \
            evaluation.h \
            instructor.h \
-           saveevaluation.h \
            ta.h \
            task.h \
-           taskcreated.h \
-           taskview.h \
            user.h \
-           viewta.h \
-           viewtasks.h \
     clientNetwork.h \
     clientUser.h \
     taClient.h \
@@ -38,12 +32,7 @@ HEADERS += Client.h \
     instructorwindow.h \
     viewtaskdialog.h \
     evaluationdialog.h
-FORMS += courses.ui \
-         edittask.ui \
-         saveevaluation.ui \
-         taskcreated.ui \
-         taskview.ui \
-         viewtasks.ui \
+FORMS += \
     tamainscreen.ui \
     mainmenu.ui \
     instructorwindow.ui \
@@ -52,18 +41,12 @@ FORMS += courses.ui \
 SOURCES += Client.cc \
            course.cpp \
            courses.cpp \
-           edittask.cpp \
            evaluation.cpp \
            instructor.cpp \
            main.cpp \
-           saveevaluation.cpp \
            ta.cpp \
            task.cpp \
-           taskcreated.cpp \
-           taskview.cpp \
            user.cpp \
-           viewta.cpp \
-           viewtasks.cpp \
     clientUser.cpp \
     clientNetwork.cpp \
     Message.cpp \

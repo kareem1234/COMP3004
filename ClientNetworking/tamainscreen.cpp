@@ -5,6 +5,7 @@ TAMainScreen::TAMainScreen(QWidget *parent) : QFrame(parent), ui(new Ui::TAMainS
 {
     ui->setupUi(this);
     this->connect(this->ui->pushButton,SIGNAL(clicked()),this,SLOT(logoutClicked()));
+    this->connect(this->ui->buttonReload,SIGNAL(clicked()),this,SLOT(reloadClicked()));
     this->ui->taskItems->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->taskItems->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->taskItems->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -48,16 +49,19 @@ void TAMainScreen::logoutClicked(){
     emit logout();
 }
 
+void TAMainScreen::reloadClicked()
+{
+    emit reload();
+}
+
 void TAMainScreen::displayEvaluation(QString rating, QString comments){
     this->ui->textRating->setText(rating);
 
     this->ui->textComments->setText(comments);
 }
 
-void TAMainScreen::displayDetails(QString instructions, QString type, QString progress) {
+void TAMainScreen::displayDetails(QString instructions, QString type) {
     this->ui->textInstructions->setText(instructions);
 
     this->ui->textType->setText(type);
-
-    this->ui->textProgress->setText(progress);
 }

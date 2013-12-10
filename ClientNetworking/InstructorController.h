@@ -38,11 +38,10 @@ class InstructorController : public QObject{
             void updateTaskList();
             void saveTaskChanges();//this is the slot that calls the save task function in the client after a local task variable is updated with new data
             void createEvaluation();
-            void deleteEvaluation();
             void deleteTask();
             void createTaskButtonClicked();
             void viewTaskSlot();
-            void createTaskSlot();
+          //  void createTaskSlot();
             void createEvaluationDialogSlot();
             void deleteEvaluationSlot();
             void editEvaluation();

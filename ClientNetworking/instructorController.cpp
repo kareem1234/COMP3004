@@ -21,7 +21,11 @@ Instructor i,QObject* parent): QObject(parent){
     connect(this->iScreen,SIGNAL(createEvaluationSignal()),this,SLOT(createEvaluationDialogSlot()));
     iScreen->show();
     cout<<"instructor is: "<<self.toString();
+
+    iScreen->updateEmailLabel(QString::fromStdString(self.getEmail()));
+
     updateCourseList();
+
 }
 
 InstructorController::~InstructorController(){
@@ -76,9 +80,7 @@ void InstructorController:: updateTaskList(){
 
 }
 
-void InstructorController::deleteEvaluation(){
-    // not sure wat u want
-}
+
 
 void InstructorController::deleteTask(){
 
@@ -123,28 +125,12 @@ void InstructorController::saveTaskChanges(){
     client->saveTask(getSelectedTA(), tas);
 
     updateTaskList();
+    iScreen->disableButtons();
 }
 
 
 void InstructorController::createTaskButtonClicked(){
-
-
     iScreen->createTaskDialog();
-    connect(this->iScreen->taskDialog->createTask,SIGNAL(clicked()),this,SLOT(createTaskSlot()));
-
-
-}
-
-void InstructorController::createTaskSlot(){
-
-    Task t;
-    t.setId(0);
-    iScreen->saveTask(&t);
-
-    TA ta = getSelectedTA();
-
-    client->saveTask(ta, t);
-    updateTaskList();
 }
 
 
@@ -190,7 +176,16 @@ Task InstructorController::getSelectedTask()
 {
     int tr = iScreen->getTaskRow();
 
-    return taskList[tr];
+    if (tr == -1)
+    {
+        Task t;
+        return t;
+    }
+    else
+    {
+        return taskList[tr];
+    }
+
 }
 
 

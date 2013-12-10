@@ -41,12 +41,12 @@ void ViewTaskDialog::confirmSave()
     msgBox.setInformativeText("Do you want to save your changes?");
     msgBox.setStandardButtons(QMessageBox::Save |  QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Save);
+
     int ret = msgBox.exec();
-    if(ret ==QMessageBox::Save){
+    if(ret == QMessageBox::Save){
         emit saveChanges();
+        this->close();
     }
-    QString taskDay = ui->dayComboBox->currentText();
-    QString taskMonth = ui->monthComboBox->currentText();
 }
 
 
@@ -82,7 +82,6 @@ void ViewTaskDialog::setTaskNameTag(QString name){
 
 
 void ViewTaskDialog::getTaskAtributes(Task* t){
-   // QString taskName,taskHour,taskMinute,taskDay,taskMonth;
     t->setType( ui->taskNameLabel->text().toStdString() );
 
     QDate date = QDate(2013,

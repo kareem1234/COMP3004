@@ -16,7 +16,7 @@ public:
     ~TAMainScreen();
     void setTable(std::vector<Task>);
     void displayEvaluation(QString, QString);
-    void displayDetails(QString instructions, QString type, QString progress);
+    void displayDetails(QString instructions, QString type);
     void initTA(std::string, std::string);
 private:
     Ui::TAMainScreen *ui;
@@ -25,9 +25,11 @@ private:
 
 private slots:
     void logoutClicked();
+    void reloadClicked();
     void cellSelected(int r, int c);
 signals:
     void logout();
+    void reload();
     void cellClicked();
     void cellSelectedSignal(int, int);
 };

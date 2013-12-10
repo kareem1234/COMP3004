@@ -36,6 +36,7 @@ public:
     int getTaskRow();
     void createTaskDialog();
 
+    void updateEmailLabel(QString email);
     void disableButtons();
 
     QListWidget* myList;
